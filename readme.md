@@ -13,11 +13,11 @@
 ## Timeline
 
 ### Phase 1: User auth, make group/private chat feeds (1 day)
-Implement using dumb rails views, nothing realtime.  Will build data model to support channels, all feeds will be a channel.  Private chat will be channels limited to 2 users.
+Implement using dumb rails views, nothing realtime.  Will build data model to support channels, all feeds will be a channel.  Private chat will be channels limited to 2 users. Will be hosted on Heroku.
 
 
 ### Phase 2: Inline edits with previews and markdown integration (2 days)
-Get API rolling for backbone app, should be able to create and edit chat messages in channel. Will have markdown rendering.
+Get API rolling for backbone app, should be able to create and edit chat messages in channel.  Setup naive ajax polling working to keep page updated. Will have markdown rendering for chat feed items.
 
 ### Phase 3: Groups and channels (2 days)
 Build backbone interface for switching groups and channels.  Get the general HTML/CSS layout correct in this step.
@@ -31,6 +31,7 @@ Search posts based on username and post content. Parse http links that are of im
 ### Phase 6: Add wish list items
 - Add infinite scroll and generate a really long chat seed
 - Use websockets instead of naive ajax polling
+https://devcenter.heroku.com/articles/websockets
 - Search posts based on username and post content
 - Make bot posts
 - Pin Items
