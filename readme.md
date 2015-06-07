@@ -1,8 +1,18 @@
 # Slack Clone
 
+Slick - integrated office distractions
+
+https://example.com with custom domain
+
+## Questions:
+- Separate models for group/private chat? (private chat at all to start?)
+
+
 ## Minimum Viable Product
+Distraction/messaging tool for organizations.
+
 - Users log in
-- Users can real time chat
+- Users can have near real time chat
 - Group and private conversations
 - Can edit content in place
 - Messages can be formatted with markdown for styling
@@ -29,11 +39,9 @@ Search posts based on username and post content. Parse http links that are of im
   All the CSS and JS.
 
 ### Phase 6: Add wish list items
-- Add infinite scroll and generate a really long chat seed
 - Use websockets instead of naive ajax polling
 https://devcenter.heroku.com/articles/websockets
 - Search posts based on username and post content
-- Make bot posts
 - Pin Items
 - View mentions
 - Favorite items (users, channels, posts)
