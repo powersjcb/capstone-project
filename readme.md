@@ -2,7 +2,11 @@
 
 Slick - integrated office distractions
 
-https://example.com with custom domain
+(MVP Schema)[/docs/schema.md]
+(Views)[/docs/views.md]
+(Wireframes)[/docs/wireframes/]
+
+
 
 ## Questions:
 - Separate models for group/private chat? (private chat at all to start?)
