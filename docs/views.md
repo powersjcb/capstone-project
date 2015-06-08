@@ -7,15 +7,33 @@
 ![Slick Landing](wireframes/landing_page_annotated.png)
 
 ## Layout
- - div class="nav-left"
- - div class="feed"
- - div class="nav-top"
- - div class="nav-context" (right)
-
-
+- div id="container"
+  - div class="nav-left"
+  - div class="channel"
+  - div class="nav-context" (right, bonus)
 
 ![Slick Layout!](wireframes/FeedMockup.png)
 
+## Channel Feed
+- div class="channel"
+  - div class="nav-top"
+  - div class="channel-area"
+  - div class="scrollbar"
+    - div class="message-area" (messageIndex at first, channelShow later)
+      - div class="message"
+        - div class="gravatar"
+        - div class="username"
+        - span class="timestamp"
+        - div class="content"
+  - footer (messageForm)
+    - div class="file-upload btn"
+    - input type="text"
+    - div class="gat-gif-attacher"
+
+
+
+
+![Sweet feed yo!](wireframes/feed_wireframe.png)
 
 ## Side Nav - left (starts off static)
 - div class="nav nav-left"
@@ -31,4 +49,4 @@
 ![Slick Side Nav - left](wireframes/side_nav_left-base_view-annotated.png)
 
 
-## Context Nav - right (starts off static)
+## Context Nav - right side with search (bonus)

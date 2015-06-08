@@ -7,6 +7,7 @@
 - Api::Subscriptions [create, delete]
 ### Views
 ## Backbone
+Figure out how to ajax poll without breaking chrome and my server.
 ### Models
 - Message
 - Conversation

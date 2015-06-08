@@ -9,7 +9,7 @@ https://example.com with custom domain
 
 
 ## Minimum Viable Product
-Distraction/messaging tool for organizations.
+Slick the distraction tool for corporate organizations.
 
 - Users log in
 - Users can have near real time chat
@@ -23,26 +23,26 @@ Distraction/messaging tool for organizations.
 ## Timeline
 
 ### Phase 1: User auth, make group/private chat feeds (1 day)
-Implement using dumb rails views, nothing realtime.  Will build data model to support channels, all feeds will be a channel.  Private chat will be channels limited to 2 users. Will be hosted on Heroku.
+Do auth. Implement the skeleton of a messaging app.  Messages will be done using plain rails views for testing purposes only.  The focus should be on building out as little as possible. (build everything presuming `Messages.all` will be the feed source)
 
-
-### Phase 2: Inline edits with previews and markdown integration (2 days)
-Get API rolling for backbone app, should be able to create and edit chat messages in channel.  Setup naive ajax polling working to keep page updated. Will have markdown rendering for chat feed items.
+### Phase 2: Inline edits with previews (2 days)
+Get API rolling for backbone app, should be able to create and edit chat messages in a message index.(all posts from all users)  Setup naive ajax polling working to keep page updated.
 
 ### Phase 3: Groups and channels (2 days)
-Build backbone interface for switching groups and channels.  Get the general HTML/CSS layout correct in this step.
+Build backbone interface for feeds of groups and channels.  Be able to switch between them.  Get the general HTML/CSS layout correct in this step. (Avoid framework dependent css, might not be able to get proper look easily with bootstrap.)
 
-### Phase 4: Auto-embed images and filepicker images (2 days)
-Search posts based on username and post content. Parse http links that are of image files, display on page.  Add filepicker integration for new images to be uploaded.
+### Phase 4: Finish memberships, make it look good (1 days)
+Finish anything remaining with groups and make the pages look kickass.  Barebones MVP should be done at this point.  If it looks okay at this point start adding bonus features.
 
-### Phase 5: Make it look perfect (? days)
-  All the CSS and JS.
+### Phase 5: Add features (2 days)
+Add markdown to enable feed styling. (might have to limit types of styling) This is where we add the ooo-ahhh features.  Do pagination for the channel feeds.  Start testing websockets with pusher.
+Weed out any remaining bugs/glitches.
+
 
 ### Phase 6: Add wish list items
 - Use websockets instead of naive ajax polling
-https://devcenter.heroku.com/articles/websockets
-- Search posts based on username and post content
-- Pin Items
-- View mentions
 - Favorite items (users, channels, posts)
+- Pin Items
+- Search posts based on username and post content
+- Create/view mentions
 - Show current users in channel

@@ -11,6 +11,7 @@
 ### Collections
 ### Views
 ## Gems/Libraries (start cosmetics for app)
+pusher
 Markdown-js
 Bootstrap Markdown
 Pagination/infinite scroll

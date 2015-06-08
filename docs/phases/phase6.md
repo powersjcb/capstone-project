@@ -1,13 +1,20 @@
 # Phase 5: Bonus (many days)
 ## Rails
 ### Models
-- mentions
+- mention
+- favorite (polymorphic)
+- pinned_item
+
 ### Controllers
- - searchable (users+posts+mentions)
+- searches (users+posts+mentions)
+- websockets?? (learn how this works)
 ### Views
+- mentionIndex
+- favoriteIndex
+- channelPinnedItems
 ## Backbone
 ### Models
 ### Collections
 ### Views
-## Gems/Libraries (start cosmetics for app)
+## Gems/Libraries
 - switch from ajax to websockets
