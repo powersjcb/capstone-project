@@ -49,7 +49,7 @@ conversation_id | integer   |not null, foreign key (references conversation)
 
 
 Column          |  Type   | details
-----------------|-------------------------
+----------------|---------|---------------
 id              | integer | not null, primary key
 user_id         | integer | not null, foreign key (references subscribee)
 conversation_id | integer | not null, foreign key (references conversation)
@@ -58,7 +58,7 @@ conversation_id | integer | not null, foreign key (references conversation)
 ## Users
 
 Column          |   Type  |details
-----------------|----------------------------
+----------------|---------|------------------
 id              | integer | not null, primary key
 username        | string  |not null, indexed, unique
 password_digest | string  |not null
