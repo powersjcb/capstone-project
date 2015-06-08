@@ -2,9 +2,13 @@
 
 Slick - integrated office distractions
 
-(MVP Schema)[/docs/schema.md]
-(Views)[/docs/views.md]
-(Wireframes)[/docs/wireframes/]
+
+
+[MVP Schema](/docs/schema.md)
+
+[Views](/docs/views.md)
+
+[Wireframes](/docs/wireframes/)
 
 
 
