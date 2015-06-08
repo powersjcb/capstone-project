@@ -1,6 +1,10 @@
 
 
 # Views
+## Landing page
+
+
+![Slick Landing](wireframes/landing_page_annotated.png)
 
 ## Layout
  - div class="nav-left"

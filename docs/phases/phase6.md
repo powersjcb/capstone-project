@@ -2,7 +2,6 @@
 ## Rails
 ### Models
 - mentions
-- favorite (users, channels, posts)
 ### Controllers
  - searchable (users+posts+mentions)
 ### Views
