@@ -1,10 +1,25 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ActiveRecord::Base
   attr_reader :password
 
   validates :username, presence: true
   validates :password_digest, presence: {message: "Password can't be blank"}
-
   before_save :ensure_session_token
+
+
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
+
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)
