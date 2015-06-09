@@ -13,7 +13,7 @@ class Conversation < ActiveRecord::Base
 
   validates :title, :user_id, presence: true
 
-  belongs_to :creator, class_name: "User"
+  belongs_to :creator, class_name: "User", inverse_of: "created_chats"
   has_many :messages
   # has_many :subscriptions
 

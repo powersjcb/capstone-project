@@ -1,10 +1,16 @@
-window.SlickApp = {
+window.Slick = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    var messages = new Slick.Collections.Messages();
+
+    var router = new Slick.Routers.Router({
+      $rootEl: $('#content'),
+      messages: messages
+    });
+    Backbone.history.start();
   }
 };
 

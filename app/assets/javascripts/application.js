@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require underscore
 //= require jquery.serializejson
+//= require underscore
 //= require backbone
 //= require slick
 //= require_tree ../templates

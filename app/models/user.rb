@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
 
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
+  has_many :created_chats, class_name: "Conversation", inverse_of: "creator"
 
 
   def self.find_by_credentials(username, password)
