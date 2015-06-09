@@ -1,0 +1,31 @@
+<div class="container">
+  <header><span class="logo">slick</span></header>
+
+  <div class="pitch">
+    SALES PITCH IMAGE AND TEXT GOES HERE
+
+
+  </div>
+
+
+
+
+<form class="" action="<%= users_url %>" method="post">
+  <input type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+    <input id="user-username"
+      type="text"
+      name="user[username]"
+      value="<%= @user.username %>"
+      placeholder="Username">
+    <input id="user-username"
+      type="password"
+      name="user[password]"
+      value=""
+      placeholder="Password">
+
+      <button type="submit" name="submit">Sign Up</button>
+</form>
+
+</div>
