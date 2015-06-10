@@ -11,6 +11,12 @@ Slick.Routers.Router = Backbone.Router.extend({
 
   messages: function() {
     this.messages.fetch();
+
+      //bad annoying, dont do
+    setInterval(function() {
+      this.messages.fetch();
+    }.bind(this), 2000);
+
     var messagesView = new Slick.Views.MessagesIndex({
       collection: this.messages
     });
