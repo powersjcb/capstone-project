@@ -7,14 +7,16 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'add', this.addMessageView);
     this.listenTo(this.collection, 'remove', this.removeMessageView);
     this.listenTo(this.collection, 'add remove', this.stickScrollBottom);
-    this.listenTo(this.collection, 'sync', this.startOnBottom);
+    this.listenToOnce(this.collection, 'sync', this.addMessageFormView);
+    this.listenToOnce(this.collection, 'sync', this.startOnBottom);
 
-    this.addMessageFormView();
   },
 
   addMessageFormView: function() {
     var newMessage = new Slick.Models.Message();
     var subView = new Slick.Views.MessageForm({ model: newMessage });
+
+    this.addSubview('footer.message-form', subView);
   },
 
   addMessageView: function(model) {
