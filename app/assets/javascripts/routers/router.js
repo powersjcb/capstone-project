@@ -11,7 +11,11 @@ Slick.Routers.Router = Backbone.Router.extend({
 
   conversation: function(id) {
     var conversation = new Slick.Models.Conversation({id: id});
-    conversation.fetch();
+
+    setInterval(function() {
+      conversation.fetch();
+    }.bind(this), 2000);
+
     chatView = new Slick.Views.ConversationShow({
       model: conversation
     });
@@ -21,12 +25,10 @@ Slick.Routers.Router = Backbone.Router.extend({
 
 
   messages: function() {
+    this.messages = new Slick.Collections.Messages();
     this.messages.fetch();
 
       //bad annoying, dont do
-    setInterval(function() {
-      this.messages.fetch();
-    }.bind(this), 2000);
 
     var messagesView = new Slick.Views.MessagesIndex({
       collection: this.messages

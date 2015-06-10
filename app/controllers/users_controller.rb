@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       login(@user)
       redirect_to app_url
     else
-      flash[:errors] = @user.errors.full_messages
+      flash[:danger] = @user.errors.full_messages
       redirect_to :back
     end
   end

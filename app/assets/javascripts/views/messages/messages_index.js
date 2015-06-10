@@ -7,25 +7,19 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.conversation = options.conversation;
 
+    this.listenTo(this.collection, 'add remove', this.stickScrollBottom);
     this.listenTo(this.collection, 'add', this.addMessageView);
     this.listenTo(this.collection, 'remove', this.removeMessageView);
-    this.listenTo(this.collection, 'add remove', this.stickScrollBottom);
 
     // fix this somehow later, using settimeout for now
     // this.listenToOnce(this.collection, 'sync', this.startOnBottom);
-
-    setTimeout(this.startOnBottom, 250);
+    this.startOnBottom();
   },
 
 
   addMessageView: function(model) {
     var subView = new Slick.Views.Message({ model: model });
     this.addSubview('#messages-container', subView);
-  },
-
-  onRender: function () {
-    this.startOnBottom();
-    Backbone.CompositeView.prototype.onRender.call(this);
   },
 
   removeMessageView: function(model) {
@@ -59,7 +53,9 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
       var distanceToBottom = scrollHeight - clientHeight - scrollTop;
 
       if (distanceToBottom < stickyTolerance) {
-        $msgDiv.scrollTop(scrollHeight);
+        setTimeout(function() {
+          this.startOnBottom();
+        }.bind(this),0);
       }
     }
   }

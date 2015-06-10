@@ -5,7 +5,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   className: "input-area",
 
   events: {
-    "submit": "sendMessage"
+    "submit": "submitMessage"
   },
 
   render: function() {
@@ -16,10 +16,12 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
 
   submitMessage: function (event) {
     event.preventDefault();
-    var content = $('#chat-input').val();
+    $input = $('#chat-input');
+    var content = $input.val();
 
     if (this.isValidMessage(content)) {
       this.sendMessage(content);
+      $input.val("");
     } else {
       // invalid msg prompt?
     }
@@ -29,23 +31,24 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
     this.model.set("content", content );
+    console.log(this.model);
     this.model.save({}, {
-      success: this.removePendingStyle,
-      error: this.styleFailed
-    }.bind(this));
-
+      // success: this.removePendingStyle,
+      // error: this.styleFailed
+    });
     this.pendMessage();
+
   },
 
   removePendingStyle: function () {
   },
 
   pendMessage: function () {
-    this.model.conversation.add(this.model);
+    this.model.conversation.messages().add(this.model);
   },
 
-  styleFailed: function () {
-  },
+  // styleFailed: function () {
+  // },
 
   isValidMessage: function (user_input) {
     return true;

@@ -26,10 +26,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless logged_in?
   end
 
-  def bounce_api_unless_logged_in
-    render json: "invalid session token", status: 404 unless logged_in?
-  end
-
   private
   def user_params
     params.require(:user).permit(:username, :password)

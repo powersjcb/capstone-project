@@ -1,0 +1,12 @@
+<% flash_types = {danger: "danger", success: "success", alert: "warning", notice: "info" } %>
+<% flash_types.each do |sym, value| %>
+  <% if flash[sym] %>
+    <div>
+      <% flash[sym].each do |msg| %>
+        <div class="alert-<%= value %>">
+          <%= msg %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

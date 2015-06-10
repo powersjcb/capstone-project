@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   validates :username, :session_token, presence: true, uniqueness: true
   validates :password_digest, presence: {message: "Password can't be blank"}
-  before_save :ensure_session_token
+  after_initialize :ensure_session_token
 
 
   has_many(
@@ -35,7 +35,6 @@ class User < ActiveRecord::Base
     if @user.is_password?(password)
       return @user
     end
-
     nil
   end
 
@@ -60,6 +59,6 @@ class User < ActiveRecord::Base
 
   private
   def ensure_session_token
-    self.session_token = User.generate_session_token
+    self.session_token ||= User.generate_session_token
   end
 end
