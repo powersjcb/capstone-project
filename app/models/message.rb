@@ -15,6 +15,6 @@ class Message < ActiveRecord::Base
   validates :content, allow_blank: false, length: {maximum: 32_767}
 
   belongs_to :user, foreign_key: :sender_id
-  # belongs_to :conversation
+  belongs_to :conversation
 
 end

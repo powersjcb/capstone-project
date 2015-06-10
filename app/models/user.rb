@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
   has_many :created_chats, class_name: "Conversation", inverse_of: "creator"
 
+  has_many :subscriptions
+  has_many :conversations, through: :subscriptions, source: :conversations
+
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)

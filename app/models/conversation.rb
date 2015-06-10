@@ -15,7 +15,8 @@ class Conversation < ActiveRecord::Base
 
   belongs_to :creator, class_name: "User", inverse_of: "created_chats"
   has_many :messages
-  # has_many :subscriptions
+  has_many :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user
 
 
 end
