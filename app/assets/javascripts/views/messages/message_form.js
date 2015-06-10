@@ -5,7 +5,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   className: "input-area",
 
   events: {
-    "submit": "submitMessage"
+    "keydown textarea": "submitMessage"
   },
 
   render: function() {
@@ -15,15 +15,19 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   },
 
   submitMessage: function (event) {
-    event.preventDefault();
-    $input = $('#chat-input');
-    var content = $input.val();
+    // ignores shift+return
+    if (!event.shiftKey && event.keyCode == 13) {
+      event.preventDefault();
+      $input = $('#chat-input');
+      var content = $input.val();
 
-    if (this.isValidMessage(content)) {
-      this.sendMessage(content);
-      $input.val("");
-    } else {
-      // invalid msg prompt?
+      if (this.isValidMessage(content)) {
+        this.sendMessage(content);
+        $input.val("");
+      } else {
+        // invalid msg prompt?
+        console.log('message cant be blank');
+      }
     }
   },
 
@@ -51,7 +55,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // },
 
   isValidMessage: function (user_input) {
-    return true;
+    return user_input.length > 0 && user_input.length < 30000;
   }
 
 });

@@ -1,3 +1,36 @@
-footer#composer {
-  
+.footer {
+  position: fixed;
+  display: block;
+  box-sizing: border-box;
+  bottom: 0px;
+  left: 220px;
+  height: 64px;
+  right: 16px;
+}
+
+.footer form {
+  display: inline-block;
+}
+
+
+.chat-box {
+  display: block;
+  box-sizing: content-box;
+  position: absolute;
+  height: 40px;
+  bottom: 22px;
+  left: 64px;
+  right: 20px;
+  padding-right: 16px;
+  border: 1px;
+}
+.chat-input {
+  line-height: 16px;
+  font-size: 15px;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  resize: none;
+  overflow-y: auto;
 }
