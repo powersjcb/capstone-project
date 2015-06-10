@@ -17,14 +17,20 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :members, through: :memberships, source: :user
 
+  belongs_to :user
+
   after_save :create_base_channels
+
+  def public_conversations
+    Conversation.where(group_id: id, privacy_state: 0)
+  end
 
 
   private
   def create_base_channels
-    Conversation.create(title: "general", user_id: self.user_id)
-    Conversation.create(title: "random", user_id: self.user_id)
+    Conversation.create(title: "general", user_id: user_id, group_id: id)
+    Conversation.create(title: "random", user_id: user_id, group_id: id)
     # joining group creator to all channels
-    Subscription.create(user_id: self.user_id, group_id: self.id)
+    Membership.create(user_id: user_id, group_id: id)
   end
 end

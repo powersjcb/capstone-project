@@ -3,7 +3,8 @@
 #
 
 user = User.create(username: "powersjcb", password: "password" )
-user.created_chats.create(title: "chat group1")
+group = user.created_groups.create(name: "Group1", description: "First group")
+user.created_chats.create(title: "chat group1", group_id: 1)
 #
 50.times do
   content = Faker::Hacker.say_something_smart

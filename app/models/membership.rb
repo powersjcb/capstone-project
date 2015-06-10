@@ -26,9 +26,9 @@ class Membership < ActiveRecord::Base
   def subscribe_public_conversations
     # selects all public conversations and joins them
     public_convs = Conversation.where(
-      group_id: group_id, privacy_sate: 0)
+      group_id: group_id, privacy_state: 0)
     public_convs.each do |conv|
-      Subscription.create(user_id: self.user_id,
+      Subscription.create(user_id: user_id,
         conversation_id: conv.id)
     end
   end
