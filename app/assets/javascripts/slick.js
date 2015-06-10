@@ -7,8 +7,7 @@ window.Slick = {
     var messages = new Slick.Collections.Messages();
 
     var router = new Slick.Routers.Router({
-      $rootEl: $('#content'),
-      messages: messages
+      $rootEl: $('#content')
     });
     Backbone.history.start();
   }

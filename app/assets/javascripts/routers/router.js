@@ -2,12 +2,23 @@ Slick.Routers.Router = Backbone.Router.extend({
 
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    this.messages = options.messages;
   },
 
   routes: {
-    "": "messages"
+    "conversations/:id":"conversation",
+    "messages": "messages"
   },
+
+  conversation: function(id) {
+    var conversation = new Slick.Models.Conversation({id: id});
+    conversation.fetch();
+    chatView = new Slick.Views.ConversationShow({
+      model: conversation
+    });
+    this._swapView(chatView);
+  },
+
+
 
   messages: function() {
     this.messages.fetch();
@@ -29,7 +40,8 @@ Slick.Routers.Router = Backbone.Router.extend({
       this._currentView.remove();
     }
     this._currentView = view;
-    this.$rootEl.html(view.render().$el);
+    this.$rootEl.html(view.$el);
+    view.render();
   }
 
 

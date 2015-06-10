@@ -1,7 +1,10 @@
 Slick.Models.Message = Backbone.Model.extend({
-  rootUrl: "/api/messages",
+  urlRoot: "/api/messages",
 
-  // user: function() {
-    // return Backbone.Model
-  // }
+  initialize: function (attrs, options) {
+    if (options.conversation) {
+      this.conversation = options.conversation;
+      this.set('conversation_id', options.conversation.get('id'));
+    }
+  },
 });

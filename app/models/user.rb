@@ -18,7 +18,12 @@ class User < ActiveRecord::Base
   before_save :ensure_session_token
 
 
-  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
+  has_many(
+    :sent_messages,
+    class_name: "Message",
+    foreign_key: :sender_id,
+    inverse_of: :sender
+  )
   has_many :created_chats, class_name: "Conversation", inverse_of: "creator"
 
   has_many :subscriptions

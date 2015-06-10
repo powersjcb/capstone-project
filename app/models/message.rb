@@ -13,8 +13,20 @@
 class Message < ActiveRecord::Base
   validates :content, :sender_id, :conversation_id, presence: true
   validates :content, allow_blank: false, length: {maximum: 32_767}
+  validate :user_in_conversation
 
-  belongs_to :user, foreign_key: :sender_id
+  belongs_to(:sender,
+    class_name: "User",
+    foreign_key: :sender_id,
+    inverse_of: :sent_messages)
   belongs_to :conversation
 
+
+
+  private
+  def user_in_conversation
+    unless sender.conversations.include?(this.conversation)
+      @sender.errors[:base] << "This user is not subscribed to this conversation"
+    end
+  end
 end

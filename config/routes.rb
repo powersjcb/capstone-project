@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get "app", to: 'static_pages#app', as: "app"
   resources :users, only: [:create]
 
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     resources :messages
+    resources :groups
+    resources :conversations
   end
 
 end
