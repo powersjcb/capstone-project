@@ -5,7 +5,7 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.addMessagesIndex();
-    this.addMessageFormView();
+    this.listenTo(this.model, 'change', this.addMessageFormView);
   },
 
 
@@ -28,7 +28,6 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
-    this.onRender();
     return this;
   },
 

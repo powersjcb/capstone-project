@@ -3,9 +3,13 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
   template: JST['groups/show'],
   tagName: "div",
 
+  events: {
+
+  },
+
   initialize: function () {
     this.listenTo(this.model, "change", this.render);
-    this.listenTo(this.model, "change", this.addConversationView);
+    this.addConversationView();
   },
 
   addConversationView: function () {

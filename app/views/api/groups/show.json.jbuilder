@@ -8,7 +8,7 @@ json.members do
 end
 
 json.conversation do
-  json.extract!(@conversation, :id, :title, :created_at, :privacy_state )
+  json.extract!(@conversation, :id, :title, :user_id, :created_at, :updated_at, :privacy_state )
   json.messages @conversation.messages do |message|
     json.extract!(message, :id, :content, :sender_id, :created_at)
   end

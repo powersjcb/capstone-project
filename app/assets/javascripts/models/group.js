@@ -38,6 +38,7 @@ Slick.Models.Group = Backbone.Model.extend({
 
     // get conversation
     if (payload.conversation) {
+      this.conversation().parse(payload.conversation);
       this.conversation().set(payload.conversation, {parse: true});
       delete payload.conversation;
     }

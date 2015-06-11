@@ -11,8 +11,6 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'add', this.addMessageView);
     this.listenTo(this.collection, 'remove', this.removeMessageView);
 
-    // fix this somehow later, using settimeout for now
-    // this.listenToOnce(this.collection, 'sync', this.startOnBottom);
     this.startOnBottom();
   },
 
