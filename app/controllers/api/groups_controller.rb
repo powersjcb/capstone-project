@@ -5,7 +5,9 @@ class Api::GroupsController < Api::ApiController
   end
 
   def show
-    @group = Group.includes(:conversations).find(params[:id])
-    render json @group
+    @group = Group.includes(:conversations, :members).find(params[:id])
+    # load first conversation
+    @conversation = @group.conversations.first
+    render :show
   end
 end

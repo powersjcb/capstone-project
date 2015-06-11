@@ -1,9 +1,9 @@
 Slick.Collections.Groups = Backbone.Collection.extend({
-  url: "/api/conversations",
+  url: "/api/groups",
   model: Slick.Models.Group,
 
   comparator: function(group) {
-    return group.get('updated_at');
+    return group.get('created_at');
   },
 
   getOrFetch: function(id) {

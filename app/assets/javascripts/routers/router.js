@@ -5,16 +5,35 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
+    "":"groupIndex",
     "conversations/:id":"conversation",
+    "groups/:id":"group",
+    "groups/:group_id/conversations/:id":"groupConversation",
     "messages": "messages"
+  },
+
+  group: function (id) {
+    var group = new Slick.Models.Group({id: id});
+
+    // bad bad bad fix
+    setInterval(function() {
+      group.fetch();
+    }.bind(this), 2000);
+
+    var groupView = new Slick.Views.GroupShow({ model: group });
+    this._swapView(groupView);
+  },
+
+  groupConversation: function (group_id, id) {
   },
 
   conversation: function(id) {
     var conversation = new Slick.Models.Conversation({id: id});
 
+    // bad bad bad
     setInterval(function() {
       conversation.fetch();
-    }.bind(this), 2000);
+    }.bind(this), 1000);
 
     chatView = new Slick.Views.ConversationShow({
       model: conversation
@@ -27,8 +46,6 @@ Slick.Routers.Router = Backbone.Router.extend({
   messages: function() {
     this.messages = new Slick.Collections.Messages();
     this.messages.fetch();
-
-      //bad annoying, dont do
 
     var messagesView = new Slick.Views.MessagesIndex({
       collection: this.messages
