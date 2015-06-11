@@ -1,5 +1,14 @@
-<h1>APP PAGE</h1>
-
 <div class="container" id="content">
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    window.CURRENT_USER = {
+      id: <%= current_user.id %>,
+      username: "<%= current_user.username %>"
+    }
+
+    Slick.initialize();
+  });
+</script>

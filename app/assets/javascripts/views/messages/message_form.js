@@ -35,7 +35,6 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
     this.model.set("content", content );
-    console.log(this.model);
     this.model.save({}, {
       // success: this.removePendingStyle,
       // error: this.styleFailed

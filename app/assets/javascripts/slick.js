@@ -12,7 +12,3 @@ window.Slick = {
     Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  Slick.initialize();
-});

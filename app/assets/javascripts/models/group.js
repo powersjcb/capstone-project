@@ -15,6 +15,13 @@ Slick.Models.Group = Backbone.Model.extend({
     return this._members;
   },
 
+  conversations: function () {
+    if (!this._conversations) {
+      this._conversations = new Slick.Collections.Conversations();
+    }
+    return this._conversations;
+  },
+
   conversation: function () {
     if (!this._conversation) {
       this._conversation = new Slick.Models.Conversation();

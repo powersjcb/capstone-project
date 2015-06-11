@@ -2,6 +2,11 @@ Slick.Routers.Router = Backbone.Router.extend({
 
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
+
+    Slick.Models.current_user = new Slick.Models.User({
+      id: window.CURRENT_USER.id,
+      username: window.CURRENT_USER.username
+    });
   },
 
   routes: {
