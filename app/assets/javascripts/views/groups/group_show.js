@@ -11,7 +11,7 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, "change", this.render);
     this.addConversationView();
-    this.addChannelsView();
+    this.addChannelsIndex();
   },
 
   addConversationView: function () {
@@ -21,20 +21,21 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
     this.addSubview('#channel', subView);
   },
 
-  addHeaderView: function () {
-
+  addChannelsIndex: function () {
+    var subView = new Slick.Views.ConversationsIndex({
+      collection: this.model.conversations(),
+      group: this.model
+    });
+    this.addSubview('#nav-channels', subView);
   },
 
-  addChannelsView: function () {
-    var subView = new Slick.Views.ConversationsIndex({
-      collection: this.model.conversations()
-    });
+  addHeaderView: function () {
+
   },
 
   render: function () {
     var content = this.template({
       group : this.model,
-      current_user: Slick.Models.current_user
     });
     this.$el.html(content);
     this.attachSubviews();

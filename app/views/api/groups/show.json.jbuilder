@@ -13,3 +13,7 @@ json.conversation do
     json.extract!(message, :id, :content, :sender_id, :created_at)
   end
 end
+
+json.conversations do
+  json.array!(@conversations, :id, :title, :updated_at)
+end

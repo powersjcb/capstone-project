@@ -8,6 +8,7 @@ class Api::GroupsController < Api::ApiController
     @group = Group.includes(:conversations, :members).find(params[:id])
     # load first conversation
     @conversation = @group.conversations.first
+    @conversations = @group.conversations
     render :show
   end
 end

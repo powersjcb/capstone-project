@@ -49,6 +49,12 @@ Slick.Models.Group = Backbone.Model.extend({
       this.conversation().set(payload.conversation, {parse: true});
       delete payload.conversation;
     }
+
+    // get subscribed conversations
+    if (payload.conversations) {
+      this.conversations().set(payload.conversations, {parse: true});
+      delete payload.conversations;
+    }
     return payload;
   }
 
