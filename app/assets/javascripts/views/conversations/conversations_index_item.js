@@ -5,7 +5,7 @@ Slick.Views.ConversationsIndexItem = Backbone.CompositeView.extend({
   className: "left-nav-item",
 
   events: {
-    "click": "navigateToChannel"
+    "click": "navigateToChannel",
   },
 
   initialize: function (options) {

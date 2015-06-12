@@ -4,11 +4,25 @@ Slick.Views.ConversationsIndex = Backbone.CompositeView.extend({
   tagName: "div",
   className: "channels-index",
 
+  events: {
+    "click #channel-create": "addChannelForm"
+  },
+
   initialize: function (options) {
     this.group = options.group;
 
     this.listenTo(this.collection, 'add', this.addConvItemView);
     this.listenTo(this.collection, 'remove', this.removeConvItemView);
+  },
+
+  addChannelForm: function () {
+    var newConv = new Slick.Models.Conversation({group: this.group});
+    var subView = new Slick.Views.ConversationForm({
+      model: newConv,
+      collection: this.collection
+    });
+
+    $('body').prepend(subView.render().$el);
   },
 
   addConvItemView: function (model) {

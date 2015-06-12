@@ -1,12 +1,11 @@
 Slick.Models.Conversation = Backbone.Model.extend({
   urlRoot: "/api/conversations",
 
-
   users: function() {
     if (this._users) {
       return this._users;
     }
-    this._users = new Slick.Collections.Users({}, {conversation: this});
+    this._users = new Slick.Collections.Users({group_id: this.group.get('id')});
     return this._users;
   },
 
