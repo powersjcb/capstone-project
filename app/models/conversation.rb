@@ -8,6 +8,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  privacy_state :integer          default(0), not null
+#  group_id      :integer          not null
 #
 
 ### privacy_state: 0 - public, 1 - private chat, 2 - private group chat
@@ -29,6 +30,14 @@ class Conversation < ActiveRecord::Base
       self.group.members.each do |member|
         member.subscriptions.create(conversation_id: id)
       end
+    end
+  end
+
+  def is_group_member
+    user = User.find(user_id)
+    group = Group.find(id)
+    unless user & user.is_member?(group)
+      errors[:base] << "You are not a member of this group"
     end
   end
 

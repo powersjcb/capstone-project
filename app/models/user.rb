@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :conversations, through: :subscriptions, source: :conversations
 
+  has_many :memberships
+  has_many :groups, through: :memberships, source: :group
+
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)
@@ -41,6 +44,10 @@ class User < ActiveRecord::Base
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
+  end
+
+  def is_member_of?(group)
+    self.groups.include?(group)
   end
 
   def is_password?(password)

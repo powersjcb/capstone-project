@@ -10,7 +10,7 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "":"groupIndex",
+    "":"groupsIndex",
     "conversations/:id":"conversation",
     "groups/:id":"group",
     "groups/:group_id/conversations/:id":"groupConversation",
@@ -27,6 +27,10 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     var groupView = new Slick.Views.GroupShow({ model: group });
     this._swapView(groupView);
+  },
+
+  groupsIndex: function () {
+    this.groupConversation(1,1);
   },
 
   groupConversation: function (group_id, id) {
