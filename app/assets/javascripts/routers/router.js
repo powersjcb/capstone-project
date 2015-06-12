@@ -29,16 +29,24 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupsIndex: function () {
-    this.groupConversation(1,1);
+    var groups = new Slick.Collections.Groups();
+
+    groups.fetch();
+
+    var groupsIndexView = new Slick.Views.GroupsFullIndex({
+      collection: groups
+    });
+
+    this._swapView(groupsIndexView);
   },
 
   groupConversation: function (group_id, id) {
-    var group = new Slick.Models.Group({
-      id: group_id,
-      conversation_id: id
+    var group = new Slick.Models.Group({ id: group_id });
+    var conversation = new Slick.Models.Conversation({ id: id});
+    var mainView = new Slick.Views.GroupShow({
+      
     });
-
-
+    this._swapView(groupView)
   },
 
   conversation: function(id) {

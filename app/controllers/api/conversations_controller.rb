@@ -1,18 +1,20 @@
 class Api::ConversationsController < Api::ApiController
   def show
-    @conversation = Conversation.includes(:messages,
+    @conversation = Conversation.includes(:messages, :subscribers,
     messages: :sender).find(params[:id])
 
     @active_users = @conversation.messages.inject([]) do |c, message|
       c.push(message.sender)
     end.uniq
 
+    @subscribers = @conversation.subscribers
+
     render :show
   end
 
   def create
     @conversation = current_user.created_chats.new(conv_params)
-    
+
     if @conversation.save
       render json: @conversation
     else

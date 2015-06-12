@@ -7,11 +7,9 @@ class SessionsController < ApplicationController
     if @user
       login(@user)
       redirect_to app_url
-      ## * eventually make it so this auto creates a new account if username
-      ##   isn't taken
     else
-      flash.now[:errors] = ["Invalid credentials"]
-      render :new
+      flash[:errors] = ["Invalid credentials"]
+      redirect_to :back
     end
   end
 

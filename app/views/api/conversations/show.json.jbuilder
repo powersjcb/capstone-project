@@ -5,10 +5,14 @@ json.messages @conversation.messages do |message|
   json.content    message.content
   json.sender_id  message.sender_id
   json.created_at message.created_at
-
 end
 
 json.users @active_users do |user|
+  json.id        user.id
+  json.username  user.username
+end
+
+json.subscribers @subscribers do |user|
   json.id        user.id
   json.username  user.username
 end

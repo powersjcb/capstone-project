@@ -14,11 +14,13 @@ class Group < ActiveRecord::Base
   validates :description, :user_id, presence: true
   validates :name, presence: true, allow_blank: false
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships, source: :user
-  has_many :conversations
+  has_many :conversations, dependent: :destroy
+  has_many :messages, through: :conversations, source: :messages, dependent: :destroy
 
   belongs_to :user
+
 
   after_save :create_base_channels
 

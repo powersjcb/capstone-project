@@ -27,16 +27,16 @@ class User < ActiveRecord::Base
   has_many :created_chats, class_name: "Conversation", inverse_of: "creator"
   has_many :created_groups, class_name: "Group"
 
-  has_many :subscriptions
+  has_many :subscriptions, dependent: :destroy
   has_many :conversations, through: :subscriptions, source: :conversations
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships, source: :group
 
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)
-    if @user.is_password?(password)
+    if @user && @user.is_password?(password)
       return @user
     end
     nil

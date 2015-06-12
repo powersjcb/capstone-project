@@ -4,8 +4,6 @@
 
   <div class="pitch">
     SALES PITCH IMAGE AND TEXT GOES HERE
-
-
   </div>
 
 
@@ -26,7 +24,23 @@
       value=""
       placeholder="Password">
 
-      <input type="submit" name="Submit"></button>
+      <button type="submit">Create Account</button>
+</form>
+
+<form class="" action="<%= sessions_url %>" method="post">
+  <input type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <input id="user-username"
+    type="hidden"
+    name="user[username]"
+    value="guest1">
+  <input id="user-username"
+    type="hidden"
+    name="user[password]"
+    value="password">
+
+    <button type="submit">Guest Login</button>
 </form>
 
 </div>

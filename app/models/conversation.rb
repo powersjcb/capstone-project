@@ -18,8 +18,8 @@ class Conversation < ActiveRecord::Base
 
   belongs_to :creator, class_name: "User", inverse_of: "created_chats"
   belongs_to :group
-  has_many :messages
-  has_many :subscriptions
+  has_many :messages, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   has_many :subscribers, through: :subscriptions, source: :user
 
   after_save :subscribe_users_if_public

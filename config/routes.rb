@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
   get "app", to: 'static_pages#app', as: "app"
   resources :users, only: [:create]
+  resource :sessions, only: [:create, :destroy]
 
   namespace :api, defaults: { format: :json } do
     resources :messages
