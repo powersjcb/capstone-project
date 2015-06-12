@@ -12,6 +12,7 @@ gem 'rails_12factor'
 gem 'bcrypt', '~> 3.1.7'
 gem 'backbone-on-rails'
 gem 'faker'
+gem 'bootstrap-sass', '~> 3.3.4'
 
 group :development, :test do
   gem 'byebug'
