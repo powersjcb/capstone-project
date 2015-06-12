@@ -41,7 +41,6 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
-    console.log('fired router')
     var group = new Slick.Models.Group({ id: group_id });
     var conversation = new Slick.Models.Conversation({ id: id});
 
