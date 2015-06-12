@@ -41,29 +41,22 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
+    console.log('fired router')
     var group = new Slick.Models.Group({ id: group_id });
     var conversation = new Slick.Models.Conversation({ id: id});
-    var mainView = new Slick.Views.GroupShow({
-      
-    });
-    this._swapView(groupView)
-  },
 
-  conversation: function(id) {
-    var conversation = new Slick.Models.Conversation({id: id});
-
-    // bad bad bad
     setInterval(function() {
+      group.fetch();
       conversation.fetch();
-    }.bind(this), 1000);
 
-    chatView = new Slick.Views.ConversationShow({
-      model: conversation
+    }.bind(this), 2000);
+
+    var groupView = new Slick.Views.GroupShow({
+      model: group,
+      conversation: conversation
     });
-    this._swapView(chatView);
+    this._swapView(groupView);
   },
-
-
 
   _swapView: function(view) {
     if (this._currentView) {

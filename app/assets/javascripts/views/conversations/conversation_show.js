@@ -4,8 +4,8 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
   tagName: "div",
 
   initialize: function () {
-      this.addMessagesIndex();
-      this.addHeaderView();
+    this.addMessagesIndex();
+    this.addHeaderView();
     this.listenTo(this.model, 'change', this.addMessageFormView);
   },
 

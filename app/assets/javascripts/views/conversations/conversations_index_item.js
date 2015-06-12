@@ -13,8 +13,11 @@ Slick.Views.ConversationsIndexItem = Backbone.CompositeView.extend({
   },
 
   navigateToChannel: function () {
-    Backbone.history.navigate("groups/" + this.group.get('id') + "/conversation/" +
-      this.model.get('id'), { trigger: true });
+    var navPath = "groups/" + this.group.get('id') + "/conversations/" +
+      this.model.get('id');
+      console.log(navPath);
+
+    Backbone.history.navigate(navPath, { trigger: true });
   },
 
   render: function () {

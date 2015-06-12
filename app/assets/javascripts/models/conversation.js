@@ -5,7 +5,7 @@ Slick.Models.Conversation = Backbone.Model.extend({
     if (this._users) {
       return this._users;
     }
-    this._users = new Slick.Collections.Users({group_id: this.group.get('id')});
+    this._users = new Slick.Collections.Users();
     return this._users;
   },
 
