@@ -8,6 +8,10 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     "keydown textarea": "submitMessage"
   },
 
+  initialize: function(options) {
+    this.users = options.users;
+  },
+
   render: function() {
     var content = this.template({ message: this.model });
     this.$el.html(content);
@@ -35,18 +39,19 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
     this.model.set("content", content );
+    this.model.set('sender_id', Slick.Models.currentUser.get('id'));
     this.model.save({}, {
       // success: this.removePendingStyle,
       // error: this.styleFailed
     });
     this.pendMessage();
-
   },
 
   removePendingStyle: function () {
   },
 
   pendMessage: function () {
+    this.users.add(Slick.Models.currentUser);
     this.model.conversation.messages().add(this.model);
   },
 
