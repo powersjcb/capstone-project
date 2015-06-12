@@ -34,6 +34,8 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
+
+
   },
 
   conversation: function(id) {

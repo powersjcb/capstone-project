@@ -39,6 +39,16 @@
   overflow-y: auto;
 }
 
+#conversation-header {
+  position: fixed;
+  top: 0px;
+  left: 220px;
+  right: 0px;
+  height: 50px;
+
+
+}
+
 .modal-form {
   position: fixed;
   top: 35%;

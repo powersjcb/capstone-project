@@ -4,10 +4,10 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
   tagName: "div",
 
   initialize: function () {
-    this.addMessagesIndex();
+      this.addMessagesIndex();
+      this.addHeaderView();
     this.listenTo(this.model, 'change', this.addMessageFormView);
   },
-
 
   addMessageFormView: function() {
     var newMessage = new Slick.Models.Message({},{conversation: this.model});
@@ -26,9 +26,15 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
     this.addSubview('#conversation', subView);
   },
 
+  addHeaderView: function () {
+    var subView = new Slick.Views.ConversationsHeader({
+      model: this.model
+    });
+    this.addSubview('#conversation-header', subView);
+  },
 
   render: function () {
-    var content = this.template();
+    var content = this.template({ conversation: this.model });
     this.$el.html(content);
     this.attachSubviews();
     return this;

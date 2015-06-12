@@ -16,7 +16,7 @@ Slick.Views.ConversationsIndex = Backbone.CompositeView.extend({
   },
 
   addChannelForm: function () {
-    var newConv = new Slick.Models.Conversation({group: this.group});
+    var newConv = new Slick.Models.Conversation({group_id: this.group.get('id')});
     var subView = new Slick.Views.ConversationForm({
       model: newConv,
       collection: this.collection

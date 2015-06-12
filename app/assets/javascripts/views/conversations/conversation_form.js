@@ -12,9 +12,10 @@ Slick.Views.ConversationForm = Backbone.CompositeView.extend({
 
   submitForm: function (event) {
     event.preventDefault();
-    var attrs = this.$el.serializeJSON();
-    this.model.save(attrs, {
-      success: this.handleSuccess
+    var attrs = this.$el.find('form').eq(0).serializeJSON().conversation;
+    this.model.set(attrs);
+    this.model.save({}, {
+      success: this.handleSuccess.bind(this)
     });
   },
 
