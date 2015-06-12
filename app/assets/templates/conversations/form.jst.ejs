@@ -1,0 +1,22 @@
+<div class="modal-form">
+  <header>
+    <h3>Create a channel</h3>
+    <button class="" type="button" name="close">&times</button>
+  </header>
+
+  <p>This will create a new public channel that anyone in the group can join.</p>
+
+  <form method="post">
+    <div class="">
+      <label for="conversation-title">Name</label>
+      <input id="conversation-title" type="text" name="conversation[title]" value="">
+    </div>
+    <div class="">
+      <label for="conversation-description">Purpose</label>
+      <input id="conversation-description" type="textarea" name="conversation[description]" value="">
+    </div>
+
+    <button type="button" class="cancel" name="cancel">Cancel</button>
+    <button type="submit" class="submit" name="create channel">Create Channel</button>
+  </form>
+</div>
