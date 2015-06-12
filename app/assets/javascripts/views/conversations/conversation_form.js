@@ -10,6 +10,10 @@ Slick.Views.ConversationForm = Backbone.CompositeView.extend({
     "submit": "submitForm"
   },
 
+  initialize: function (options) {
+    this.user = options.users;
+  },
+
   submitForm: function (event) {
     event.preventDefault();
     var attrs = this.$el.find('form').eq(0).serializeJSON().conversation;
@@ -21,6 +25,7 @@ Slick.Views.ConversationForm = Backbone.CompositeView.extend({
 
   handleSuccess: function () {
     this.collection.add(this.model);
+    this.users.add(Slick.Models.currentUser);
 
     // TODO: style this out of page with sliding effect
     this.remove();

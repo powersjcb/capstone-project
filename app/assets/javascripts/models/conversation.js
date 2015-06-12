@@ -17,6 +17,13 @@ Slick.Models.Conversation = Backbone.Model.extend({
     return this._messages;
   },
 
+  subscribers: function () {
+    if (this._subscribers) {
+      return this._subscribers;
+    }
+    this._subscribers = new Slick.Collections.Users();
+    return this._subscribers;
+  },
 
   parse: function (payload) {
     if(payload.users) {
@@ -26,6 +33,10 @@ Slick.Models.Conversation = Backbone.Model.extend({
     if (payload.messages) {
       this.messages().set(payload.messages, { parse: true });
       delete payload.messages;
+    }
+    if (payload.subscribers) {
+      this.subscribers().set(payload.subscribers, {parse: true});
+    delete payload.subscribers;
     }
     return payload;
   }

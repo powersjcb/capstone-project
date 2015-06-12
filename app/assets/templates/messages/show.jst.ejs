@@ -1,2 +1,8 @@
-<p class="content"><%= message.escape('content') %></p>
+<div class="username">
+  <%= user.escape('username') %>
+</div>
 <small><%= message.escape('created_at') %></small>
+
+<div class="message-body">
+  <p class="content"><%= message.escape('content') %></p>
+</div>
