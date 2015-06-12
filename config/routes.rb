@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :messages
     resources :groups
     resources :conversations
+
+    get '/api/groups/:group_id/conversations/:id', to: 'api_groups#group_conv'
   end
 
 end

@@ -14,7 +14,6 @@ Slick.Routers.Router = Backbone.Router.extend({
     "conversations/:id":"conversation",
     "groups/:id":"group",
     "groups/:group_id/conversations/:id":"groupConversation",
-    "messages": "messages"
   },
 
   group: function (id) {
@@ -34,6 +33,10 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
+    var group = new Slick.Models.Group({
+      id: group_id,
+      conversation_id: id
+    });
 
 
   },
@@ -53,17 +56,6 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
 
-
-  messages: function() {
-    this.messages = new Slick.Collections.Messages();
-    this.messages.fetch();
-
-    var messagesView = new Slick.Views.MessagesIndex({
-      collection: this.messages
-    });
-
-    this._swapView(messagesView);
-  },
 
   _swapView: function(view) {
     if (this._currentView) {
