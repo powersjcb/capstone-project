@@ -1,8 +1,11 @@
-Slick.Views.ConversationsHeader = Backbone.CompositeView.extend({
+Slick.Views.GroupHeader = Backbone.CompositeView.extend({
 
-  template: JST['conversations/header'],
+  template: JST['groups/header'],
   tagName: "div",
-  className: "conv-header",
+  className: "group-header",
+
+  events: {
+  },
 
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
@@ -10,11 +13,11 @@ Slick.Views.ConversationsHeader = Backbone.CompositeView.extend({
 
   render: function () {
     var content = this.template({
-      conversation: this.model,
+      group: this.model,
+      currentUser: Slick.Models.currentUser
     });
     this.$el.html(content);
     return this;
   }
-
 
 });

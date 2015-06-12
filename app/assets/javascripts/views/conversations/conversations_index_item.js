@@ -19,7 +19,7 @@ Slick.Views.ConversationsIndexItem = Backbone.CompositeView.extend({
 
   render: function () {
     var content = this.template({
-      conversation: this.model
+      conversation: this.model,
     });
     this.$el.html(content);
     return this;

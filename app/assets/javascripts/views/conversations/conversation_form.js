@@ -6,7 +6,7 @@ Slick.Views.ConversationForm = Backbone.CompositeView.extend({
   className: "modal-container",
 
   events: {
-    "click .close": "close",
+    "click .close .cancel": "remove",
     "submit": "submitForm"
   },
 

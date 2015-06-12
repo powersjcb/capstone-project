@@ -9,9 +9,10 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    this.listenTo(this.model, "change", this.render);
     this.addConversationView();
     this.addChannelsIndex();
+    this.addHeaderView();
+    this.listenTo(this.model, "change", this.render);
   },
 
   addConversationView: function () {
@@ -30,7 +31,10 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
   },
 
   addHeaderView: function () {
-
+    var subView = new Slick.Views.GroupHeader({
+      model: this.model,
+    });
+    this.addSubview('#group-header', subView);
   },
 
   render: function () {

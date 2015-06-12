@@ -1,0 +1,37 @@
+div.group-header {
+  display: block;
+  height: 70px;
+}
+
+.left-nav-item:hover, div.group-header:hover {
+  background: #3e313c;
+  border-bottom-color: #3e313c;
+  cursor: pointer;
+}
+
+.nav-left {
+  padding-left: 15px;
+}
+
+
+.group-name {
+  font-size: 22px;
+  color: white;
+}
+
+.group-header, .left-nav-item, .create {
+  padding-left: 15px;
+}
+
+.left-nav-item {
+  width: 200px;
+  height: 25px;
+}
+
+.create:hover {
+  color: white;
+  cursor: pointer;
+}
+.create {
+  font-weight: lighter;
+}
