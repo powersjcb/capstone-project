@@ -2,7 +2,7 @@ Slick.Views.GroupHeader = Backbone.CompositeView.extend({
 
   template: JST['groups/header'],
   tagName: "div",
-  className: "group-header",
+  className: "group-header nav-left",
 
   events: {
     "click #groups-index": "redirectToGroups"

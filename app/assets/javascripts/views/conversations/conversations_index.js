@@ -2,7 +2,7 @@ Slick.Views.ConversationsIndex = Backbone.CompositeView.extend({
 
   template: JST['conversations/index'],
   tagName: "div",
-  className: "channels-index",
+  className: "channels-index nav-left",
 
   events: {
     "click #channel-create": "addChannelForm"

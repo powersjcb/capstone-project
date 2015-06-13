@@ -15,12 +15,15 @@ div.group-header {
 
 
 .group-name {
-  font-size: 22px;
+  padding-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 900;
   color: white;
 }
 
 .current-user {
   height: 25px;
+  font-size: .875rem;
   font-weight: 300;
   text-overflow: ellipsis;
   text-shadow: rgba(0, 0, 0, 0.247059) 0px 1px 1px;
@@ -31,13 +34,18 @@ div.group-header {
 }
 
 
-.group-header, .left-nav-item, .create {
-  padding-left: 15px;
+.channels-index {
+  padding-top: 40px;
+}
+
+#nav-members {
+  padding-top: 40px;
 }
 
 .left-nav-item {
-  width: 200px;
+  width: 180px;
   height: 25px;
+  font-size: 1rem;
   font-weight: 300;
   text-overflow: ellipsis;
   text-shadow: rgba(0, 0, 0, 0.247059) 0px 1px 1px;
@@ -49,4 +57,11 @@ div.group-header {
 }
 .create {
   font-weight: 100;
+}
+
+.members-count {
+  font-size: 0.8rem;
+  font-weight: bold;
+  height: 25px;
+  width: 180px;
 }
