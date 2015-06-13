@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.serializejson
+//= require cloudinary
 //= require underscore
 //= require backbone
 //= require slick
