@@ -19,6 +19,18 @@ div.group-header {
   color: white;
 }
 
+.current-user {
+  height: 25px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  text-shadow: rgba(0, 0, 0, 0.247059) 0px 1px 1px;
+}
+
+.group-header:hover .current-user {
+  color: white !important;
+}
+
+
 .group-header, .left-nav-item, .create {
   padding-left: 15px;
 }
@@ -26,6 +38,9 @@ div.group-header {
 .left-nav-item {
   width: 200px;
   height: 25px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  text-shadow: rgba(0, 0, 0, 0.247059) 0px 1px 1px;
 }
 
 .create:hover {
@@ -33,5 +48,5 @@ div.group-header {
   cursor: pointer;
 }
 .create {
-  font-weight: lighter;
+  font-weight: 100;
 }

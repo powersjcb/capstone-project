@@ -5,6 +5,7 @@ Slick.Views.GroupHeader = Backbone.CompositeView.extend({
   className: "group-header",
 
   events: {
+    "click #groups-index": "redirectToGroups"
   },
 
   initialize: function () {
@@ -18,6 +19,11 @@ Slick.Views.GroupHeader = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     return this;
+  },
+
+
+  redirectToGroups: function () {
+    Backbone.history.navigate('#', { trigger: true });
   }
 
 });
