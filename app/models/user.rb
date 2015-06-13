@@ -8,6 +8,7 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  profile_img_url :string           default(""), not null
 #
 
 class User < ActiveRecord::Base

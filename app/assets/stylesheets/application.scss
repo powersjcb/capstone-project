@@ -14,6 +14,8 @@
  *= require_self
  */
 
+ @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic);
+
  *{
    font-family: 'Lato', 'sans-serif'
  }
@@ -26,5 +28,19 @@
   width: 220px;
   color: rgb(171, 155, 169);
   background-color: rgb(77, 57, 75);
+}
 
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1; /* ie 6/7 */
 }

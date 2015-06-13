@@ -2,7 +2,36 @@
   overflow-y: scroll;
 }
 
+.profile-img {
+  display: inline-block;
+  content: "";
+  float: left;
+  height: 50px;
+  width: 50px;
+}
 
+.profile-img:after {
+  content: "";
+  display: table;
+}
+
+.message-username {
+  font-weight: 700;
+}
+
+.message-body {
+  float: left;
+  margin-left: 10px;
+  
+}
+
+.message-item {
+  width: 100%;
+}
+
+.pending {
+  font-weight: 100 !important;
+}
 
 #messages-container {
   position: absolute;

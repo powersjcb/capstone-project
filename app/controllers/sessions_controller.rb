@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     )
     if @user
       login(@user)
-      redirect_to app_url
+      redirect_to "/app"
     else
       flash[:errors] = ["Invalid credentials"]
       redirect_to :back

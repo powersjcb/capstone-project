@@ -10,9 +10,11 @@ end
 json.users @active_users do |user|
   json.id        user.id
   json.username  user.username
+  json.profile_img_url user.profile_img_url
 end
 
 json.subscribers @subscribers do |user|
   json.id        user.id
   json.username  user.username
+  json.profile_img_url user.profile_img_url
 end

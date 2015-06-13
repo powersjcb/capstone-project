@@ -47,9 +47,6 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.pendMessage();
   },
 
-  removePendingStyle: function () {
-  },
-
   pendMessage: function () {
     this.users.add(Slick.Models.currentUser);
     this.model.conversation.messages().add(this.model);

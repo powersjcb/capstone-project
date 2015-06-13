@@ -2,7 +2,7 @@ Slick.Views.Message = Backbone.View.extend({
 
   template: JST['messages/show'],
   tagName: "div",
-  className: "message-item",
+  className: "message-item clearfix",
 
   initialize: function (options) {
     this.user = options.user;
@@ -14,6 +14,10 @@ Slick.Views.Message = Backbone.View.extend({
       user: this.user
     });
     this.$el.html(content);
+
+    if (this.model.isNew()) {
+      this.$el.find('.message-body').addClass('pending');
+    }
     return this;
   },
 });

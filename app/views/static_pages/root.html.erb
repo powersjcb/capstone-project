@@ -18,6 +18,12 @@
       name="user[username]"
       value=""
       placeholder="Username">
+
+
+    <input type="hidden" id="user-profile_img_url"
+      name="user[profile_img_url]"
+      value="http://res.cloudinary.com/slickapp-io/image/upload/v1434155159/blank-profile_kxaypr.jpg">
+
     <input id="user-username"
       type="password"
       name="user[password]"
@@ -27,14 +33,18 @@
       <button type="submit">Create Account</button>
 </form>
 
-<form class="" action="<%= sessions_url %>" method="post">
+<form class="" action="<%= users_url %>" method="post">
   <input type="hidden"
     name="authenticity_token"
     value="<%= form_authenticity_token %>">
+    <input type="hidden" id="user-profile_img_url"
+      name="user[profile_img_url]"
+      value="http://res.cloudinary.com/slickapp-io/image/upload/v1434155159/blank-profile_kxaypr.jpg">
+
   <input id="user-username"
     type="hidden"
     name="user[username]"
-    value="guest1">
+    value="<%= Faker::Internet.user_name %>">
   <input id="user-username"
     type="hidden"
     name="user[password]"

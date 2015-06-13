@@ -1,8 +1,10 @@
-<div class="username">
-  <%= user.escape('username') %>
+<div class="profile-img">
+    <img src="<%= user.escape('profile_img_url') %>" alt="" />
 </div>
-<small><%= message.escape('created_at') %></small>
 
 <div class="message-body">
+  <div class="message-username">
+    <%= user.escape('username') %>
+  </div>
   <p class="content"><%= message.escape('content') %></p>
 </div>

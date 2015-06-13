@@ -12,6 +12,9 @@ gem 'rails_12factor'
 gem 'bcrypt', '~> 3.1.7'
 gem 'backbone-on-rails'
 gem 'faker'
+gem 'cloudinary'
+gem 'figaro'
+gem 'pusher'
 
 group :development, :test do
   gem 'byebug'
@@ -19,6 +22,7 @@ group :development, :test do
 end
 # setup for development
 group :development do
+  gem 'uifaces'
   gem 'annotate'
   gem 'bullet'
   gem 'better_errors'
