@@ -53,19 +53,19 @@ class User < ActiveRecord::Base
 
   ### is this reasonable?  ###
 
-  def get_conversation_with(other_user, group)
-    Subscription.find_by_sql(<<-SQL)
-      SELECT
-        sub1.conversation_id
-      FROM
-        subscriptions sub1, subscriptions sub2
-      JOIN
-        subscriptions ON sub1.conversation_id = sub2.conversation_id
-      WHERE
-        sub1.user_id = #{self.id} AND sub2.user_id = #{other_user.id} AND
-          group_id = #{group.id}
-    SQL
-  end
+  # def get_conversation_with(other_user, group)
+  #   Subscription.find_by_sql(<<-SQL)
+  #     SELECT
+  #       sub1.conversation_id
+  #     FROM
+  #       subscriptions sub1, subscriptions sub2
+  #     JOIN
+  #       subscriptions ON sub1.conversation_id = sub2.conversation_id
+  #     WHERE
+  #       sub1.user_id = #{self.id} AND sub2.user_id = #{other_user.id} AND
+  #         group_id = #{group.id}
+  #   SQL
+  # end
 
 
   def private_conversations
