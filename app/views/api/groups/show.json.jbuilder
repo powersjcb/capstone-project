@@ -4,8 +4,14 @@ json.user do
   json.extract!(@group.user, :id, :username, :profile_img_url)
 end
 
-json.members do
-  json.array!(@group.members, :id, :username, :updated_at, :profile_img_url)
+json.members @group.members do |member|
+ json.id member.id,
+ json.username member.username,
+ json.updated_at member.updated_at,
+ json.profile_img_url member.profile_img_url
+ if member.
+   json.conversation_id
+ end
 end
 
 json.conversations do

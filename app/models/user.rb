@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     self.groups.include?(group)
   end
 
+  def private_conversation_with(other_user, group)
+
+  end
+
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
