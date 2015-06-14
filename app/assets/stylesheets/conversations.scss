@@ -1,10 +1,11 @@
 .footer {
-  position: relative;
+  position: fixed;
   display: block;
   box-sizing: border-box;
-  height: 70px;
-  padding-right: 16px;
-
+  bottom: 0px;
+  left: 220px;
+  height: 64px;
+  right: 16px;
 }
 
 .file-upload {
@@ -15,10 +16,15 @@
   width: 40px;
 }
 
-
 .chat-box {
-  display: inline-block;
+  display: block;
   box-sizing: content-box;
+  position: absolute;
+  height: 40px;
+  bottom: 22px;
+  left: 64px;
+  right: 20px;
+  padding-right: 16px;
 }
 
 .chat-input {
@@ -51,17 +57,11 @@
 }
 
 #conversation {
-  position: relative;
-  width: 100%;
-}
-
-
-.conversation-show {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 220px;
+  right: 0px;
+  height: 50px;
 }
 
 .modal-form {
