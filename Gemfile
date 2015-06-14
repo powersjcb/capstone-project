@@ -15,6 +15,8 @@ gem 'faker'
 gem 'cloudinary'
 gem 'figaro'
 gem 'pusher'
+gem 'newrelic_rpm'
+
 
 group :development, :test do
   gem 'byebug'
