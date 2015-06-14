@@ -1,8 +1,7 @@
 require 'pusher'
 
-# Pusher.url = 'your-pusher-url'
-# Pusher.logger = Rails.logger
-#
-# Pusher.app_id = 'app-id'
-# Pusher.key = 'pusher-key'
-# Pusher.secret = 'pusher-secret'
+
+Pusher.app_id = Figaro.env.PUSHER_APP_ID!
+Pusher.key = Figaro.env.PUSHER_KEY!
+Pusher.secret = Figaro.env.PUSHER_SECRET!
+Pusher.logger = Rails.logger

@@ -5,13 +5,10 @@ json.user do
 end
 
 json.members @group.members do |member|
- json.id member.id,
- json.username member.username,
- json.updated_at member.updated_at,
+ json.id member.id
+ json.username member.username
+ json.updated_at member.updated_at
  json.profile_img_url member.profile_img_url
- if member.
-   json.conversation_id
- end
 end
 
 json.conversations do
