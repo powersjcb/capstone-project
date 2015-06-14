@@ -7,9 +7,6 @@ class Api::GroupsController < Api::ApiController
   def show
     @group = Group.includes(:conversations, :members).find(params[:id])
     @conversations = @group.conversations
-    @personal_conversations = current_user.conversations.where(
-      group_id: params[:id], privacy_state: 1
-    )
     render :show
   end
 

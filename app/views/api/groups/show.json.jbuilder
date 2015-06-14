@@ -11,7 +11,3 @@ end
 json.conversations do
   json.array!(@conversations, :id, :title, :updated_at)
 end
-
-json.personal_conversations do
-  json.array!(@personal_conversations, :id, :title)
-end
