@@ -17,11 +17,12 @@
  @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic);
 
  *{
+   -webkit-font-smoothing: antialiased;
    font-family: 'Lato', 'sans-serif'
  }
 
-
  body {
+   position: fixed;
    margin: 0 auto;
    top: 0;
    bottom: 0;
@@ -51,13 +52,20 @@
 }
 
 #nav-left {
-  position: fixed;
-  left: 0px;
-  top:0px;
-  bottom:0px;
+  display: inline-block;
+  position: relative;
+  height: 100%;
   width: 220px;
   color: rgb(171, 155, 169);
   background-color: rgb(77, 57, 75);
+}
+
+.group-main {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
 }
 
 

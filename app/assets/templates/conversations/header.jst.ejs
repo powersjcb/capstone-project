@@ -1,1 +1,2 @@
-<h3>#<%= conversation.escape('title') %></h3>
+<span class="prefix"><%= (conversation.get('privacy_state') == 0 ) ? "@" : "#" %></span>
+<span class="conv-name"><%= conversation.escape('title') %></span>
