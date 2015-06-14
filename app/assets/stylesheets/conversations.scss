@@ -2,42 +2,53 @@
   position: relative;
   display: block;
   box-sizing: border-box;
-  height: 70px;
-  padding-right: 16px;
-
+  min-height: 70px;
 }
 
 .file-upload {
-  border: 1px solid;
+  border: 2px solid #E0E0E0;
   display: inline-block;
   box-sizing: border-box;
-  height: 40px;
   width: 40px;
+  height: 40px;
+}
+
+.input-area {
+  display: flex;
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  margin-left: 20px;
+  padding-right: 40px;
 }
 
 
 .chat-box {
-  position: absolute;
+  flex: auto;
   display: inline-block;
   box-sizing: content-box;
+  border: 2px solid #E0E0E0;
 }
 
 .chat-input {
+  width: 100%;
+  flex-grow: 1;
   line-height: 16px;
   font-size: 1em;
-  height: 100%;
-  width: 100%;
   margin: 0px;
-  border: 1px solid;
+  padding: 0px;
+  border: none;
 
   resize: none;
   overflow-y: scroll;
 }
 
 #conversation-header {
+  height: 50px;
 }
 
 .conv-header {
+  padding-top: .3em;
   font-size: 1.5em;
   padding-left: 1.5em;
 }

@@ -5,7 +5,7 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
   className: "group-main",
 
   events: {
-
+    'click #group-index': "redirectGroups"
   },
 
   initialize: function (options) {
@@ -47,6 +47,10 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
       group: this.model
     });
     this.addSubview('#nav-members', subView);
+  },
+
+  redirectGroups: function () {
+    Backbone.history.navigate('#', { trigger: true });
   },
 
   render: function () {

@@ -42,6 +42,10 @@ div.group-header {
   padding-top: 40px;
 }
 
+#group-index {
+  font-weight: bold;
+}
+
 .left-nav-item {
   width: 180px;
   height: 25px;
@@ -51,11 +55,11 @@ div.group-header {
   text-shadow: rgba(0, 0, 0, 0.247059) 0px 1px 1px;
 }
 
-.create:hover {
+.channel-create:hover {
   color: white;
   cursor: pointer;
 }
-.create {
+.channel-create {
   font-weight: 100;
 }
 

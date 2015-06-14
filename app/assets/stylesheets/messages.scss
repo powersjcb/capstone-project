@@ -10,7 +10,6 @@
   display: inline-block;
   content: "";
   float: left;
-  // margin-left: 25px;
   height: 40px;
   width: 40px;
   overflow: hidden;
@@ -27,6 +26,8 @@
 
 .content {
   width: 100%;
+  font-size: 15px;
+  line-height: 22px;
   word-wrap: break-word;
 }
 
