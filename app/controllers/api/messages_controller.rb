@@ -9,6 +9,12 @@ class Api::MessagesController < Api::ApiController
 
   end
 
+  def search
+    search_terms = params[:search]
+    @messages = Message.where('content LIKE ?', "%#{search_terms}%")
+    render json: @messages
+  end
+
   def create
     @message = current_user.sent_messages.new(msg_params);
     if @message.save

@@ -11,9 +11,7 @@ Rails.application.routes.draw do
     resources :groups
     resources :conversations
     resources :memberships
-
-
-    get '/api/groups/:group_id/conversations/:id', to: 'api_groups#group_conv'
+    get '/groups/:id/search', to: "messages#search"
   end
 
 end
