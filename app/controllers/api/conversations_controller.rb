@@ -13,7 +13,7 @@ class Api::ConversationsController < Api::ApiController
   end
 
   def create
-    @conversation = current_user.created_chats.new(conv_params)
+    @conversation = current_user.created_chats.find_or_create_by(conv_params)
 
     if @conversation.save
       render json: @conversation

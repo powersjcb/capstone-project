@@ -19,10 +19,7 @@ Slick.Routers.Router = Backbone.Router.extend({
   group: function (id) {
     var group = new Slick.Models.Group({id: id});
 
-    // bad bad bad fix
-    setInterval(function() {
-      group.fetch();
-    }.bind(this), 2000);
+    group.fetch();
 
     var groupView = new Slick.Views.GroupShow({ model: group });
     this._swapView(groupView);

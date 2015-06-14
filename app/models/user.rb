@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   has_many :created_groups, class_name: "Group"
 
   has_many :subscriptions, dependent: :destroy
-  has_many :conversations, through: :subscriptions, source: :conversations
+  has_many :conversations, through: :subscriptions, source: :conversation
 
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships, source: :group

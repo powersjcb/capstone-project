@@ -5,7 +5,7 @@ Slick.Views.GroupIndexItem = Backbone.View.extend({
   className: "group-item",
 
   events: {
-    "click": "navigateToGroup"
+    "click": "joinGroup"
   },
 
   render: function() {
@@ -14,7 +14,14 @@ Slick.Views.GroupIndexItem = Backbone.View.extend({
     return this;
   },
 
-  navigateToGroup: function () {
+  joinGroup: function () {
+    var membership = new Slick.Models.Membership({group_id: this.model.get('id')});
+    membership.save({}, {
+      success: this.redirectToGroup.bind(this),
+    });
+  },
+
+  redirectToGroup: function () {
     var groupUrl = "groups/" + this.model.get('id') + "/conversations/" +
       this.model.get('first_conv_id');
     Backbone.history.navigate(groupUrl, {trigger: true});

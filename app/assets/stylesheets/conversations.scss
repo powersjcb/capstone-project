@@ -38,7 +38,11 @@
   margin: 0px;
   padding: 0px;
   border: none;
+  outline: none;
 
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   resize: none;
   overflow-y: scroll;
 }

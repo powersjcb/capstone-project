@@ -30,6 +30,13 @@ Slick.Models.Group = Backbone.Model.extend({
     return this._conversation;
   },
 
+  personalConversations: function () {
+    if (!this._personalConversations) {
+      this._personalConversations = new Slick.Collections.Conversations();
+    }
+    return this._personalConversations;
+  },
+
   parse: function (payload) {
 
     // get creator
@@ -55,6 +62,14 @@ Slick.Models.Group = Backbone.Model.extend({
     if (payload.conversations) {
       this.conversations().set(payload.conversations, {parse: true});
       delete payload.conversations;
+    }
+
+    // get PMs
+    if (payload.personal_conversations) {
+      this.personalConversations().set(
+        payload.personal_conversations, {parse: true}
+      );
+      delete payload.personal_conversations;
     }
     return payload;
   }
