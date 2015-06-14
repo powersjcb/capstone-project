@@ -10,8 +10,10 @@
   display: inline-block;
   content: "";
   float: left;
-  height: 50px;
-  width: 50px;
+  // margin-left: 25px;
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
 }
 
 .profile-img:after {
@@ -23,9 +25,14 @@
   font-weight: 700;
 }
 
+.content {
+  width: 100%;
+  word-wrap: break-word;
+}
+
 .message-body {
-  float: left;
-  margin-left: 10px;
+  margin-left: 75px;
+  width: 100%;
 }
 
 .message-item {
@@ -38,4 +45,6 @@
 
 #messages-container {
   position: absolute;
+  left: 25px;
+  right: 90px;
 }

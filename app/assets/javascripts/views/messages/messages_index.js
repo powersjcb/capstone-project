@@ -36,7 +36,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   },
 
   startOnBottom: function () {
-    var $msgDiv = $("#messages-container");
+    var $msgDiv = this.$el;
     if ($msgDiv[0]) {
       var scrollHeight = $msgDiv[0].scrollHeight;
       $msgDiv.scrollTop(scrollHeight);
@@ -44,7 +44,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   },
 
   stickScrollBottom: function() {
-    var $msgDiv = $("#messages-container");
+    var $msgDiv = this.$el;
     var stickyTolerance = 10; //px
     if ($msgDiv[0]) {
       var scrollTop = $msgDiv[0].scrollTop;
