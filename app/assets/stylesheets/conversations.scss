@@ -17,6 +17,7 @@
 
 
 .chat-box {
+  position: absolute;
   display: inline-block;
   box-sizing: content-box;
 }
@@ -52,12 +53,12 @@
 
 #conversation {
   position: relative;
-  width: 100%;
+  flex: 1;
 }
 
 
 .conversation-show {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 100%;
