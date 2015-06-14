@@ -2,6 +2,7 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
 
   template: JST['conversations/show'],
   tagName: "div",
+  className: "conversation-show",
 
   initialize: function () {
     this.addMessagesIndex();

@@ -1,11 +1,10 @@
 .footer {
-  position: fixed;
+  position: relative;
   display: block;
   box-sizing: border-box;
-  bottom: 0px;
-  left: 220px;
-  height: 64px;
-  right: 16px;
+  height: 70px;
+  padding-right: 16px;
+
 }
 
 .file-upload {
@@ -16,15 +15,10 @@
   width: 40px;
 }
 
+
 .chat-box {
-  display: block;
+  display: inline-block;
   box-sizing: content-box;
-  position: absolute;
-  height: 40px;
-  bottom: 22px;
-  left: 64px;
-  right: 20px;
-  padding-right: 16px;
 }
 
 .chat-input {
@@ -40,13 +34,34 @@
 }
 
 #conversation-header {
-  position: fixed;
-  top: 0px;
-  left: 220px;
-  right: 0px;
-  height: 50px;
+}
+
+.conv-header {
+  font-size: 1.5em;
+  padding-left: 1.5em;
+}
+
+.conv-name {
+  font-weight: 800;
+}
+
+.prefix {
+  font-weight: 400;
+  color: rgb(158, 158, 166);
+}
+
+#conversation {
+  position: relative;
+  width: 100%;
+}
 
 
+.conversation-show {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .modal-form {
