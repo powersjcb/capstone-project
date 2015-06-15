@@ -26,7 +26,11 @@ class Membership < ActiveRecord::Base
   private
 
   def alert_group
-    Pusher["group-#{self.group_id}"].trigger('new_member', self.user.as_json )
+    WebsocketService.new({
+      channel_name: "group-#{group_id}",
+      event_name: "new_member",
+      data: self.user.as_json
+    }).send
   end
 
   def subscribe_public_conversations

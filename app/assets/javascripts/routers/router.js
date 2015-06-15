@@ -59,9 +59,12 @@ Slick.Routers.Router = Backbone.Router.extend({
     }.bind(this));
 
     this.conversationFeed.bind('new_message', function(data) {
-      var newMessage = new Slick.Models.Message(data);
-      console.log(data);
-      conversation.messages().add(newMessage);
+      console.log(data.socket_id);
+      if (data.socket_id != window.pusher.connection.socket_id) {
+        console.log(window.pusher.connection.socket_id);
+        var newMessage = new Slick.Models.Message(data);
+        conversation.messages().add(newMessage);
+      }
     }.bind(this));
 
 

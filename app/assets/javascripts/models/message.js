@@ -4,7 +4,7 @@ Slick.Models.Message = Backbone.Model.extend({
   initialize: function (attrs, options) {
     if (options && options.conversation) {
       this.conversation = options.conversation;
-      this.set('conversation_id', options.conversation.get('id'));
+      this.set('conversation_id', this.conversation.get('id'));
     }
   },
 });

@@ -21,7 +21,7 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
 
   addConversationView: function () {
     var subView = new Slick.Views.ConversationShow({
-      model: this.conversation
+      model: this.conversation,
     });
     this.addSubview('#channel', subView);
   },

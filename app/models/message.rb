@@ -8,7 +8,10 @@
 #  conversation_id :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  socket_id       :string           default(""), not null
 #
+
+
 
 class Message < ActiveRecord::Base
   validates :content, :sender_id, :conversation_id, presence: true
@@ -27,19 +30,20 @@ class Message < ActiveRecord::Base
   # after_commit :alert_group
 
 
-  # somewhat random number for identifying messages in callbacks
-  ##### NEEDS TO BE INCLUDED IN RESPONSE
-
   private
 
   def alert_conversation
-    Pusher["conversation-#{conversation_id}"].trigger('new_message', self.as_json)
+    WebsocketService.new({
+      channel_name: "conversation-#{conversation_id}",
+      event_name: "new_message",
+      data: self.as_json
+    }).send
   end
 
 
   def user_in_conversation
     unless sender.conversations.include?(self.conversation)
-      @sender.errors[:base] << "This user is not subscribed to this conversation"
+      # @sender.errors[:base] << "This user is not subscribed to this conversation"
     end
   end
 end

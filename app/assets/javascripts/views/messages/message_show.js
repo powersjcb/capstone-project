@@ -6,6 +6,7 @@ Slick.Views.Message = Backbone.View.extend({
 
   initialize: function (options) {
     this.user = options.user;
+    this.listenTo(this.model, 'change', this.render);
   },
 
   render: function() {

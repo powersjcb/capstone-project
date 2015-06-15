@@ -23,12 +23,16 @@ class Conversation < ActiveRecord::Base
   has_many :subscribers, through: :subscriptions, source: :user
 
   after_commit :subscribe_users_if_public, on: :create
-  after_commit :push_create_group, on: :create
+  after_commit :alert_group, on: :create
 
   private
 
   def push_create_group
-    Pusher["group-#{self.group_id}"].trigger('new_conversation', self.as_json )
+    WebsocketService.new({
+      channel_name: "group-#{group_id}",
+      event_name: "new_conversation",
+      data: self.as_json
+    }).send
   end
 
   def subscribe_users_if_public

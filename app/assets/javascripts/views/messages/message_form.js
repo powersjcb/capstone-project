@@ -10,7 +10,10 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     this.users = options.users;
-    this.callbackId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 20);
+    this.conversation = options.conversation;
+    this.model = new Slick.Models.Message({},{
+      conversation: this.conversation
+    });
   },
 
   render: function() {
@@ -28,12 +31,13 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
       event.preventDefault();
       $input = $('#chat-input');
       var content = $input.val();
+      $input.val("");
 
       if (this.isValidMessage(content)) {
         this.sendMessage(content);
-        $input.val("");
       } else {
         // invalid msg prompt?
+        console.log('invalid msg');
       }
     }
   },
@@ -41,27 +45,24 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
 
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
-    this.model.set("content", content );
-    this.model.set("callback_id", this.callbackId);
-    this.model.set('sender_id', Slick.Models.currentUser.get('id'));
-    this.model.save({}, {
-      // success: this.removePending.bind(this),
-
+    var socketId = window.pusher.connection.socket_id;
+    this.model = new Slick.Models.Message({
+      content: content
+    },
+    {
+      conversation: this.conversation
     });
-    // this.pendMessage();
+    this.model.set("sender_id", Slick.Models.currentUser.get('id'));
+    this.model.set("socket_id", socketId);
+    this.model.save({},{
+    });
+    this.pendMessage();
   },
 
   pendMessage: function () {
     this.users.add(Slick.Models.currentUser);
-    this.model.conversation.messages().add(this.model);
+    this.conversation.messages().add(this.model);
   },
-
-  // removePending: function (model) {
-  // },
-
-
-  // styleFailed: function () {
-  // },
 
   isValidMessage: function (user_input) {
     return user_input.length > 0 && user_input.length < 30000;
