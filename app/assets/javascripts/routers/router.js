@@ -18,7 +18,6 @@ Slick.Routers.Router = Backbone.Router.extend({
 
   group: function (id) {
     var group = new Slick.Models.Group({id: id});
-
     group.fetch();
 
     var groupView = new Slick.Views.GroupShow({ model: group });
@@ -38,14 +37,20 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
+    this.group_feed = window.pusher.subscribe('group-' + group_id);
+    this.conversation_feed = window.pusher.subscribe('group-' + id);
+
     var group = new Slick.Models.Group({ id: group_id });
     var conversation = new Slick.Models.Conversation({ id: id});
 
-    setInterval(function() {
-      group.fetch();
-      conversation.fetch();
+    this.group_feed.bind('new_channel', function(data) {
+      console.log(data);
+    });
 
-    }.bind(this), 2000);
+
+    group.fetch();
+    conversation.fetch();
+
 
     var groupView = new Slick.Views.GroupShow({
       model: group,

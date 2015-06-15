@@ -2,6 +2,11 @@
 
 </div>
 
+<script src="//js.pusher.com/2.2/pusher.min.js"></script>
+<script>
+  window.pusher = new Pusher('<%= Pusher.key %>'); // uses your APP KEY
+</script>
+
 <script type="text/javascript">
   $(document).ready(function(){
     window.CURRENT_USER = {

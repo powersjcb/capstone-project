@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :groups
     resources :conversations
     resources :memberships
+    post '/pusher/auth', to: 'pusher#auth'
     get '/groups/:id/search', to: "messages#search"
   end
 
