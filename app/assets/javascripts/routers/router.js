@@ -60,7 +60,7 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     this.conversationFeed.bind('new_message', function(data) {
       var newMessage = new Slick.Models.Message(data);
-      console.log('websocket message created');
+      console.log(data);
       conversation.messages().add(newMessage);
     }.bind(this));
 

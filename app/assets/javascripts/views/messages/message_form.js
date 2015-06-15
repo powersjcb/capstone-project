@@ -10,10 +10,14 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     this.users = options.users;
+    this.callbackId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 20);
   },
 
   render: function() {
-    var content = this.template({ message: this.model });
+    var content = this.template({
+      message: this.model,
+      callbackId: this.callbackId
+    });
     this.$el.html(content);
     return this;
   },
@@ -30,7 +34,6 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
         $input.val("");
       } else {
         // invalid msg prompt?
-        console.log('message cant be blank');
       }
     }
   },
@@ -39,12 +42,13 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
     this.model.set("content", content );
+    this.model.set("callback_id", this.callbackId);
     this.model.set('sender_id', Slick.Models.currentUser.get('id'));
     this.model.save({}, {
-      success: this.removePending.bind(this),
-      // error: this.styleFailed
+      // success: this.removePending.bind(this),
+
     });
-    this.pendMessage();
+    // this.pendMessage();
   },
 
   pendMessage: function () {
@@ -52,9 +56,8 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model.conversation.messages().add(this.model);
   },
 
-  removePending: function (model) {
-    console.log(model);
-  },
+  // removePending: function (model) {
+  // },
 
 
   // styleFailed: function () {

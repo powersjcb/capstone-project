@@ -26,6 +26,10 @@ class Message < ActiveRecord::Base
   # this will show missed messages
   # after_commit :alert_group
 
+
+  # somewhat random number for identifying messages in callbacks
+  ##### NEEDS TO BE INCLUDED IN RESPONSE
+
   private
 
   def alert_conversation
