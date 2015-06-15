@@ -5,10 +5,11 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   className: "input-area",
 
   events: {
-    "keydown textarea": "submitMessage"
+    "keydown textarea": "handleKeydown"
   },
 
   initialize: function(options) {
+    this.conversationFeed = options.conversationFeed;
     this.users = options.users;
     this.conversation = options.conversation;
     this.model = new Slick.Models.Message({},{
@@ -25,7 +26,9 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     return this;
   },
 
-  submitMessage: function (event) {
+  handleKeydown: function (event) {
+    this.isTyping();
+
     // ignores shift+return
     if (!event.shiftKey && event.keyCode == 13) {
       event.preventDefault();
@@ -66,6 +69,25 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
 
   isValidMessage: function (user_input) {
     return user_input.length > 0 && user_input.length < 30000;
+  },
+
+  isTyping: function () {
+
+    debounce(function() {
+      this.conversationFeed.trigger('is_typing', Slick.Models.currentUser.get('id'));
+    }.bind(this), 500);
+
+    function debounce(func, interval) {
+      var lastCall = -1;
+      return function() {
+        clearTimeout(lastCall);
+        var args = arguments;
+        var self = this;
+        lastCall = setTimeout(function() {
+          func.apply(self, args);
+        }, interval);
+      };
+    }
   }
 
 });

@@ -74,7 +74,8 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     var groupView = new Slick.Views.GroupShow({
       model: group,
-      conversation: conversation
+      conversation: conversation,
+      conversationFeed: this.conversationFeed
     });
     this._swapView(groupView);
   },

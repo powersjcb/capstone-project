@@ -5,6 +5,8 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
   className: "conversation-show",
 
   initialize: function (options) {
+    this.conversationFeed = options.conversationFeed;
+
     this.addMessagesIndex();
     this.addHeaderView();
     this.addMessageFormView();
@@ -15,6 +17,7 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
       conversation: this.model,
       collection: this.collection,
       users: this.model.users(),
+      conversationFeed: this.conversationFeed
     });
     this.addSubview('#composer', subView);
   },
