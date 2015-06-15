@@ -17,6 +17,13 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     });
   },
 
+  addTypingView: function () {
+    var subView = new Slick.Views.TypingView({
+      conversationFeed: this.conversationFeed
+    });
+    this.addSubview('#is-typing', subView);
+  },
+
   render: function() {
     var content = this.template({
       message: this.model,

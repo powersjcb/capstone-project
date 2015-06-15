@@ -24,6 +24,14 @@
   font-weight: 700;
 }
 
+.is-typing {
+  display: block;
+  position: absolute;
+  left: 62px;
+  bottom: 10px;
+  font-size: .7em;
+}
+
 .content {
   width: 100%;
   font-size: 15px;

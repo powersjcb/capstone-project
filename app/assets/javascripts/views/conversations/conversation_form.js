@@ -35,6 +35,7 @@ Slick.Views.ConversationForm = Backbone.CompositeView.extend({
       conversation: this.model
     });
     this.$el.html(content);
+    this.attachSubviews();
     return this;
   },
 

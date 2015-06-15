@@ -44,5 +44,4 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
     return this;
   },
 
-
 });
