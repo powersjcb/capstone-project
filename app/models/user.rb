@@ -47,11 +47,14 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64(16)
   end
 
+  def as_json
+    super(only: [:id, :username, :created_at, :updated_at, :profile_img_url])
+  end
+
   def is_member_of?(group)
     self.groups.include?(group)
   end
 
-  ### is this reasonable?  ###
 
   # def get_conversation_with(other_user, group)
   #   Subscription.find_by_sql(<<-SQL)

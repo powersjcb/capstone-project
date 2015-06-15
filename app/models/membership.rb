@@ -17,12 +17,18 @@ class Membership < ActiveRecord::Base
     message: "needs to be unique" }
   )
 
-  after_save :subscribe_public_conversations
+  after_commit :subscribe_public_conversations, on: :create
+  after_commit :alert_group, on: :create
 
   belongs_to :user
   belongs_to :group
 
   private
+
+  def alert_group
+    Pusher["group-#{self.group_id}"].trigger('new_member', self.user.as_json )
+  end
+
   def subscribe_public_conversations
     # selects all public conversations and joins them
     public_convs = Conversation.where(

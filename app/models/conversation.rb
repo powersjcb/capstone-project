@@ -22,9 +22,15 @@ class Conversation < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :subscribers, through: :subscriptions, source: :user
 
-  after_save :subscribe_users_if_public
+  after_commit :subscribe_users_if_public, on: :create
+  after_commit :push_create_group, on: :create
 
   private
+
+  def push_create_group
+    Pusher["group-#{self.group_id}"].trigger('new_conversation', self.as_json )
+  end
+
   def subscribe_users_if_public
     if privacy_state == 0
       self.group.members.each do |member|

@@ -41,7 +41,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model.set("content", content );
     this.model.set('sender_id', Slick.Models.currentUser.get('id'));
     this.model.save({}, {
-      // success: this.removePendingStyle,
+      success: this.removePending.bind(this),
       // error: this.styleFailed
     });
     this.pendMessage();
@@ -51,6 +51,11 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.users.add(Slick.Models.currentUser);
     this.model.conversation.messages().add(this.model);
   },
+
+  removePending: function (model) {
+    console.log(model);
+  },
+
 
   // styleFailed: function () {
   // },

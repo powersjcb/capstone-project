@@ -37,15 +37,32 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
-    this.group_feed = window.pusher.subscribe('group-' + group_id);
-    this.conversation_feed = window.pusher.subscribe('group-' + id);
+    this.groupFeed = window.pusher.subscribe('group-' + group_id);
+    this.conversationFeed = window.pusher.subscribe('conversation-' + id);
 
     var group = new Slick.Models.Group({ id: group_id });
     var conversation = new Slick.Models.Conversation({ id: id});
 
-    this.group_feed.bind('new_channel', function(data) {
-      console.log(data);
-    });
+    this.groupFeed.bind('new_conversation', function(data) {
+      var newConv = new Slick.Models.Conversation(data);
+      group.conversations().add(newConv);
+    }.bind(this));
+
+    this.groupFeed.bind('new_member', function(data) {
+      var newMember = new Slick.Models.User(data);
+      group.members().add(newMember);
+    }.bind(this));
+
+    this.conversationFeed.bind('new_subscriber', function(data) {
+      var newSubscriber = new Slick.Models.User(data);
+      conversation.subscribers().add(newSubscriber);
+    }.bind(this));
+
+    this.conversationFeed.bind('new_message', function(data) {
+      var newMessage = new Slick.Models.Message(data);
+      console.log('websocket message created');
+      conversation.messages().add(newMessage);
+    }.bind(this));
 
 
     group.fetch();

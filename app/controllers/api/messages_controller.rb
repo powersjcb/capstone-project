@@ -18,7 +18,7 @@ class Api::MessagesController < Api::ApiController
   def create
     @message = current_user.sent_messages.new(msg_params);
     if @message.save
-      render json: {}, status: 200
+      render json: @message, status: 200
     else
       render json: @message.errors, status: :unprocessable_entity
     end

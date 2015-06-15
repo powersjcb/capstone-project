@@ -21,12 +21,21 @@ class Message < ActiveRecord::Base
     inverse_of: :sent_messages)
   belongs_to :conversation
 
-
+  after_commit :alert_conversation
+  # send a single ping to group with only msg_id and channel_id
+  # this will show missed messages
+  # after_commit :alert_group
 
   private
+
+  def alert_conversation
+    Pusher["conversation-#{conversation_id}"].trigger('new_message', self.as_json)
+  end
+
+
   def user_in_conversation
-    # unless sender.conversations.include?(this.conversation)
-      # @sender.errors[:base] << "This user is not subscribed to this conversation"
-    # end
+    unless sender.conversations.include?(self.conversation)
+      @sender.errors[:base] << "This user is not subscribed to this conversation"
+    end
   end
 end
