@@ -68,6 +68,8 @@ Slick.Routers.Router = Backbone.Router.extend({
     }.bind(this));
 
 
+
+
     group.fetch();
     conversation.fetch();
 

@@ -71,23 +71,10 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     return user_input.length > 0 && user_input.length < 30000;
   },
 
-  isTyping: function () {
+  isTyping: _.debounce( function () {
+      console.log(this);
+      this.conversationFeed.trigger('client-is_typing', {user_id: Slick.Models.currentUser.get('id')});
+  }, 500, true)
 
-    debounce(function() {
-      this.conversationFeed.trigger('is_typing', Slick.Models.currentUser.get('id'));
-    }.bind(this), 500);
-
-    function debounce(func, interval) {
-      var lastCall = -1;
-      return function() {
-        clearTimeout(lastCall);
-        var args = arguments;
-        var self = this;
-        lastCall = setTimeout(function() {
-          func.apply(self, args);
-        }, interval);
-      };
-    }
-  }
 
 });
