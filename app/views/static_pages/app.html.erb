@@ -4,7 +4,9 @@
 
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 <script>
-  window.pusher = new Pusher('<%= Pusher.key %>'); // uses your APP KEY
+  window.pusher = new Pusher('<%= Pusher.key %>', {
+    authEndpoint: 'http://slickapp.io/api/pusher_auth'
+  });
 </script>
 
 <script type="text/javascript">

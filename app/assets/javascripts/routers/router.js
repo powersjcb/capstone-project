@@ -37,8 +37,8 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
-    this.groupFeed = window.pusher.subscribe('group-' + group_id);
-    this.conversationFeed = window.pusher.subscribe('conversation-' + id);
+    this.groupFeed = window.pusher.subscribe('presence-group-' + group_id);
+    this.conversationFeed = window.pusher.subscribe('presence-conversation-' + id);
 
     var group = new Slick.Models.Group({ id: group_id });
     var conversation = new Slick.Models.Conversation({ id: id});
