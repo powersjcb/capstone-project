@@ -16,6 +16,8 @@ gem 'cloudinary'
 gem 'figaro'
 gem 'pusher'
 gem 'newrelic_rpm'
+gem 'resque'
+gem 'redis'
 
 
 group :development, :test do
