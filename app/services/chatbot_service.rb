@@ -1,12 +1,16 @@
 class ChatbotService
-  def initialize(params)
-    @user = Figaro.CLEVERBOT_IO_USER
-    @key  = Figaro.CLEVERBOT_IO_API_KEY
-    @nick = params[:user].username
-    @conversation_id = params[:conversation].id
+  include HTTParty
+
+  BASE_URI = ''
+
+  def initialize()
   end
 
-  # def
+  def send
+  end
 
+
+  def request_uri
+  end
 
 end

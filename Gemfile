@@ -16,8 +16,10 @@ gem 'cloudinary'
 gem 'figaro'
 gem 'pusher'
 gem 'newrelic_rpm'
-gem 'resque'
+gem 'resque', "~> 1.22.0"
 gem 'redis'
+gem 'redis-namespace'
+gem 'httparty'
 
 
 group :development, :test do
