@@ -43,17 +43,17 @@ Slick.Views.IsTyping = Backbone.View.extend({
     this.notTypingAnymore(user);
   },
 
-  finishTyping: function (data) {
+  finishTyping: _.debounce( function (data) {
     var user = this.users.get(data.user_id);
     if (user) {
       this.typingUsers.remove(user);
     }
-  },
+  }, 250),
 
 
   notTypingAnymore: _.debounce( function(user) {
       this.typingUsers.remove(user);
-  }, 25000)
+  }, 25000),
 
 
 });

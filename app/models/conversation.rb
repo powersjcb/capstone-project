@@ -29,7 +29,7 @@ class Conversation < ActiveRecord::Base
 
   def push_create_group
     WebsocketService.new({
-      channel_name: "group-#{group_id}",
+      channel_name: "presence-group-#{group_id}",
       event_name: "new_conversation",
       data: self.as_json
     }).send

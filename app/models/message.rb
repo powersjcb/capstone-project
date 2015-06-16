@@ -34,7 +34,7 @@ class Message < ActiveRecord::Base
 
   def alert_conversation
     WebsocketService.new({
-      channel_name: "conversation-#{conversation_id}",
+      channel_name: "presence-conversation-#{conversation_id}",
       event_name: "new_message",
       data: self.as_json
     }).send

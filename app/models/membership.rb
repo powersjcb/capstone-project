@@ -27,7 +27,7 @@ class Membership < ActiveRecord::Base
 
   def alert_group
     WebsocketService.new({
-      channel_name: "group-#{group_id}",
+      channel_name: "presence-group-#{group_id}",
       event_name: "new_member",
       data: self.user.as_json
     }).send

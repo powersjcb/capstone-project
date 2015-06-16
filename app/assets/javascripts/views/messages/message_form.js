@@ -37,12 +37,18 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   },
 
   handleKeydown: function (event) {
-    this.isTyping();
+    var $input = $('#chat-input');
+    setTimeout(function () {
+      if ($input.val() === "") {
+        this.finishTyping();
+      } else {
+        this.isTyping();
+      }
+    }.bind(this), 50);
 
     // ignores shift+return
     if (!event.shiftKey && event.keyCode == 13) {
       event.preventDefault();
-      $input = $('#chat-input');
       var content = $input.val();
       $input.val("");
 
@@ -70,7 +76,6 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model.save({},{
     });
     this.pendMessage();
-    this.finishTyping();
   },
 
   pendMessage: function () {
@@ -85,7 +90,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
 
   // pusher events
   isTyping: _.debounce( function () {
-      this.conversationFeed.trigger('client-is_typing', {user_id: Slick.Models.currentUser.get('id')});
+    this.conversationFeed.trigger('client-is_typing', {user_id: Slick.Models.currentUser.get('id')});
   }, 500, true),
 
   finishTyping: function () {
