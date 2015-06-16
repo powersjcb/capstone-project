@@ -1,0 +1,5 @@
+<% if (typingUsers.length > 0) { %>
+  <% var verb = (typingUsers.length > 1) ? " are" : " is" %>
+  <% var usernames = typingUsers.pluck("username") %>
+  <%= toSentence(usernames) + verb + " typing" %>
+<% } %>

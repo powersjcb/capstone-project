@@ -15,11 +15,14 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model = new Slick.Models.Message({},{
       conversation: this.conversation
     });
+
+    this.addTypingView();
   },
 
   addTypingView: function () {
-    var subView = new Slick.Views.TypingView({
-      conversationFeed: this.conversationFeed
+    var subView = new Slick.Views.IsTyping({
+      conversationFeed: this.conversationFeed,
+      users: this.users
     });
     this.addSubview('#is-typing', subView);
   },
@@ -67,6 +70,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model.save({},{
     });
     this.pendMessage();
+    this.finishTyping();
   },
 
   pendMessage: function () {
@@ -78,10 +82,15 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     return user_input.length > 0 && user_input.length < 30000;
   },
 
+
+  // pusher events
   isTyping: _.debounce( function () {
-      console.log(this);
       this.conversationFeed.trigger('client-is_typing', {user_id: Slick.Models.currentUser.get('id')});
-  }, 500, true)
+  }, 500, true),
+
+  finishTyping: function () {
+    this.conversationFeed.trigger('client-finish_typing', {user_id: Slick.Models.currentUser.get('id')});
+  }
 
 
 });
