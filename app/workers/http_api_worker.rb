@@ -1,8 +1,8 @@
-class HttpApiWorker
-  @queue = :api_response
+class BotWorker
+  @queue = :bot_response
 
-  def self.perform(params)
-    process = ChatbotService.new(params)
-    process.send
+  def self.perform(message, conversation)
+    process = ChatbotService.new(message, conversation)
+    process.respond
   end
 end

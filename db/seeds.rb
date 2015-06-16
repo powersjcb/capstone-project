@@ -2,6 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 
+bot = User.create(username: "bot", password: "superuser")
 user = User.create(username: "powersjcb", password: "password" )
 group = user.created_groups.create(name: "Group1", description: "First group")
 user.created_chats.create(title: "chat group1", group_id: 1)
