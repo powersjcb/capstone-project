@@ -20,6 +20,7 @@ gem 'resque', "~> 1.22.0"
 gem 'redis'
 gem 'redis-namespace'
 gem 'httparty'
+gem 'youtube_it'
 
 
 group :development, :test do
