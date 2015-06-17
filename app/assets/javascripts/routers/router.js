@@ -36,8 +36,9 @@ Slick.Routers.Router = Backbone.Router.extend({
   groupConversation: function (group_id, id) {
     this.group = new Slick.Models.Group({ id: group_id });
     this.conversation = new Slick.Models.Conversation({ id: id});
-    this.groupFeed = this._pusherSubscribe('presence-group-' + group_id);
-    this.conversationFeed = this._pusherSubscribe('presence-conversation-' + id);
+
+    this.groupFeed = this._pusherSubscribeGroup('presence-group-' + group_id);
+    this.conversationFeed = this._pusherSubscribeConv('presence-conversation-' + id);
 
     this.groupFeed.bind('new_conversation', function(data) {
       var newConv = new Slick.Models.Conversation(data);
@@ -86,20 +87,24 @@ Slick.Routers.Router = Backbone.Router.extend({
     view.render();
   },
 
-  _pusherSubscribe: function (new_channel_name) {
-    if (this.conversationFeed) {
+  _pusherSubscribeConv: function (new_channel_name) {
+    if (this.conversationFeed && this._currentView) {
       window.pusher.unsubscribe(
         'presence-conversation-' + this._currentView.conversation.get('id')
       );
     }
+    return window.pusher.subscribe(new_channel_name);
+  },
 
-    if (this.groupFeed) {
+  _pusherSubscribeGroup: function (new_channel_name) {
+    if (this.groupFeed && this._currentView) {
       window.pusher.unsubscribe(
-        'presence-group-' + this._currentView.conversation.get('id')
+        'presence-group-' + this._currentView.model.get('id')
       );
     }
-
     return window.pusher.subscribe(new_channel_name);
   }
+
+
 
 });
