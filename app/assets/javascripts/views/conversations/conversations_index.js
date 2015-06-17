@@ -13,6 +13,14 @@ Slick.Views.ConversationsIndex = Backbone.CompositeView.extend({
 
     this.listenTo(this.collection, 'add', this.addConvItemView);
     this.listenTo(this.collection, 'remove', this.removeConvItemView);
+
+    // add convs to page if going to groups index
+    if (this.collection.length > 1) {
+      this.collection.each(function (model) {
+        this.addConvItemView(model);
+      }.bind(this));
+    }
+
   },
 
   addChannelForm: function () {
