@@ -1,4 +1,6 @@
 <% @user.username %>
+
+<div class="background-image"></div>
 <div class="landing-container">
   <header class="landing-header">
     <div class="logo">slick</div>
@@ -15,7 +17,7 @@
 
     </header>
 
-  <div class="content">
+  <div class="landing-content">
     <div class="pitch">
       SALES PITCH IMAGE AND TEXT GOES HERE
     </div>
@@ -48,7 +50,7 @@
           <button class="create-account-button" type="submit">Create Account</button>
     </form>
 
-    <form class="" action="<%= users_url %>" method="post">
+    <form class="create-account-form" action="<%= users_url %>" method="post">
       <input type="hidden"
         name="authenticity_token"
         value="<%= form_authenticity_token %>">
@@ -65,7 +67,13 @@
         name="user[password]"
         value="password">
 
-        <button type="submit">Guest Login</button>
+        <button class="create-account-button" type="submit">Guest Login</button>
     </form>
+  </div>
+
+  <div class="contact">
+    <div class="email">
+      powersjcb@gmail.com
+    </div>
   </div>
 </div>

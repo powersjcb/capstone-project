@@ -3,8 +3,34 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 //
 
+
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  display: block;
+  background-image: url('http://res.cloudinary.com/slickapp-io/image/upload/v1434501473/startup-594091_1280_yqkzvd.jpg');
+  width: 1200px;
+  height: 800px;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.content {
+}
+
+
 .landing-container {
-  height: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
   font-size: 24px;
   margin: 0 auto;
 }
@@ -13,11 +39,15 @@
   text-align: center;
 }
 
-.content {
+.landing-content {
+  color: white;
   min-height: 400px;
+  text-shadow: rgba(0, 0, 0, 0.498039) 0px 1px 10px;
+
 }
 
 .landing-header {
+  color: white;
   max-width: 940px;
   position: relative;
   height: 80px;
@@ -54,7 +84,7 @@
 .sub-content {
   width: 100%;
   height: 250px;
-  background: rgba(0,0,0,.1);
+  background: rgba(0,0,0,.2);
   padding: 0;
 }
 
@@ -63,7 +93,8 @@
   display: inline-block;
   bottom: 0px;
   left: 0px;
-  font-size: 40px;
+  font-weight: 700;
+  font-size: 60px;
   margin-left: 20px;
 }
 
@@ -89,4 +120,16 @@
   background: #439fe0;
   color: #fff;
   font-size: 1.3rem;
+}
+
+.contact {
+  color: white;
+  background-color: #3aa497;
+  margin: 0 auto;
+  height: 200px;
+}
+
+.contact .email {
+  padding-top: 100px;
+  text-align: center;
 }
