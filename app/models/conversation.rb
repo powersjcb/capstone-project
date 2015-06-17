@@ -20,7 +20,7 @@ class Conversation < ActiveRecord::Base
   belongs_to :creator, class_name: "User", inverse_of: "created_chats"
   belongs_to :group
   has_many :messages, dependent: :destroy
-  has_many :subscriptions, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy, inverse_of: :conversation
   has_many :subscribers, through: :subscriptions, source: :user
 
   after_commit :subscribe_users_if_public, on: :create

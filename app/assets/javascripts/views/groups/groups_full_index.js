@@ -14,6 +14,8 @@ Slick.Views.GroupsFullIndex = Backbone.CompositeView.extend({
     this.conversation = options.conversation;
     this.conversationFeed = options.conversationFeed;
 
+
+
     this.addGroupShowView();
     this.listenToOnce(this.collection, 'sync', this.triggerSurogates);
     this.listenTo(this.collection, 'add', this.addGroupView);
@@ -57,8 +59,15 @@ Slick.Views.GroupsFullIndex = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
+    this.onRender();
     return this;
   },
+
+  onRender: function () {
+    setTimeout( function() {
+      $('.groups-nav').removeClass('collapsed');
+    }, 50);
+  }
 
 
 });

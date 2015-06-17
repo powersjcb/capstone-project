@@ -3,7 +3,7 @@ class Api::ConversationsController < Api::ApiController
     @conversation = Conversation.includes(:messages, :subscribers,
     messages: :sender).find(params[:id])
 
-    if @conversation.has_subscriber?(current_user)
+    if current_user.subscriptions.find_or_create_by(conversation: @conversation)
       @active_users = @conversation.messages.inject([]) do |c, message|
         c.push(message.sender)
       end.uniq

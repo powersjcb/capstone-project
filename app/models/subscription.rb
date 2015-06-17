@@ -19,6 +19,6 @@ class Subscription < ActiveRecord::Base
   )
 
   belongs_to :user
-  belongs_to :conversation
+  belongs_to :conversation, inverse_of: :subscriptions
 
 end

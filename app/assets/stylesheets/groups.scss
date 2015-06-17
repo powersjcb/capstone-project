@@ -47,13 +47,20 @@ div.group-header {
   font-weight: bold;
 }
 
+.collapsed {
+  width: 1px !important;
+  z-index: -1 !important;
+}
 .groups-nav {
+  position: relative;
   width: 300px;
   background-color: #433041;
   color: #FEE5FB;
+  white-space: nowrap;
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 2rem;
+  transition: width 1s;
 }
 
 .left-nav-item {
