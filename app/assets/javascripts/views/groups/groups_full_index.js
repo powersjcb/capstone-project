@@ -40,8 +40,8 @@ Slick.Views.GroupsFullIndex = Backbone.CompositeView.extend({
   },
 
   triggerSurogates: function () {
-    // this.group.trigger('change');
-    // this.conversation.trigger('change');
+    // this.group.trigger('sync');
+    // this.conversation.trigger('sync');
   },
 
   addGroupView: function(model) {

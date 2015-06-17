@@ -98,3 +98,20 @@ div.group-header {
 .nav-left {
   padding-left: 15px;
 }
+
+
+.nav-scrollable {
+  position: relative;
+  flex: 1;
+}
+
+.nav-scroll-area {
+  position: absolute;
+}
+
+.scroll-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}

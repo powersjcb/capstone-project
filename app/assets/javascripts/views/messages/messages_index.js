@@ -10,7 +10,11 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'add remove', this.stickScrollBottom);
     this.listenTo(this.collection, 'add', this.addMessageView);
     this.listenTo(this.collection, 'remove', this.removeMessageView);
-
+    if (this.collection.length > 1) {
+    this.collection.each(function (model) {
+      this.addMessageView(model);
+    }.bind(this));
+    }
     this.startOnBottom();
   },
 

@@ -6,7 +6,6 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.conversationFeed = options.conversationFeed;
-
     this.addMessagesIndex();
     this.addHeaderView();
     this.addMessageFormView();
