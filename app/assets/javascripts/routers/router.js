@@ -12,50 +12,47 @@ Slick.Routers.Router = Backbone.Router.extend({
   routes: {
     "":"groupsIndex",
     "conversations/:id":"conversation",
-    "groups/:id":"group",
     "groups/:group_id/conversations/:id":"groupConversation",
   },
 
-  group: function (id) {
-    var group = new Slick.Models.Group({id: id});
-    group.fetch();
-
-    var groupView = new Slick.Views.GroupShow({ model: group });
-    this._swapView(groupView);
-  },
-
   groupsIndex: function () {
-    var groups = new Slick.Collections.Groups();
+    // shims for rendering channel view
+    this.conversationFeed = this.conversationFeed || window.pusher.subscribe('presence-conversation');
+    this.group = this.group || new Slick.Models.Group();
+    this.conversation = this.conversation || new Slick.Models.Conversation();
 
-    groups.fetch();
-
+    this.groups = new Slick.Collections.Groups();
     var groupsIndexView = new Slick.Views.GroupsFullIndex({
-      collection: groups
+      collection: this.groups,
+      conversation: this.conversation,
+      group: this.group,
+      conversationFeed: this.conversationFeed
     });
 
+    this.groups.fetch();
     this._swapView(groupsIndexView);
   },
 
   groupConversation: function (group_id, id) {
+    this.group = new Slick.Models.Group({ id: group_id });
+    this.conversation = new Slick.Models.Conversation({ id: id});
+
     this.groupFeed = window.pusher.subscribe('presence-group-' + group_id);
     this.conversationFeed = window.pusher.subscribe('presence-conversation-' + id);
 
-    var group = new Slick.Models.Group({ id: group_id });
-    var conversation = new Slick.Models.Conversation({ id: id});
-
     this.groupFeed.bind('new_conversation', function(data) {
       var newConv = new Slick.Models.Conversation(data);
-      group.conversations().add(newConv);
+      this.group.conversations().add(newConv);
     }.bind(this));
 
     this.groupFeed.bind('new_member', function(data) {
       var newMember = new Slick.Models.User(data);
-      group.members().add(newMember);
+      this.group.members().add(newMember);
     }.bind(this));
 
     this.conversationFeed.bind('new_subscriber', function(data) {
       var newSubscriber = new Slick.Models.User(data);
-      conversation.subscribers().add(newSubscriber);
+      this.conversation.subscribers().add(newSubscriber);
     }.bind(this));
 
     this.conversationFeed.bind('new_message', function(data) {
@@ -63,20 +60,20 @@ Slick.Routers.Router = Backbone.Router.extend({
       if (data.socket_id != window.pusher.connection.socket_id) {
         console.log(window.pusher.connection.socket_id);
         var newMessage = new Slick.Models.Message(data);
-        conversation.messages().add(newMessage);
+        this.conversation.messages().add(newMessage);
       }
     }.bind(this));
 
 
 
 
-    group.fetch();
-    conversation.fetch();
+    this.group.fetch();
+    this.conversation.fetch();
 
 
     var groupView = new Slick.Views.GroupShow({
-      model: group,
-      conversation: conversation,
+      model: this.group,
+      conversation: this.conversation,
       conversationFeed: this.conversationFeed
     });
     this._swapView(groupView);

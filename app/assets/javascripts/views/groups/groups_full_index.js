@@ -9,11 +9,25 @@ Slick.Views.GroupsFullIndex = Backbone.CompositeView.extend({
   },
 
 
-  initialize: function () {
+  initialize: function (options) {
+    this.group = options.group;
+    this.conversation = options.conversation;
+    this.conversationFeed = options.conversationFeed;
+
+    this.addGroupShowView();
+    this.listenToOnce(this.collection, 'sync', this.triggerSurogates);
     this.listenTo(this.collection, 'add', this.addGroupView);
     this.listenTo(this.collection, 'remove', this.removeGroupView);
   },
 
+  addGroupShowView: function () {
+    var subView = new Slick.Views.GroupShow({
+      conversationFeed: this.conversationFeed,
+      conversation: this.conversation,
+      group: this.group
+    });
+    this.addSubview('#mock-group', subView);
+  },
 
   addGroupForm: function () {
     var newGroup = new Slick.Models.Group();
@@ -21,10 +35,14 @@ Slick.Views.GroupsFullIndex = Backbone.CompositeView.extend({
       model: newGroup,
       collection: this.collection
     });
-
+    // this.addSubview('#modal-holder', subView)
     $('body').prepend(subView.render().$el);
   },
 
+  triggerSurogates: function () {
+    // this.group.trigger('change');
+    // this.conversation.trigger('change');
+  },
 
   addGroupView: function(model) {
     var subView = new Slick.Views.GroupIndexItem({ model: model });
