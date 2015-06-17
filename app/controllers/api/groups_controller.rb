@@ -6,8 +6,12 @@ class Api::GroupsController < Api::ApiController
 
   def show
     @group = Group.includes(:conversations, :members).find(params[:id])
-    @conversations = @group.conversations
-    render :show
+    if @group.has_member?(current_user)
+      @conversations = @group.conversations
+      render :show
+    else
+      render json: {errors: "You must be a member to view this group"}, status: 403
+    end
   end
 
   def create

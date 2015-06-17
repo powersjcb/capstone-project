@@ -15,6 +15,7 @@
 class Conversation < ActiveRecord::Base
 
   validates :title, :user_id, presence: true
+  validates :title, uniqueness: {scope: :group_id}
 
   belongs_to :creator, class_name: "User", inverse_of: "created_chats"
   belongs_to :group
@@ -23,10 +24,13 @@ class Conversation < ActiveRecord::Base
   has_many :subscribers, through: :subscriptions, source: :user
 
   after_commit :subscribe_users_if_public, on: :create
-  after_commit :alert_group, on: :create
+  after_commit :push_create_group, on: :create
+
+  def has_subscriber?(user)
+    self.subscribers.include?(user)
+  end
 
   private
-
   def push_create_group
     WebsocketService.new({
       channel_name: "presence-group-#{group_id}",

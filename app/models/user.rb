@@ -55,6 +55,9 @@ class User < ActiveRecord::Base
     self.groups.include?(group)
   end
 
+  def is_in_conversation?(conv_id)
+    self.subscriptions.pluck(:id).include?(conv_id)
+  end
 
   # def get_conversation_with(other_user, group)
   #   Subscription.find_by_sql(<<-SQL)
