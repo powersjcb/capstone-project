@@ -17,7 +17,7 @@ Slick.Routers.Router = Backbone.Router.extend({
 
   groupsIndex: function () {
     // shims for rendering channel view
-    this.conversationFeed = this.conversationFeed || this._pusherSubscribe('presence-conversation');
+    this.conversationFeed = this.conversationFeed || this._pusherSubscribeConv('presence-conversation');
     this.group = this.group || new Slick.Models.Group();
     this.conversation = this.conversation || new Slick.Models.Conversation();
 

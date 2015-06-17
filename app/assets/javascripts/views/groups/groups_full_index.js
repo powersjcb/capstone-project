@@ -24,7 +24,7 @@ Slick.Views.GroupsFullIndex = Backbone.CompositeView.extend({
     var subView = new Slick.Views.GroupShow({
       conversationFeed: this.conversationFeed,
       conversation: this.conversation,
-      group: this.group
+      model: this.group
     });
     this.addSubview('#mock-group', subView);
   },
