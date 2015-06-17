@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["users/members_index"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="members-count">DIRECT MESSAGES</div>\n<div id="members-index" class="members-list"></div>\n\n<div class="members-count">\n  <span id="members-count"></span> members\n</div>\n');}return __p.join('');};
+}).call(this);

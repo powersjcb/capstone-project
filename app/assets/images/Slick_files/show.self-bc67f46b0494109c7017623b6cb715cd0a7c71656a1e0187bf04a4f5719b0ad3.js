@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["groups/show"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="nav-left">\n  <header id="group-header"></header>\n\n  <div id="group-index" class="left-nav-item nav-left">BACK TO GROUPS</div>\n  <div id="logout" class="nav-left left-nav-item">LOGOUT</div>\n\n  <div id="nav-channels"></div>\n  <div id="nav-members"></div>\n</div>\n\n<div id="channel"></div>\n\n<div id="context-nav"></div>\n');}return __p.join('');};
+}).call(this);

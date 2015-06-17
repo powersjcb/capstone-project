@@ -18,8 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   def logout(user)
-    user.reset_session_token!
-    session[:session_token] = nil
+    if logged_in?
+      user.reset_session_token!
+      session[:session_token] = nil
+    end
   end
 
   def redirect_unless_logged_in

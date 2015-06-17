@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["messages/show"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="profile-img">\n    <img src="',  user.escape('profile_img_url') ,'" alt="" />\n</div>\n\n<div class="message-body">\n  <div class="message-username">\n    ',  user.escape('username') ,'\n  </div>\n  <p class="content">',  message.escape('content') ,'</p>\n</div>\n');}return __p.join('');};
+}).call(this);

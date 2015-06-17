@@ -1,56 +1,71 @@
-<%= @user.username %>
-<div class="container">
-  <header><span class="logo">slick</span></header>
+<% @user.username %>
+<div class="landing-container">
+  <header class="landing-header">
+    <div class="logo">slick</div>
 
-  <div class="pitch">
-    SALES PITCH IMAGE AND TEXT GOES HERE
+    <div class="button-container">
+      <p class="have-account">
+        Have an account?
+      </p>
+
+      <button class="sign-in">
+        Sign In
+      </button>
+    </div>
+
+    </header>
+
+  <div class="content">
+    <div class="pitch">
+      SALES PITCH IMAGE AND TEXT GOES HERE
+    </div>
   </div>
 
 
 
+  <div class="sub-content">
+    <form class="create-account-form" action="<%= users_url %>" method="post">
+      <input type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+        <input class="main-input" id="user-username"
+          type="text"
+          name="user[username]"
+          value=""
+          placeholder="Username">
 
-<form class="" action="<%= users_url %>" method="post">
-  <input type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
-    <input id="user-username"
-      type="text"
-      name="user[username]"
-      value=""
-      placeholder="Username">
 
+        <input type="hidden" id="user-profile_img_url"
+          name="user[profile_img_url]"
+          value="http://res.cloudinary.com/slickapp-io/image/upload/v1434155159/blank-profile_kxaypr.jpg">
 
-    <input type="hidden" id="user-profile_img_url"
-      name="user[profile_img_url]"
-      value="http://res.cloudinary.com/slickapp-io/image/upload/v1434155159/blank-profile_kxaypr.jpg">
+        <input class="main-input" id="user-username"
+          type="password"
+          name="user[password]"
+          value=""
+          placeholder="Password">
 
-    <input id="user-username"
-      type="password"
-      name="user[password]"
-      value=""
-      placeholder="Password">
+          <button class="create-account-button" type="submit">Create Account</button>
+    </form>
 
-      <button type="submit">Create Account</button>
-</form>
+    <form class="" action="<%= users_url %>" method="post">
+      <input type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+        <input type="hidden" id="user-profile_img_url"
+          name="user[profile_img_url]"
+          value="http://res.cloudinary.com/slickapp-io/image/upload/v1434155159/blank-profile_kxaypr.jpg">
 
-<form class="" action="<%= users_url %>" method="post">
-  <input type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
-    <input type="hidden" id="user-profile_img_url"
-      name="user[profile_img_url]"
-      value="http://res.cloudinary.com/slickapp-io/image/upload/v1434155159/blank-profile_kxaypr.jpg">
+      <input id="user-username"
+        type="hidden"
+        name="user[username]"
+        value="<%= Faker::Internet.user_name %>">
+      <input id="user-username"
+        type="hidden"
+        name="user[password]"
+        value="password">
 
-  <input id="user-username"
-    type="hidden"
-    name="user[username]"
-    value="<%= Faker::Internet.user_name %>">
-  <input id="user-username"
-    type="hidden"
-    name="user[password]"
-    value="password">
-
-    <button type="submit">Guest Login</button>
-</form>
-
+        <button type="submit">Guest Login</button>
+    </form>
+  </div>
 </div>
