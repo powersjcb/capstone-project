@@ -16,7 +16,7 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupsIndex: function () {
-    // shims for rendering channel view
+    // shims for rendering channel view after refresh
     this.conversationFeed = this.conversationFeed || this._pusherSubscribeConv('presence-conversation');
     this.group = this.group || new Slick.Models.Group();
     this.conversation = this.conversation || new Slick.Models.Conversation();
@@ -29,8 +29,9 @@ Slick.Routers.Router = Backbone.Router.extend({
       conversationFeed: this.conversationFeed
     });
 
-    this.groups.fetch();
-    this._swapView(groupsIndexView);
+    this.groups.fetch({
+      success: this._swapView(groupsIndexView)
+    });
   },
 
   groupConversation: function (group_id, id) {
@@ -88,16 +89,18 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   _pusherSubscribeConv: function (new_channel_name) {
-    if (this.conversationFeed && this._currentView) {
+    var _cv = this._currentView;
+    if (this.conversationFeed && _cv && _cv.conversation && _cv.conversation.id) {
       window.pusher.unsubscribe(
-        'presence-conversation-' + this._currentView.conversation.get('id')
+        'presence-conversation-' + this._currentView.conversation.id
       );
     }
     return window.pusher.subscribe(new_channel_name);
   },
 
   _pusherSubscribeGroup: function (new_channel_name) {
-    if (this.groupFeed && this._currentView) {
+    var _cv = this._currentView;
+    if (this.groupFeed && _cv && _cv.model && _cv.model.id) {
       window.pusher.unsubscribe(
         'presence-group-' + this._currentView.model.get('id')
       );
