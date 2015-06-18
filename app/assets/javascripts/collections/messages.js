@@ -3,7 +3,7 @@ Slick.Collections.Messages = Backbone.Collection.extend({
   model: Slick.Models.Message,
 
   comparator: function(message) {
-    return message.get('created_at');
+    return -message.get('id');
   },
 
   getOrFetch: function(id) {

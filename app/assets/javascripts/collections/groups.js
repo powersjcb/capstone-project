@@ -3,7 +3,7 @@ Slick.Collections.Groups = Backbone.Collection.extend({
   model: Slick.Models.Group,
 
   comparator: function(group) {
-    return group.get('created_at');
+    return -group.get('id');
   },
 
   getOrFetch: function(id) {

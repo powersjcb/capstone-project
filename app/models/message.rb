@@ -18,6 +18,8 @@ class Message < ActiveRecord::Base
   validates :content, allow_blank: false, length: {maximum: 32_767}
   validate :user_in_conversation
 
+  default_scope { order('created_at desc') }
+
   belongs_to(:sender,
     class_name: "User",
     foreign_key: :sender_id,

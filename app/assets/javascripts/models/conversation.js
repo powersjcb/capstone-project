@@ -1,6 +1,11 @@
 Slick.Models.Conversation = Backbone.Model.extend({
   urlRoot: "/api/conversations",
 
+  initialize: function (options) {
+    if (options && options.total_pages) {
+      this.total_pages = options.total_pages;
+    }
+  },
 
   messages: function() {
     if (this._messages) {

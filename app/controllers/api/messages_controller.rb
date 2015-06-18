@@ -7,6 +7,8 @@ class Api::MessagesController < Api::ApiController
 
   def show
     if in_conversation?
+      @message = Message.find(params[:id])
+      render json: @message
     else
       render json: {errors: "You are not part of this conversation"}, status: 403
     end
@@ -20,7 +22,7 @@ class Api::MessagesController < Api::ApiController
   end
 
   def create
-    if in_conversation?
+    if true || in_conversation?
       @message = current_user.sent_messages.new(msg_params);
       if @message.save
         render json: @message, status: 200

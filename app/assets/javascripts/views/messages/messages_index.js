@@ -5,6 +5,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   className: "messages-index",
 
   initialize: function (options) {
+    this._pageNumber = 1;
     this.conversation = options.conversation;
 
     this.listenTo(this.collection, 'add remove', this.stickScrollBottom);
@@ -43,6 +44,12 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     return this;
   },
 
+  onRender: function () {
+    setTimeout( function () {
+      this.enableScrollListener();
+    }.bind(this), 500);
+  },
+
   startOnBottom: function () {
     var $msgDiv = this.$el;
     if ($msgDiv[0]) {
@@ -69,14 +76,50 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     }
   },
 
-    // throttle getting new messages
-  loadMoreMessages: _.throttle( function() {
-    $.ajax({
-      url: '/api/conversations/'+ this.conversation.id + '/page/' + pageNumber,
-      type: 'GET',
-      success: function (response) {
-        this.collection.add(response.messages);
+  handleScrolling: function () {
+    if (this.isNearScrollTop() && this._pageNumber <= this.conversation.get('total_pages')) {
+      this.loadOlderMessages();
+    }
+  },
+
+  enableScrollListener: function () {
+    this.$el.on('scroll', this.handleScrolling.bind(this));
+  },
+
+  disableScrollListener: function () {
+    this.$el.off('scroll', this.handleScrolling.bind(this));
+  },
+
+  isNearScrollTop: function () {
+    var $msgDiv = this.$el;
+    var tolerance = 100; //px
+    if ($msgDiv[0]) {
+      var scrollTop = $msgDiv[0].scrollTop;
+      if (scrollTop < tolerance) {
+        return true;
       }
+    }
+    return false;
+  },
+
+    // throttle getting new messages
+  loadOlderMessages: _.throttle( function() {
+    this.disableScrollListener();
+    console.log('near top');
+
+    $.ajax({
+      url: '/api/conversations/'+ this.conversation.id +
+        '/page/' + (this._pageNumber + 1),
+
+      type: 'GET',
+      success: function (data) {
+        data.forEach(function (message_json) {
+          this._pageNumber ++;
+          var newMessage = new Slick.Models.Message(message_json);
+          this.collection.set(newMessage, {remove: false});
+        }.bind(this));
+        this.enableScrollListener();
+      }.bind(this)
     });
-  }, 1500),
+  }, 1500, this),
 });
