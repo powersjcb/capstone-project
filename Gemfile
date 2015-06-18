@@ -16,6 +16,7 @@ gem 'cloudinary'
 gem 'figaro'
 gem 'pusher'
 gem 'newrelic_rpm'
+gem 'kaminari'
 
 
 group :development, :test do

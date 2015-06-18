@@ -1,17 +1,22 @@
 class Api::ConversationsController < Api::ApiController
   def show
-    @conversation = Conversation.includes(:messages, :subscribers,
-    messages: :sender).find(params[:id])
+    @conversation = Conversation.includes(:subscribers).find(params[:id])
 
     if current_user.subscriptions.find_or_create_by(conversation: @conversation)
-      @active_users = @conversation.messages.inject([]) do |c, message|
-        c.push(message.sender)
-      end.uniq
+
+      @messages = @conversation.messages.page(1)
       @subscribers = @conversation.subscribers
       render :show
     else
       render json: {errors: "You are not subscribed to this channel"}, status: 403
     end
+  end
+
+  def messages
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.page(params[:page])
+
+    render json: @messages
   end
 
   def create

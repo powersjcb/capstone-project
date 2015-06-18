@@ -18,7 +18,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   addMessageView: function(model) {
     var subView = new Slick.Views.Message({
       model: model,
-      user: this.conversation.users().get(model.get('sender_id'))
+      user: this.conversation.subscribers().get(model.get('sender_id'))
       });
     this.addSubview('#messages-container', subView);
   },

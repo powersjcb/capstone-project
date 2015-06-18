@@ -16,7 +16,7 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
     var subView = new Slick.Views.MessageForm({
       conversation: this.model,
       collection: this.collection,
-      users: this.model.users(),
+      users: this.model.subscribers(),
       conversationFeed: this.conversationFeed
     });
     this.addSubview('#composer', subView);

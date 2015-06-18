@@ -19,13 +19,14 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     }
 
     this.startOnBottom();
+
   },
 
 
   addMessageView: function(model) {
     var subView = new Slick.Views.Message({
       model: model,
-      user: this.conversation.users().get(model.get('sender_id'))
+      user: this.conversation.subscribers().get(model.get('sender_id'))
       });
     this.addSubview('#messages-container', subView);
   },
@@ -66,6 +67,16 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
         }.bind(this),0);
       }
     }
-  }
+  },
 
+    // throttle getting new messages
+  loadMoreMessages: _.throttle( function() {
+    $.ajax({
+      url: '/api/conversations/'+ this.conversation.id + '/page/' + pageNumber,
+      type: 'GET',
+      success: function (response) {
+        this.collection.add(response.messages);
+      }
+    });
+  }, 1500),
 });
