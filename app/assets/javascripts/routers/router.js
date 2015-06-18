@@ -74,8 +74,7 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     $.when(
       this.group.fetch(),
-      this.conversation.fetch(),
-      this.$rootEl.on('transitionend').promise()
+      this.conversation.fetch()
     ).done( function () {
       this._swapView(groupView);
     }.bind(this));

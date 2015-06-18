@@ -1,2 +1,0 @@
-(function() { this.JST || (this.JST = {}); this.JST["users/is_typing"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('');  if (typingUsers.length > 0) { ; __p.push('\n  ');  var verb = (typingUsers.length > 1) ? " are" : " is" ; __p.push('\n  ');  var usernames = typingUsers.pluck("username") ; __p.push('\n  ',  toSentence(usernames) + verb + " typing" ,'\n');  } ; __p.push('\n');}return __p.join('');};
-}).call(this);

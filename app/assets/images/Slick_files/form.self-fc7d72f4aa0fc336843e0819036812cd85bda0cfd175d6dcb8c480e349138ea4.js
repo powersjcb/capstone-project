@@ -1,2 +1,0 @@
-(function() { this.JST || (this.JST = {}); this.JST["messages/form"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="file-upload"></div>\n<div class="chat-box">\n<textarea class="chat-input" id="chat-input" type="text" name="message[content]" value=""></textarea>\n</div>\n<div class="is-typing" id="is-typing">\n</div>\n');}return __p.join('');};
-}).call(this);

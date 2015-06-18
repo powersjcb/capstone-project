@@ -12,7 +12,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'remove', this.removeMessageView);
 
     // add messages to page if going to groups index
-    if (this.collection.length > 1) {
+    if (this.collection.length > 0) {
       this.collection.each(function (model) {
         this.addMessageView(model);
       }.bind(this));

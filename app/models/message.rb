@@ -43,7 +43,7 @@ class Message < ActiveRecord::Base
 
   def user_in_conversation
     unless sender.conversations.include?(self.conversation)
-      # @sender.errors[:base] << "This user is not subscribed to this conversation"
+      @sender.errors[:base] << "This user is not subscribed to this conversation"
     end
   end
 end
