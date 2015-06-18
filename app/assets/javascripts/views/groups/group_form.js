@@ -21,9 +21,11 @@ Slick.Views.GroupForm = Backbone.CompositeView.extend({
 
   handleSuccess: function () {
     this.collection.add(this.model);
-
-    // TODO: style this out of page with sliding effect
+    $('.groups-nav').addClass('collapsed');
+    var groupUrl = "groups/" + this.model.get('id') + "/conversations/" +
+      this.model.get('first_conv_id');
     this.remove();
+    Backbone.history.navigate(groupUrl, {trigger: true});
   },
 
   render: function () {

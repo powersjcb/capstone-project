@@ -18,7 +18,7 @@ class Api::GroupsController < Api::ApiController
     @group = current_user.created_groups.new(group_params)
 
     if @group.save
-      render json: @group
+      render :create
     else
       render json: @group.errors, status: :unprocessable_entity
     end
