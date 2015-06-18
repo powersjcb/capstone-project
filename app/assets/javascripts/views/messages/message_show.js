@@ -3,10 +3,14 @@ Slick.Views.Message = Backbone.View.extend({
   template: JST['messages/show'],
   tagName: "div",
   className: "message-item clearfix",
+  attributes: function () {
+    return {"data-id": this.model.get('id'), id: "message-" + this.model.get('id')};
+  },
 
   initialize: function (options) {
     this.user = options.user;
     this.listenTo(this.model, 'change', this.render);
+
   },
 
   render: function() {

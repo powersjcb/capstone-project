@@ -22,6 +22,37 @@ Backbone.CompositeView = Backbone.View.extend({
     }
   },
 
+  smartAddSubview: function (selector, subview, name) {
+    if (subview.model.get('id')) {
+      // prepend or append
+      var newIndex = _.sortedIndex(this.subviews(), subview.model.get('id'), 'id');
+      if (newIndex === 0) {
+        // prepend if first
+        this.subviews(selector).unshift(subview);
+        this.$(selector).prepend(subview.$el);
+      } else {
+        // append to anything else
+        this.subviews(selector).splice(newIndex, 0, subview);
+        // select by data
+        this.$(selector)
+          .find("#" + name + "-" + this.subviews()[newIndex - 1].data('id'))
+          .insertAfter(subview.$el);
+      }
+    } else {
+      // new model, append
+      this.subviews(selector).push(subview);
+      this.$(selector).append(subview.$el);
+    }
+
+    // attachSubview functionality
+    subview.delegateEvents();
+
+    if (subview.attachSubviews) {
+      subview.attachSubviews();
+    }
+    subview.render();
+  },
+
   attachSubviews: function () {
     // I decided I didn't want a function that renders ALL the
     // subviews together. Instead, I think:
