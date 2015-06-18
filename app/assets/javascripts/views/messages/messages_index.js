@@ -104,7 +104,6 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     // throttle getting new messages
   loadOlderMessages: _.throttle( function() {
     this.disableScrollListener();
-    console.log('near top');
 
     $.ajax({
       url: '/api/conversations/'+ this.conversation.id +
@@ -112,13 +111,27 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
 
       type: 'GET',
       success: function (data) {
+        this._pageNumber = this._pageNumber + 1;
         data.forEach(function (message_json) {
-          this._pageNumber ++;
           var newMessage = new Slick.Models.Message(message_json);
-          this.collection.set(newMessage, {remove: false});
+
+          this.collection.add(newMessage);
+          setTimeout(function() {
+            this.offsetPage(newMessage);
+          }.bind(this), 0);
+
         }.bind(this));
         this.enableScrollListener();
       }.bind(this)
     });
   }, 1500, this),
+
+
+
+
+  offsetPage: function (message) {
+    var height = this.$("#message-" + message.get('id')).height();
+    var currentScroll = this.$el.scrollTop();
+    this.$el.scrollTop(currentScroll + height);
+  },
 });
