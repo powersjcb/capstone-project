@@ -4,15 +4,17 @@
     <h3>Create a channel</h3>
   </header>
 
-  <p>This will create a new public channel that anyone in the group can join.</p>
+  <p>This will create a public channel that anyone in the group can join.</p>
 
   <form method="post">
-    <div class="">
-      <label for="conversation-title">Name</label>
-      <input id="conversation-title" type="text" name="conversation[title]" value="">
+    <div class="input-section">
+      <div "input-field">
+        <input id="conversation-title" type="text" name="conversation[title]" value="" placeholder="Channel name">
+      </div>
     </div>
 
-    <button type="button" class="cancel" name="cancel">Cancel</button>
-    <button type="submit" class="submit" name="create channel">Create Channel</button>
+    <div class="form-footer">
+      <button type="submit" class="submit create-account-button" name="create channel">Create Channel</button>
+    </div>
   </form>
 </div>

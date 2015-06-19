@@ -25,6 +25,8 @@ Slick.Views.GroupIndexItem = Backbone.View.extend({
     $('.groups-nav').addClass('collapsed');
     var groupUrl = "groups/" + this.model.get('id') + "/conversations/" +
       this.model.get('first_conv_id');
-    Backbone.history.navigate(groupUrl, {trigger: true});
+      setTimeout(function() {
+        Backbone.history.navigate(groupUrl, {trigger: true});
+      }, 1000);
   },
 });

@@ -16,7 +16,6 @@ Slick.Routers.Router = Backbone.Router.extend({
         args: args,
         fragtment: Backbone.history.fragment
       });
-      console.log(window.appHistory);
     }.bind(this));
   },
 
@@ -90,7 +89,7 @@ Slick.Routers.Router = Backbone.Router.extend({
     $(window).off('transitionend', createDeferred)
     ;
 
-    if (lastRoute && lastRoute.name == 'groupsIndex') {
+    if (lastRoute && lastRoute.name === 'groupsIndex') {
       $(window).on('transitionend', createDeferred);
     }
 
@@ -101,8 +100,8 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     $.when(
       this.group.fetch(),
-      this.conversation.fetch(),
-      $(window).triggerHandler('transitionend')
+      this.conversation.fetch()
+      // $(window).triggerHandler('transitionend')
     ).done( function () {
       this._swapView(groupView);
     }.bind(this));

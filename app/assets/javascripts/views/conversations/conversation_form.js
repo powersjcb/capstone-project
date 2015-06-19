@@ -25,6 +25,11 @@ Slick.Views.ConversationForm = Backbone.CompositeView.extend({
 
   handleSuccess: function () {
     this.collection.add(this.model);
+    setTimeout(function () {
+      var route = 'groups/' + this.model.get('group_id') + "/conversations/" +
+        this.model.id;
+      Backbone.history.navigate(route, {trigger: true});
+    }.bind(this));
 
     // TODO: style this out of page with sliding effect
     this.remove();

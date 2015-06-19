@@ -4,17 +4,18 @@
     <h3>Create a group</h3>
   </header>
 
-  <p>This will create a new public group</p>
-
   <form method="post">
-    <label for="group-name">Name</label>
-    <input id="group-name" type="text" name="group[name]" value="">
+    <div class="input-section">
+      <div "input-field">
+        <input id="group-name" type="text" name="group[name]" value="" placeholder="Organization">
+      </div>
+      <div class="input-field">
+        <textarea id="group-description" type="input" name="group[description]" value="" placeholder="description"></textarea>
+      </div>
+    </div>
 
-    <label for="group-description">Description</label>
-    <input id="group-description" type="text" name="group[description]" value="">
-
-
-    <button type="button" class="cancel" name="cancel">Cancel</button>
-    <button type="submit" class="submit" name="create channel">Create Group</button>
+    <div class="form-footer">
+      <button type="submit" class="submit create-account-button" name="create channel">Create Group</button>
+    </div>
   </form>
 </div>
