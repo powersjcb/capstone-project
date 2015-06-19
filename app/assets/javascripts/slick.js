@@ -3,12 +3,13 @@ window.Slick = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
-    var messages = new Slick.Collections.Messages();
 
+  initialize: function() {
+    window.appHistory = [];
     var router = new Slick.Routers.Router({
       $rootEl: $('#content')
     });
+
     Backbone.history.start();
   }
 };

@@ -7,6 +7,17 @@ Slick.Routers.Router = Backbone.Router.extend({
       id: window.CURRENT_USER.id,
       username: window.CURRENT_USER.username
     });
+
+
+    // roll my own history listner
+    this.listenTo(this, 'route', function (name, args) {
+      window.appHistory.push({
+        name: name,
+        args: args,
+        fragtment: Backbone.history.fragment
+      });
+      console.log(window.appHistory);
+    }.bind(this));
   },
 
   routes: {
@@ -35,11 +46,14 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   groupConversation: function (group_id, id) {
+    this._group_id = this._group_id || group_id;
+    this._conv_id = this._conv_id || id;
+
     this.group = new Slick.Models.Group({ id: group_id });
     this.conversation = new Slick.Models.Conversation({ id: id});
 
-    this.groupFeed = this._pusherSubscribeGroup('presence-group-' + group_id);
-    this.conversationFeed = this._pusherSubscribeConv('presence-conversation-' + id);
+    this.groupFeed = this._pusherSubscribeGroup(group_id);
+    this.conversationFeed = this._pusherSubscribeConv(id);
 
     this.groupFeed.bind('new_conversation', function(data) {
       var newConv = new Slick.Models.Conversation(data);
@@ -57,7 +71,7 @@ Slick.Routers.Router = Backbone.Router.extend({
     }.bind(this));
 
     this.conversationFeed.bind('new_message', function(data) {
-      console.log(data.socket_id);
+      // console.log(data.socket_id);
       if (data.socket_id != window.pusher.connection.socket_id) {
         console.log(window.pusher.connection.socket_id);
         var newMessage = new Slick.Models.Message(data);
@@ -71,14 +85,27 @@ Slick.Routers.Router = Backbone.Router.extend({
       conversationFeed: this.conversationFeed
     });
 
+    var appHistory = window.appHistory;
+    var lastRoute = appHistory[appHistory.length - 1];
+    $(window).off('transitionend', createDeferred)
+    ;
+
+    if (lastRoute && lastRoute.name == 'groupsIndex') {
+      $(window).on('transitionend', createDeferred);
+    }
+
+    function createDeferred (e) {
+      var deferred = $.Deferred();
+      return deferred.promise();
+    }
 
     $.when(
       this.group.fetch(),
-      this.conversation.fetch()
+      this.conversation.fetch(),
+      $(window).triggerHandler('transitionend')
     ).done( function () {
       this._swapView(groupView);
     }.bind(this));
-
   },
 
   _swapView: function(view) {
@@ -91,24 +118,25 @@ Slick.Routers.Router = Backbone.Router.extend({
     view.render();
   },
 
-  _pusherSubscribeConv: function (new_channel_name) {
+  _pusherSubscribeConv: function (conv_id) {
     var _cv = this._currentView;
-    if (this.conversationFeed && _cv && _cv.conversation && _cv.conversation.id) {
+    if (this.conversationFeed && _cv && _cv.conversation &&
+      _cv.conversation.id) {
       window.pusher.unsubscribe(
         'presence-conversation-' + this._currentView.conversation.id
       );
     }
-    return window.pusher.subscribe(new_channel_name);
+    return window.pusher.subscribe('presence-conversation-' + conv_id);
   },
 
-  _pusherSubscribeGroup: function (new_channel_name) {
+  _pusherSubscribeGroup: function (group_id) {
     var _cv = this._currentView;
     if (this.groupFeed && _cv && _cv.model && _cv.model.id) {
       window.pusher.unsubscribe(
         'presence-group-' + this._currentView.model.get('id')
       );
     }
-    return window.pusher.subscribe(new_channel_name);
+    return window.pusher.subscribe('presence-group-' + group_id);
   }
 
 
