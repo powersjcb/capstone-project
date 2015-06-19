@@ -26,8 +26,12 @@ div.group-header {
 
 .group-index {
   position: relative;
+
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
   display: flex;
   flex-direction: row;
+
   height: 100%;
   width: 100%;
 }
@@ -73,6 +77,7 @@ div.group-header {
   width: 80%;
   margin-bottom: 100px;
   flex: 1;
+  -webkit-flex: 1 1 auto;
 }
 
 #group-items .group-item:not(:last-child) {
@@ -110,8 +115,12 @@ div.group-header {
 .groups-nav {
   position: relative;
   width: 100%;
+
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
   display: flex;
   flex-direction: column;
+
   background-color: #433041;
   color: #FEE5FB;
   // white-space: nowrap;
@@ -142,6 +151,7 @@ div.group-header {
 
 #mock-group {
   flex: 1;
+  -webkit-flex: 1 1 auto;
   display: inline-block;
 }
 
@@ -168,6 +178,7 @@ div.group-header {
 .nav-scrollable {
   position: relative;
   flex: 1;
+  -webkit-flex: 1 1 auto;
 }
 
 .nav-scroll-area {

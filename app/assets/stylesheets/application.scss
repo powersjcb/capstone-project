@@ -55,8 +55,12 @@
 
 #nav-left {
   position: relative;
+
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
   display: flex;
   flex-direction: column;
+
   height: 100%;
   width: 220px;
   color: rgb(171, 155, 169);
@@ -66,8 +70,12 @@
 
 .group-main {
   position: relative;
+
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
   display: flex;
   flex-direction: row;
+
   height: 100VH;
   width: 100%;
 }
