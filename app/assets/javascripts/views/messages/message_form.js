@@ -65,6 +65,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
     var socketId = window.pusher.connection.socket_id;
+    if (socketId.length == 0) { console.log('fail'); }
     this.model = new Slick.Models.Message({
       content: content
     },

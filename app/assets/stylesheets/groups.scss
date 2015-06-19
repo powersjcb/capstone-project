@@ -67,14 +67,15 @@ div.group-header {
 }
 
 #group-items {
-  position: absolute;
+  position: relative;
   overflow-y: scroll;
-  padding-left: 100px;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 .groups-container {
-  width: 80%;
+  position: relative;
+  width: 100%;
   margin-bottom: 100px;
   flex: 1;
   -webkit-flex: 1;
