@@ -17,12 +17,20 @@ Slick.Routers.Router = Backbone.Router.extend({
         fragtment: Backbone.history.fragment
       });
     }.bind(this));
+
+    this.groupsIndex = _.throttle(this.groupsIndex, 1500);
+    this.groupConversation = _.throttle(this.groupConversation, 1500);
+    // this.groupConversation = console.log("hi");
   },
 
   routes: {
     "":"groupsIndex",
     "conversations/:id":"conversation",
-    "groups/:group_id/conversations/:id":"groupConversation",
+    "groups/:group_id/conversations/:id":"tempGroupConversation",
+  },
+
+  tempGroupConversation: function(group_id, id) {
+    this.groupConversation(group_id, id);
   },
 
   groupsIndex: function () {
@@ -118,24 +126,20 @@ Slick.Routers.Router = Backbone.Router.extend({
   },
 
   _pusherSubscribeConv: function (conv_id) {
-    var _cv = this._currentView;
-    if (this.conversationFeed && _cv && _cv.conversation &&
-      _cv.conversation.id) {
-      window.pusher.unsubscribe(
-        'presence-conversation-' + this._currentView.conversation.id
-      );
+    if (this._convChannelName) {
+      window.pusher.unsubscribe(this._convChannelName);
+      // set timeout for subscribe
     }
-    return window.pusher.subscribe('presence-conversation-' + conv_id);
+      this._convChannelName = 'presence-conversation-' + conv_id;
+      return window.pusher.subscribe(this._convChannelName);
   },
 
   _pusherSubscribeGroup: function (group_id) {
-    var _cv = this._currentView;
-    if (this.groupFeed && _cv && _cv.model && _cv.model.id) {
-      window.pusher.unsubscribe(
-        'presence-group-' + this._currentView.model.get('id')
-      );
+    if (this._groupChannelName) {
+      window.pusher.unsubscribe(this._groupChannelName);
     }
-    return window.pusher.subscribe('presence-group-' + group_id);
+    this._groupChannelName = 'presence-group-' + group_id;
+    return window.pusher.subscribe(this._groupChannelName);
   }
 
 

@@ -25,18 +25,25 @@ Backbone.CompositeView = Backbone.View.extend({
   smartAddSubview: function (selector, subview, name) {
     if (subview.model.get('id')) {
       // prepend or append
-      var newIndex = _.sortedIndex(this.subviews(), subview.model.get('id'), 'id');
+      var newIndex = this.subviews(selector).sortedIndex(subview,
+        function(subV) {
+          return subV.model.get('id');
+        });
       if (newIndex === 0) {
         // prepend if first
         this.subviews(selector).unshift(subview);
         this.$(selector).prepend(subview.$el);
       } else {
+      console.log(this.subviews(selector));
         // append to anything else
-        this.subviews(selector).splice(newIndex, 0, subview);
         // select by data
+
+        var itemId = this.subviews(selector).toArray()[newIndex - 1].$el.data('id');
         this.$(selector)
-          .find("#" + name + "-" + this.subviews()[newIndex - 1].data('id'))
+          .find("#" + name + "-" + itemId)
           .insertAfter(subview.$el);
+
+        this.subviews(selector).splice(newIndex, 0, subview);
       }
     } else {
       // new model, append
