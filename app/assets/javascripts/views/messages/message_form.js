@@ -5,7 +5,8 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   className: "input-area",
 
   events: {
-    "keydown textarea": "handleKeydown"
+    "keydown textarea": "handleKeydown",
+    "click .file-upload": "uploadPrompt"
   },
 
   initialize: function(options) {
@@ -96,7 +97,17 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
 
   finishTyping: function () {
     this.conversationFeed.trigger('client-finish_typing', {user_id: Slick.Models.currentUser.get('id')});
+  },
+
+  uploadPrompt: function () {
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
+      if (result) {
+        var data = result[0];
+        this.model.set({url: data.url, thumb_url: data.thumbnail_url});
+      }
+    });
   }
+
 
 
 });

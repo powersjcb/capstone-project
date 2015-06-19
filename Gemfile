@@ -17,6 +17,7 @@ gem 'figaro'
 gem 'pusher'
 gem 'newrelic_rpm'
 gem 'kaminari'
+gem 'font-awesome-sass'
 
 
 group :development, :test do

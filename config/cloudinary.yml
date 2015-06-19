@@ -1,0 +1,4 @@
+cloud_name: Figaro.env.CLOUD_NAME
+api_key: Figaro.env.CLOUD_API_KEY
+api_secret: Figaro.env.CLOUD_API_SECRET
+upload_preset: Figaro.env.UPLOAD_PRESET

@@ -6,12 +6,33 @@
 }
 
 .file-upload {
+  position: relative;
   border: 2px solid #E0E0E0;
   display: inline-block;
   box-sizing: border-box;
   width: 40px;
   height: 40px;
+  cursor: pointer;
+
+  i {
+    position: relative;
+    left: 10px;
+    top: 8px;
+    margin: 0 auto;
+    color: #979797;
+    width: 15px;
+    height: 15px;
+  }
 }
+
+.file-upload:hover {
+  background-color: #eb4d5c;
+  border-color: #eb4d5c;
+  i {
+    color: white;
+  }
+}
+
 
 .input-area {
   display: flex;

@@ -1,8 +1,47 @@
+.content {
+  width: 100%;
+  font-size: 15px;
+  line-height: 22px;
+  word-wrap: break-word;
+}
+
+
+.is-typing {
+  display: block;
+  position: absolute;
+  left: 62px;
+  bottom: 10px;
+  font-size: .7em;
+}
+
+#messages-container {
+  position: absolute;
+  left: 25px;
+  right: 90px;
+}
+
+.message-body {
+  margin-left: 75px;
+  width: 100%;
+}
+
 .messages-index {
   position: absolute;
   height: 100%;
   width: 100%;
   overflow-y: scroll;
+}
+
+.message-item {
+  width: 100%;
+}
+
+.message-username {
+  font-weight: 700;
+}
+
+.pending {
+  font-weight: 100 !important;
 }
 
 .profile-img {
@@ -18,46 +57,4 @@
 .profile-img:after {
   content: "";
   display: table;
-}
-
-.message-username {
-  font-weight: 700;
-}
-
-.is-typing {
-  display: block;
-  position: absolute;
-  left: 62px;
-  bottom: 10px;
-  font-size: .7em;
-}
-
-.content {
-  width: 100%;
-  font-size: 15px;
-  line-height: 22px;
-  word-wrap: break-word;
-}
-
-.message-body {
-  margin-left: 75px;
-  width: 100%;
-}
-
-.message-item {
-  width: 100%;
-}
-
-.pending {
-  font-weight: 100 !important;
-}
-
-#messages-container {
-  position: absolute;
-  left: 25px;
-  right: 90px;
-}
-
-.new-group {
-  
 }

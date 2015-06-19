@@ -37,7 +37,7 @@ class Api::MessagesController < Api::ApiController
 
   private
   def msg_params
-    params.require(:message).permit(:content, :conversation_id, :socket_id);
+    params.require(:message).permit(:content, :conversation_id, :socket_id, :url);
   end
 
   def in_conversation?

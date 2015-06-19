@@ -13,8 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
- @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic);
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic);
 
  *{
    -webkit-font-smoothing: antialiased;
