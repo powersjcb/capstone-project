@@ -10,6 +10,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
 
     this.listenTo(this.collection, 'add remove', this.stickScrollBottom);
     this.listenTo(this.collection, 'add', this.addMessageView);
+    this.listenTo(this.collection, 'unshift', this.prependMessageView);
     this.listenTo(this.collection, 'remove', this.removeMessageView);
 
     // add messages to page if going to groups index
@@ -27,8 +28,16 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     var subView = new Slick.Views.Message({
       model: model,
       user: this.conversation.subscribers().get(model.get('sender_id'))
-      });
-    this.smartAddSubview('#messages-container', subView, "messages");
+    });
+    this.addSubview('#messages-container', subView);
+  },
+
+  prependMessageView: function (model) {
+    var subView = new Slick.Views.Message({
+      model: model,
+      user: this.conversation.subscribers().get(model.get('sender_id'))
+    });
+    this.addSubview('#messages-container', subView, {prepend: true});
   },
 
   removeMessageView: function(model) {
@@ -115,7 +124,8 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
         data.forEach(function (message_json) {
           var newMessage = new Slick.Models.Message(message_json);
 
-          this.collection.add(newMessage);
+          this.collection.unshift(newMessage, {silence: true});
+          this.collection.trigger('unshift', newMessage);
           setTimeout(function() {
             this.offsetPage(newMessage);
           }.bind(this), 0);
