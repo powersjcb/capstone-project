@@ -16,6 +16,7 @@ Slick.Views.Menu = Backbone.CompositeView.extend({
 
   // not working, solution is not very elegant :-(
   // http://stackoverflow.com/questions/6033010/how-to-capture-the-key-event-from-a-view
+  // http://programming.nullanswer.com/question/28265274
   // handleKeydown: function (e) {
   //   console.log(e);
   //   if ($(e).keyCode == 27) {

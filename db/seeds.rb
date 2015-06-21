@@ -6,7 +6,7 @@ user = User.create(username: "powersjcb", password: "foobar", profile_img_url: '
 group = user.created_groups.create(name: "SlickAppHQ", description: "Building a better app")
 chat = user.created_chats.create(title: "ActiveChat", group_id: 1)
 
-usernames = ["zackrd", "nitin", "andrew", 'sarah1', "robert", "jenny", "ming", "dan", "george" ]
+usernames = ["zackrd", "nitin", "andrew", 'sarah1', "robert", "jenny", 'frank', 'alice', "ming", "dan", "george" ]
 profile_urls = [
   "http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434835898/jlvg8h2i1hqjr1e5zh1e.jpg",
   "http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434835837/tvc1z5txizejyw8cwzcj.jpg",

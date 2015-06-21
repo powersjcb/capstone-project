@@ -7,7 +7,8 @@ Slick.Views.GroupForm = Backbone.CompositeView.extend({
 
   events: {
     "click .close, .cancel": "remove",
-    "submit": "submitForm"
+    "submit": "submitForm",
+    'click': "handleClick"
   },
 
   submitForm: function (event) {
@@ -18,6 +19,13 @@ Slick.Views.GroupForm = Backbone.CompositeView.extend({
       success: this.handleSuccess.bind(this)
     });
   },
+
+  handleClick: function (e) {
+    if ($(e.target).hasClass('modal-container')) {
+      this.remove();
+    }
+  },
+
 
   handleSuccess: function () {
     this.collection.add(this.model);
