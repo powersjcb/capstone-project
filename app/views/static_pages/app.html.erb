@@ -13,7 +13,8 @@
   $(document).ready(function(){
     window.CURRENT_USER = {
       id: <%= current_user.id %>,
-      username: "<%= current_user.username %>"
+      username: "<%= current_user.username %>",
+      profile_img_url: "<%= current_user.profile_img_url %>"
     }
 
     window.CLOUDINARY_OPTIONS = {

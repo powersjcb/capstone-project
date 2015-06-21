@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :groups, only: [:show, :index, :create, :destroy]
     resources :conversations, only: [:create, :destroy, :show]
     resources :memberships, only: [:create, :destroy]
+    resources :users, only: [:update]
     post '/pusher/auth', to: 'pusher#auth'
     get '/groups/:id/search', to: 'messages#search'
     get '/conversations/:id/page/:page', to: 'conversations#messages'

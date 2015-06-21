@@ -9,7 +9,6 @@ window.Slick = {
     var router = new Slick.Routers.Router({
       $rootEl: $('#content')
     });
-
     Backbone.history.start();
   }
 };

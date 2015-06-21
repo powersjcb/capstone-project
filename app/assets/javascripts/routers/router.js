@@ -5,7 +5,8 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     Slick.Models.currentUser = new Slick.Models.User({
       id: window.CURRENT_USER.id,
-      username: window.CURRENT_USER.username
+      username: window.CURRENT_USER.username,
+      profile_img_url: window.CURRENT_USER.profile_img_url
     });
 
 

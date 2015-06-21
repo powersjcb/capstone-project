@@ -7,7 +7,7 @@ Slick.Models.User = Backbone.Model.extend({
 
 
   groups: function () {
-    
+
   }
 
 

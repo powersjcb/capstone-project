@@ -6,7 +6,8 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
 
   events: {
     'click #group-index': "redirectGroups",
-    'click #logout': 'logout'
+    'click #logout': 'logout',
+    'click #group-header': "addMenuView"
   },
 
   initialize: function (options) {
@@ -17,6 +18,7 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
     this.addChannelsIndex();
     this.addHeaderView();
     this.addMembersView();
+    this.$('#menu').show();
 
     this.listenTo(this.model, "change", this.render);
   },
@@ -50,6 +52,14 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
       group: this.model
     });
     this.addSubview('#nav-members', subView);
+  },
+
+  addMenuView: function () {
+    var subView = new Slick.Views.Menu({
+      group: this.model
+    });
+    console.log(this.$('#menu'));
+    this.$('#menu').html(subView.render().$el);
   },
 
   logout: function () {
