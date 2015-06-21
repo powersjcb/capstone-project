@@ -27,8 +27,14 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
       model: model,
       user: this.conversation.subscribers().get(model.get('sender_id'))
     });
+    var stickSroll = this.stickScrollBottom();
     this.addSubview('#messages-container', subView);
-
+    if (stickSroll) {
+      $(window).load(function () {
+        debugger;
+        this.startOnBottom();
+      });
+    }
   },
 
   prependMessageView: function (model) {
@@ -58,12 +64,13 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   },
 
   startOnBottom: function () {
-    this.$el.scrollTop(100000000);
+    debugger;
+    this.$el[0].scrollTop(100000000);
   },
 
   stickScrollBottom: function() {
     var $msgDiv = this.$el;
-    var stickyTolerance = 20; //px
+    var stickyTolerance = 500; //px
     if ($msgDiv[0]) {
       var scrollTop = $msgDiv[0].scrollTop;
       var scrollHeight = $msgDiv[0].scrollHeight;

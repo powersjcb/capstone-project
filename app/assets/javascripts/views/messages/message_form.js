@@ -81,6 +81,10 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this._url = "";
     this._thumb_url = "";
     this.pendMessage();
+    this.model = new Slick.Models.Message({},{
+      conversation: this.conversation
+    });
+
   },
 
   pendMessage: function () {
@@ -88,6 +92,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.conversation.messages().add(this.model, {silent: true});
     this.conversation.messages().trigger('push', this.model);
   },
+
 
   isValidMessage: function (user_input) {
     return user_input.length > 0 && user_input.length < 30000;
