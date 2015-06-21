@@ -16,6 +16,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model = new Slick.Models.Message({},{
       conversation: this.conversation
     });
+    
     this._thumb_url = "";
     this._url = "";
 

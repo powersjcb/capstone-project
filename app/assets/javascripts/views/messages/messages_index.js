@@ -50,12 +50,34 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     }
   },
 
-  debouncedGTB: _.debounce( function a () {
-    this.$el.imagesLoaded( function () {
-      this.goToBottom();
-    }.bind(this));
+debouncedGTB: function a () {
+  // each add event move to bottom of page
+  this.$el.imagesLoaded( function () {
+    this.goToBottom();
+  }.bind(this));
+
+  var timeout;
+  var context = this;
+  var wait = 50; // debounce timer
+
+  var later = function() {
+    timeout = null;
+    func.call(context);
+  };
+
+  var callNow = !timeout;
+  clearTimeout(timeout);
+  timeout = setTimeout(later, wait);
+
+  if (callNow) {
+    func.apply(context);
+  }
+
+  // at the end stop listening
+  function func () {
     this.stopListening(this.collection, 'add', a);
-  }, 50),
+  }
+},
 
   prependMessageView: function (model) {
     var subView = new Slick.Views.Message({
