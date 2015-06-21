@@ -164,9 +164,10 @@ debouncedGTB: function a () {
           var newMessage = new Slick.Models.Message(message_json);
 
           this.collection.add(newMessage);
-          // setTimeout(function() {
+
+          // ** has some trouble due to image loads, needs to wait for imagesLoaded
+          //      to execute
             this.offsetPage(newMessage);
-          // }.bind(this), 0);
 
         }.bind(this));
         this.enableScrollListener();

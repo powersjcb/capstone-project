@@ -4,9 +4,9 @@
 
 user = User.create(username: "powersjcb", password: "foobar", profile_img_url: 'http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434774499/lbecr2g8vlczlgmvvf4i.jpg')
 group = user.created_groups.create(name: "SlickAppHQ", description: "Building a better app")
-user.created_chats.create(title: "ActiveChat", group_id: 1)
+chat = user.created_chats.create(title: "ActiveChat", group_id: 1)
 
-usernames = ["zackrd", "nitin", "andrew", 'sarah1', "robert", "jenny", "alice", "ming", "dan", "george" ]
+usernames = ["zackrd", "nitin", "andrew", 'sarah1', "robert", "jenny", "ming", "dan", "george" ]
 profile_urls = [
   "http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434835898/jlvg8h2i1hqjr1e5zh1e.jpg",
   "http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434835837/tvc1z5txizejyw8cwzcj.jpg",
@@ -21,11 +21,13 @@ profile_urls = [
   "http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434879648/avqqgkbjerpozronylj6.jpg"
   ]
 usernames.each.with_index do |username, i|
-  User.create(
+  user = User.create(
     username: username,
     password: "12345asdfg",
     profile_img_url: profile_urls[i]
   )
+  user.memberships.create(group_id: 1)
+  user.subscriptions.create(conversation_id: 3)
 end
 users = User.all
 
@@ -38,13 +40,25 @@ distraction = [
   "wow, such..."
 ]
 
+distraction_urls = [
+  "http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_600/v1434879982/zctn8jgmhun7ue6qegds.jpg",
+  "http://res.cloudinary.com/slickapp-io/image/upload/c_limit,w_600/v1434879971/pdavfbkzxpnvinkux50f.jpg",
+  "http://res.cloudinary.com/slickapp-io/image/upload/c_limit,w_600/v1434879958/qywuohyaenxda7b8lbf0.jpg",
+  "http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_600/v1434879946/bqhmkeb8qlwbg8cms9h8.jpg",
+  "http://res.cloudinary.com/slickapp-io/image/upload/c_limit,w_600/v1434881771/kbvibez1vxuhr3vkydfu.png",
+  "http://res.cloudinary.com/slickapp-io/image/upload/c_limit,w_600/v1434881760/fwu0rdjmzubvkgmhvuwl.jpg",
+
+]
+
 work_chat = [
-  "we need to finish this part of the project soon",
+  "we need to finish this soon",
+  "here's the plan for this week so far",
+  "check out this nice utility"
   "this is going to be a long week",
   "man, this project is so cool. I can't wait to get started!"
 ]
 
-work_url = [
+work_urls = [
   "http://res.cloudinary.com/slickapp-io/image/upload/c_limit,w_600/v1434879911/f663psxj5eow07vcq64z.png",
   "http://res.cloudinary.com/slickapp-io/image/upload/c_limit,w_600/v1434879901/cot31jguaj2zsa7fkfof.png",
   "http://res.cloudinary.com/slickapp-io/image/upload/c_limit,w_600/v1434879927/fmc5ywcnhbqypaiuqdwe.png",
@@ -54,17 +68,18 @@ work_url = [
 
 
 350.times do
-  smart = Random.rand(5) > 1
-  img = Random.rand(15) < 2
-  if smart
-    content = Faker::Hacker.say_something_smart
-  elsif smart && img
+  smart = Random.rand(100) > 5
+  smart_img = Random.rand(100) < 15
+  if smart && smart_img
     content = work_chat.sample
-    url = work_url.sample
+    img_url = work_urls.sample
+  elsif smart
+    img_url = ""
+    content = Faker::Hacker.say_something_smart
   else
     content = distraction.sample
-    url = distrction_urls.sample
+    img_url = distraction_urls.sample
   end
 
-  users.sample.sent_messages.create!(content: content, conversation_id: 1, url: img)
+  users.sample.sent_messages.create!(content: content, conversation_id: 3, url: img_url)
 end
