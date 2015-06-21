@@ -1,5 +1,9 @@
 <div class="file-upload">
-<i class="fa fa-cloud-upload"></i>
+<% if (url == '') { %>
+  <i class="fa fa-arrow-circle-o-up fa-lg"></i>
+<% } else { %>
+  <img src="<%= url %>" />
+<% } %>
 </div>
 <div class="chat-box">
 <textarea class="chat-input" id="chat-input" type="text" name="message[content]" value=""></textarea>

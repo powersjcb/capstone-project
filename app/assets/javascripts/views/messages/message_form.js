@@ -16,6 +16,8 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model = new Slick.Models.Message({},{
       conversation: this.conversation
     });
+    this._thumb_url = "";
+    this._url = "";
 
     this.addTypingView();
   },
@@ -31,9 +33,10 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   render: function() {
     var content = this.template({
       message: this.model,
-      callbackId: this.callbackId
+      url: this._thumb_url
     });
     this.$el.html(content);
+    this.$('#chat-input').focus();
     return this;
   },
 
@@ -66,23 +69,24 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
     var socketId = window.pusher.connection.socket_id;
-    if (socketId.length == 0) { console.log('fail'); }
     this.model = new Slick.Models.Message({
       content: content
-    },
-    {
+    }, {
       conversation: this.conversation
     });
+    this.model.set('url', this._url);
     this.model.set("sender_id", Slick.Models.currentUser.get('id'));
     this.model.set("socket_id", socketId);
-    this.model.save({},{
-    });
+    this.model.save({},{});
+    this._url = "";
+    this._thumb_url = "";
     this.pendMessage();
   },
 
   pendMessage: function () {
     this.users.add(Slick.Models.currentUser);
-    this.conversation.messages().add(this.model);
+    this.conversation.messages().add(this.model, {silent: true});
+    this.conversation.messages().trigger('push', this.model);
   },
 
   isValidMessage: function (user_input) {
@@ -100,12 +104,15 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   },
 
   uploadPrompt: function () {
+    var cloud_base = "http://res.cloudinary.com/slickapp-io/image/upload";
+    var settings = "/w_40,h_40,c_fit/"; // fits within 40px, scale prop.
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
       if (result) {
         var data = result[0];
-        this.model.set({url: data.url, thumb_url: data.thumbnail_url});
+        this._url = data.url;
+        this._thumb_url = cloud_base + settings + data.path;
       }
-    });
+    }.bind(this));
   }
 
 

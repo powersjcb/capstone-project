@@ -8,19 +8,17 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this._pageNumber = 1;
     this.conversation = options.conversation;
 
-    this.listenTo(this.collection, 'add remove', this.stickScrollBottom);
-    this.listenTo(this.collection, 'add', this.addMessageView);
-    this.listenTo(this.collection, 'unshift', this.prependMessageView);
+    this.listenTo(this.collection, 'push', this.addMessageView);
+
+    this.listenTo(this.collection, 'add', this.prependMessageView);
     this.listenTo(this.collection, 'remove', this.removeMessageView);
 
     // add messages to page if going to groups index
     if (this.collection.length > 0) {
       this.collection.each(function (model) {
-        this.addMessageView(model);
+        this.prependMessageView(model);
       }.bind(this));
     }
-
-    this.startOnBottom();
   },
 
 
@@ -30,6 +28,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
       user: this.conversation.subscribers().get(model.get('sender_id'))
     });
     this.addSubview('#messages-container', subView);
+
   },
 
   prependMessageView: function (model) {
@@ -53,35 +52,27 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   },
 
   onRender: function () {
-    setTimeout( function () {
+    setTimeout(function () {
       this.enableScrollListener();
-    }.bind(this), 500);
+    }.bind(this),250);
   },
 
   startOnBottom: function () {
-    var $msgDiv = this.$el;
-    if ($msgDiv[0]) {
-      var scrollHeight = $msgDiv[0].scrollHeight;
-      $msgDiv.scrollTop(scrollHeight);
-    }
+    this.$el.scrollTop(100000000);
   },
 
   stickScrollBottom: function() {
     var $msgDiv = this.$el;
-    var stickyTolerance = 10; //px
+    var stickyTolerance = 20; //px
     if ($msgDiv[0]) {
       var scrollTop = $msgDiv[0].scrollTop;
       var scrollHeight = $msgDiv[0].scrollHeight;
       var clientHeight = $msgDiv[0].clientHeight;
 
       var distanceToBottom = scrollHeight - clientHeight - scrollTop;
-
-      if (distanceToBottom < stickyTolerance) {
-        setTimeout(function() {
-          this.startOnBottom();
-        }.bind(this),0);
-      }
+      return  distanceToBottom < stickyTolerance;
     }
+    return false;
   },
 
   handleScrolling: function () {
@@ -113,7 +104,6 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     // throttle getting new messages
   loadOlderMessages: _.throttle( function() {
     this.disableScrollListener();
-
     $.ajax({
       url: '/api/conversations/'+ this.conversation.id +
         '/page/' + (this._pageNumber + 1),
@@ -124,24 +114,26 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
         data.forEach(function (message_json) {
           var newMessage = new Slick.Models.Message(message_json);
 
-          this.collection.unshift(newMessage, {silence: true});
-          this.collection.trigger('unshift', newMessage);
-          setTimeout(function() {
+          this.collection.add(newMessage);
+          // setTimeout(function() {
             this.offsetPage(newMessage);
-          }.bind(this), 0);
+          // }.bind(this), 0);
 
         }.bind(this));
         this.enableScrollListener();
       }.bind(this)
     });
-  }, 1500, this),
+  }, 2000, this),
 
 
 
 
-  offsetPage: function (message) {
+  offsetPage: function (message, options) {
     var height = this.$("#message-" + message.get('id')).height();
     var currentScroll = this.$el.scrollTop();
+    if (options && (options.up === true)) {
+      height = -height;
+    }
     this.$el.scrollTop(currentScroll + height);
   },
 });

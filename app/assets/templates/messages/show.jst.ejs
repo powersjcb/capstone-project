@@ -7,4 +7,7 @@
     <%= user.escape('username') %>
   </div>
   <p class="content"><%= message.escape('content') %></p>
+  <div class="message-img">
+    <img src="<%= message.escape('url') %>" alt="" />
+  </div>
 </div>

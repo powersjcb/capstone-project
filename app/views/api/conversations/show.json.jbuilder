@@ -6,6 +6,7 @@ json.messages @messages do |message|
   json.content    message.content
   json.sender_id  message.sender_id
   json.created_at message.created_at
+  json.url        message.url
 end
 
 json.subscribers @subscribers do |user|

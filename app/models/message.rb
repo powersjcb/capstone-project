@@ -9,9 +9,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  socket_id       :string           default(""), not null
+#  url             :string           default("")
 #
-
-
 
 class Message < ActiveRecord::Base
   validates :content, :sender_id, :conversation_id, presence: true
