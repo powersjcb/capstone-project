@@ -34,7 +34,6 @@ Slick.Views.IsTyping = Backbone.View.extend({
   },
 
   isTyping: function (data) {
-    console.log(this.typingUsers);
     var user = this.users.get(data.user_id);
     if (user) {
       this.typingUsers.add(user);

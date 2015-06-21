@@ -5,12 +5,19 @@ Slick.Views.Menu = Backbone.CompositeView.extend({
 
   events: {
     'click #change-profile-img': "uploadPrompt",
-    'click': "remove"
+    'click': "remove",
+    'keydown': 'handleKeydown'
   },
 
   initialize: function (options) {
     this.conversation = options.conversation;
     this.model = Slick.Models.currentUser;
+  },
+
+  handleKeydown: function (e) {
+    if (e.keyCode == 27) {
+      this.remove();
+    }
   },
 
   render: function () {

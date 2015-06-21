@@ -21,7 +21,6 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     this.groupsIndex = _.throttle(this.groupsIndex, 1500);
     this.groupConversation = _.throttle(this.groupConversation, 1500);
-    // this.groupConversation = console.log("hi");
   },
 
   routes: {
@@ -79,7 +78,6 @@ Slick.Routers.Router = Backbone.Router.extend({
     }.bind(this));
 
     this.conversationFeed.bind('new_message', function(data) {
-      // console.log(data.socket_id);
       if (data.socket_id != window.pusher.connection.socket_id) {
         console.log(window.pusher.connection.socket_id);
         var newMessage = new Slick.Models.Message(data);

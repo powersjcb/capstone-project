@@ -33,7 +33,7 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
 
   addChannelsIndex: function () {
     var subView = new Slick.Views.ConversationsIndex({
-      conversation: this.conversation, 
+      conversation: this.conversation,
       collection: this.model.conversations(),
       group: this.model
     });
@@ -59,7 +59,6 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
     var subView = new Slick.Views.Menu({
       conversation: this.conversation
     });
-    console.log(this.$('#menu'));
     this.$('#menu').html(subView.render().$el);
   },
 
