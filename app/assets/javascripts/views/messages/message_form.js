@@ -30,13 +30,26 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.addSubview('#is-typing', subView);
   },
 
+  addImagePreview: function() {
+    var subView = new Slick.Views.ImagePreview({
+      model: this.model
+    });
+    this.addSubview('#image-preview', subView);
+  },
+
+  removeImagePreview: function () {
+    this.removeModelSubview('#image-preview', this.model);
+  },
+
   render: function() {
     var content = this.template({
       message: this.model,
       url: this._thumb_url
     });
     this.$el.html(content);
-    this.$('#chat-input').focus();
+    setTimeout( function () {
+      this.$('#chat-input').focus();
+    }.bind(this), 500);
     return this;
   },
 
@@ -69,6 +82,7 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
   // may have to be modular for switch from ajax
   sendMessage: function(content) {
     var socketId = window.pusher.connection.socket_id;
+    this.removeImagePreview();
     this.model = new Slick.Models.Message({
       content: content
     }, {
@@ -116,6 +130,8 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
         var data = result[0];
         this._url = data.url;
         this._thumb_url = cloud_base + settings + data.path;
+        this.model.set('url', this._thumb_url);
+        this.addImagePreview();
       }
     }.bind(this));
   }
