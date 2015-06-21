@@ -107,15 +107,13 @@ Slick.Routers.Router = Backbone.Router.extend({
       return deferred.promise();
     }
 
+
     $.when(
       this.group.fetch(),
       this.conversation.fetch()
       // $(window).triggerHandler('transitionend')
     ).done( function () {
       this._swapView(groupView);
-      setTimeout(function () {
-        this.$rootEl.find('.messages-index').scrollTop(10000000);
-      }.bind(this), 0);
     }.bind(this));
   },
 

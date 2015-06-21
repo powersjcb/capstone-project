@@ -8,10 +8,12 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this._pageNumber = 1;
     this.conversation = options.conversation;
 
-    this.listenTo(this.collection, 'push', this.addMessageView);
+    this.listenTo(this.collection, 'push',   this.addMessageView);
 
-    this.listenTo(this.collection, 'add', this.prependMessageView);
+    this.listenTo(this.collection, 'add',    this.prependMessageView);
     this.listenTo(this.collection, 'remove', this.removeMessageView);
+
+    this.listenTo(this.collection, 'add',    this.debouncedGTB);
 
     // add messages to page if going to groups index
     if (this.collection.length > 0) {
@@ -19,6 +21,17 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
         this.prependMessageView(model);
       }.bind(this));
     }
+
+
+    // setTimeout(debounceImageAdd, 0);
+
+    // detect add events, debounce
+    // at end:
+    // F. function called by listener
+    // 0. listen to add events
+    // 1. this.goToBottom()
+    // 2. remove add event listener
+    //
   },
 
 
@@ -29,13 +42,20 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     });
     var stickSroll = this.stickScrollBottom();
     this.addSubview('#messages-container', subView);
+
     if (stickSroll) {
-      $(window).load(function () {
-        debugger;
-        this.startOnBottom();
-      });
+      this.$el.imagesLoaded( function () {
+        this.goToBottom();
+      }.bind(this));
     }
   },
+
+  debouncedGTB: _.debounce( function a () {
+    this.$el.imagesLoaded( function () {
+      this.goToBottom();
+    }.bind(this));
+    this.stopListening(this.collection, 'add', a);
+  }, 50),
 
   prependMessageView: function (model) {
     var subView = new Slick.Views.Message({
@@ -58,19 +78,19 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
   },
 
   onRender: function () {
+
     setTimeout(function () {
       this.enableScrollListener();
-    }.bind(this),250);
+    }.bind(this),1000);
   },
 
-  startOnBottom: function () {
-    debugger;
-    this.$el[0].scrollTop(100000000);
+  goToBottom: function () {
+    $('.messages-index').scrollTop(100000000);
   },
 
   stickScrollBottom: function() {
     var $msgDiv = this.$el;
-    var stickyTolerance = 500; //px
+    var stickyTolerance = 20; //px
     if ($msgDiv[0]) {
       var scrollTop = $msgDiv[0].scrollTop;
       var scrollHeight = $msgDiv[0].scrollHeight;
@@ -130,7 +150,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
         this.enableScrollListener();
       }.bind(this)
     });
-  }, 2000, this),
+  }, 500, this),
 
 
 

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require imagesloaded.pkgd.min.js
 //= require jquery.serializejson
 //= require cloudinary
 //= require underscore
