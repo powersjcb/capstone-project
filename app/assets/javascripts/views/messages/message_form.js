@@ -73,14 +73,12 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
       if (this.isValidMessage(content)) {
         this.sendMessage(content);
       } else {
-        // invalid msg prompt?
+        // invalid msg
         console.log('invalid msg');
       }
     }
   },
 
-
-  // may have to be modular for switch from ajax
   sendMessage: function(content) {
     var socketId = window.pusher.connection.socket_id;
     this.removeImagePreview();
@@ -99,7 +97,6 @@ Slick.Views.MessageForm = Backbone.CompositeView.extend({
     this.model = new Slick.Models.Message({},{
       conversation: this.conversation
     });
-
   },
 
   pendMessage: function () {

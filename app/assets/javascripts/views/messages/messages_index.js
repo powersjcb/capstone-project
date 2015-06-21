@@ -167,8 +167,12 @@ debouncedGTB: function a () {
 
           // ** has some trouble due to image loads, needs to wait for imagesLoaded
           //      to execute
+          this.$el.imagesLoaded(function () {
+            // causes a little bit of glitchy scrolling due to delayed execution
+            // may be good to think about explicitly getting img ht from db
+            // and setting custom div heights for each item to match.
             this.offsetPage(newMessage);
-
+          }.bind(this));
         }.bind(this));
         this.enableScrollListener();
       }.bind(this)
