@@ -10,6 +10,7 @@ Slick.Views.ConversationsIndex = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.group = options.group;
+    this.conversation = options.conversation;
 
     this.listenTo(this.collection, 'add', this.addConvItemView);
     this.listenTo(this.collection, 'remove', this.removeConvItemView);
@@ -36,7 +37,8 @@ Slick.Views.ConversationsIndex = Backbone.CompositeView.extend({
   addConvItemView: function (model) {
     var subView = new Slick.Views.ConversationsIndexItem({
       model: model,
-      group: this.group
+      group: this.group,
+      active_conversation: this.conversation
     });
     this.addSubview('#channels-list', subView);
   },
