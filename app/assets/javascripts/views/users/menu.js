@@ -8,7 +8,8 @@ Slick.Views.Menu = Backbone.CompositeView.extend({
     'click': "remove"
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.conversation = options.conversation;
     this.model = Slick.Models.currentUser;
   },
 
@@ -19,6 +20,7 @@ Slick.Views.Menu = Backbone.CompositeView.extend({
   },
 
   uploadPrompt: function () {
+    this.model = this.conversation.subscribers().get(this.model.get('id'));
     var cloud_base = "http://res.cloudinary.com/slickapp-io/image/upload";
     var settings = "/w_40,h_40,c_fit/"; // fits within 40px, scale prop.
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){

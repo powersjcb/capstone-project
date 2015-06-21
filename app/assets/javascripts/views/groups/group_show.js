@@ -56,7 +56,7 @@ Slick.Views.GroupShow = Backbone.CompositeView.extend({
 
   addMenuView: function () {
     var subView = new Slick.Views.Menu({
-      group: this.model
+      conversation: this.conversation
     });
     console.log(this.$('#menu'));
     this.$('#menu').html(subView.render().$el);
