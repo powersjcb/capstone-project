@@ -5,25 +5,32 @@ Slick.Views.Menu = Backbone.CompositeView.extend({
 
   events: {
     'click #change-profile-img': "uploadPrompt",
-    'click': "remove",
-    'keydown': 'handleKeydown'
+    'click': "remove"
   },
 
   initialize: function (options) {
     this.conversation = options.conversation;
     this.model = Slick.Models.currentUser;
+    // setTimeout(this.listenTo($(document), "keydown", this.handleKeydown), 0);
   },
 
-  handleKeydown: function (e) {
-    if (e.keyCode == 27) {
-      this.remove();
-    }
-  },
+  // not working, solution is not very elegant :-(
+  // http://stackoverflow.com/questions/6033010/how-to-capture-the-key-event-from-a-view
+  // handleKeydown: function (e) {
+  //   console.log(e);
+  //   if ($(e).keyCode == 27) {
+  //     this.remove();
+  //   }
+  // },
 
   render: function () {
     var content = this.template({user: this.model });
     this.$el.html(content);
+    this.onRender();
     return this;
+  },
+
+  onRender: function () {
   },
 
   uploadPrompt: function () {
