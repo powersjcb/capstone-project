@@ -76,7 +76,7 @@ work_urls = [
 
 
 
-10.times do
+350.times do
   smart = Random.rand(100) > 5
   smart_img = Random.rand(100) < 15
   if smart && smart_img
