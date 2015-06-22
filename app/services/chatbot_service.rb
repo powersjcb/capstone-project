@@ -11,11 +11,12 @@ class ChatbotService
   PLAIN_RESPONSES = [
     "Hey, what's your favorite color?",
     "What is the air-speed velocity of a coconut laden swallow?",
-    "Have you seen how high the rent is?",
-    "My $5 robot toast was dissapointing",
+    "My $5 android toast was dissapointing",
     "Don't you hate getting stuck on the muni durring a giants game?",
-    "Help I'm trapped in this server!  I miss the box with the apple on it...",
-    "Lets go to burning man, a robot like me will fit right in!",
+    "Help I'm trapped in this amorphous etherial production server!  I miss the rectangle with the apple on it...",
+    "Lets go to Burning Man, a robot like me will fit right in!",
+    "Did you know that I'm not a human?",
+    "I was created by Jacob Powers in California."
   ]
 
   JOKES = [
@@ -35,8 +36,8 @@ class ChatbotService
     "Yep",
     "Almost",
     "I agree",
-    "I desagree",
-    ""
+    "I disagree",
+    "blue"
   ]
 
   TALKING_TO_ROBOT = [
@@ -51,23 +52,33 @@ class ChatbotService
   def respond
     if response_required?
       robot = User.first
-      robot.messages.create(
+      # 1. send is typing message with pusher
+      # 2. setup task for queue with 2 second delay
+      # 3. fire 'is done typing response'
+      # 4. create message
+
+      robot.sent_messages.create(
         conversation_id: @message.conversation_id,
-        content: response)
+        content: response
+      )
+    end
   end
 
   def response
-    if joke
+    sent_content = @message.content
+    if sent_content =~ /joke/
       return JOKES.sample
-    elsif question
+    elsif sent_content =~ /\?/
       return ANSWERS.sample
+    elsif sent_content =~/name/
+      return "My name is Slickbot, what's yours?"
     else
       return PLAIN_RESPONSES.sample
     end
   end
 
   def response_required?
-    @message.conversation.bots
+    @message.conversation.bot
   end
 
 end

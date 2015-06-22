@@ -1,10 +1,19 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-User.create(username: 'slickbot', password: "foobar", profile_img_url: "http://res.cloudinary.com/slickapp-io/image/upload/v1434946795/iiqlkagkdktezp7ehsnn.png" )
+robot = User.create(username: 'slickbot', password: "foobar", profile_img_url: "http://res.cloudinary.com/slickapp-io/image/upload/v1434946795/iiqlkagkdktezp7ehsnn.png" )
 user = User.create(username: "powersjcb", password: "foobar", profile_img_url: 'http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434774499/lbecr2g8vlczlgmvvf4i.jpg')
-group = user.created_groups.create(name: "SlickAppHQ", description: "Building a better app")
+user.created_groups.create(name: "SlickAppHQ", description: "Building a better app")
 chat = user.created_chats.create(title: "ActiveChat", group_id: 1)
+group = Group.find(1)
+robot.join(group)
+botChat = robot.created_chats.create(title: "RobotChat", group_id: 1, bot: true)
+
+
+robot.sent_messages.create(
+  content: "Hi there, I'm a bot with a very limited vocabulary. Use me to test out the app.  Check out ActiveChat channel to see a longer sample conversation",
+  conversation_id: botChat.id
+)
 
 usernames = ["zackrd", "nitin", "andrew", 'sarah1', "robert", "jenny", "ming", "dan", "george" ]
 profile_urls = [
@@ -29,7 +38,7 @@ usernames.each.with_index do |username, i|
   user.memberships.create(group_id: 1)
   user.subscriptions.create(conversation_id: 3)
 end
-users = User.all
+users = User.all.drop(1)
 
 distraction = [
   "hey look at this cute picture!",
@@ -53,7 +62,7 @@ distraction_urls = [
 work_chat = [
   "we need to finish this soon",
   "here's the plan for this week so far",
-  "check out this nice utility"
+  "check out this nice utility",
   "this is going to be a long week",
   "man, this project is so cool. I can't wait to get started!"
 ]
@@ -67,7 +76,7 @@ work_urls = [
 
 
 
-350.times do
+10.times do
   smart = Random.rand(100) > 5
   smart_img = Random.rand(100) < 15
   if smart && smart_img

@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
   validates :description, :user_id, presence: true
   validates :name, presence: true, allow_blank: false, uniqueness: true
 
-  has_many :memberships, dependent: :destroy
+  has_many :memberships, dependent: :destroy, inverse_of: :group
   has_many :members, through: :memberships, source: :user
   has_many :conversations, dependent: :destroy
   has_many :messages, through: :conversations, source: :messages, dependent: :destroy

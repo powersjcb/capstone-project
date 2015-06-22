@@ -59,23 +59,14 @@ class User < ActiveRecord::Base
     self.subscriptions.pluck(:conversation_id).include?(conv_id)
   end
 
-  # def get_conversation_with(other_user, group)
-  #   Subscription.find_by_sql(<<-SQL)
-  #     SELECT
-  #       sub1.conversation_id
-  #     FROM
-  #       subscriptions sub1, subscriptions sub2
-  #     JOIN
-  #       subscriptions ON sub1.conversation_id = sub2.conversation_id
-  #     WHERE
-  #       sub1.user_id = #{self.id} AND sub2.user_id = #{other_user.id} AND
-  #         group_id = #{group.id}
-  #   SQL
-  # end
-
-
-  def private_conversations
-    self.conversations.where('privacy_state' == 1)
+  def join(model)
+    if model.class.name == "Group"
+      self.memberships.create(group: model)
+    elsif model.class.name = "Conversation"
+      self.subscriptions.create(conversation: model)
+    else
+      puts 'could not join anything'
+    end
   end
 
 
