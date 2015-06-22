@@ -22,9 +22,10 @@ class Api::MessagesController < Api::ApiController
   end
 
   def create
-    if true || in_conversation?
+    if in_conversation?
       @message = current_user.sent_messages.new(msg_params);
       if @message.save
+        maybe_bot_response(@message)
         render json: @message, status: 200
       else
         render json: @message.errors, status: :unprocessable_entity
@@ -46,7 +47,12 @@ class Api::MessagesController < Api::ApiController
     else
       conv_id = msg_params[:conversation_id]
     end
-
     current_user.is_in_conversation?(conv_id)
+  end
+
+  def maybe_bot_response(message)
+    if message.conversation
+      ChatbotService.new(message).respond
+    end
   end
 end

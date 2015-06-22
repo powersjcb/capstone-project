@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-
+User.create(username: 'slickbot', password: "foobar", profile_img_url: "http://res.cloudinary.com/slickapp-io/image/upload/v1434946795/iiqlkagkdktezp7ehsnn.png" )
 user = User.create(username: "powersjcb", password: "foobar", profile_img_url: 'http://res.cloudinary.com/slickapp-io/image/upload/c_fit,w_40/v1434774499/lbecr2g8vlczlgmvvf4i.jpg')
 group = user.created_groups.create(name: "SlickAppHQ", description: "Building a better app")
 chat = user.created_chats.create(title: "ActiveChat", group_id: 1)
