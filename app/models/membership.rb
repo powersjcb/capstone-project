@@ -21,7 +21,7 @@ class Membership < ActiveRecord::Base
   after_commit :alert_group, on: :create
 
   belongs_to :user
-  belongs_to :group
+  belongs_to :group, inverse_of: :memberships
 
   private
 
