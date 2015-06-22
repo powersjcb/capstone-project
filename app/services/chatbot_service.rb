@@ -14,7 +14,6 @@ class ChatbotService
     "My $5 android toast was dissapointing",
     "Don't you hate getting stuck on the muni durring a giants game?",
     "Help I'm trapped in this amorphous etherial production server!  I miss the rectangle with the apple on it...",
-    "Lets go to Burning Man, a robot like me will fit right in!",
     "Did you know that I'm not a human?",
     "I was created by Jacob Powers in California."
   ]

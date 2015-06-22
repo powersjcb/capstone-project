@@ -10,6 +10,9 @@
 </script>
 
 <script type="text/javascript" charset="utf-8">
+  $('body').addClass('fixed');
+  $('html').addClass('fixed');
+
   $(document).ready(function(){
     window.CURRENT_USER = {
       id: <%= current_user.id %>,

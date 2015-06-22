@@ -18,18 +18,22 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic);
 
  *{
-   -webkit-font-smoothing: antialiased;
-   font-family: 'Lato', 'sans-serif';
-   font-color:  #555459;;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Lato', 'sans-serif';
+  font-color:  #555459;;
  }
 
  html, body {
-   overflow: hidden;
-   position: fixed;
-   margin: 0 auto;
-   height: 100%;
-   width: 100%
+  position: relative;
+  margin: 0 auto;
  }
+
+.fixed {
+  position: fixed;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
 
 
 #channel {

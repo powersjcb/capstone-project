@@ -1,0 +1,27 @@
+<div class="modal-container" hidden>
+  <form class="modal-form" action="<%= sessions_url %>" method="post">
+    <header>
+      <h2>Sign in</h2>
+    </header>
+
+    <div class="input-section">
+      <input type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+      <input class="main-input" id="user-username"
+        type="text"
+        name="user[username]"
+        placeholder="username">
+    </div>
+    <div class="input-section">
+      <input class="main-input" id="user-password"
+        type="password"
+        name="user[password]"
+        placeholder="password">
+    </div>
+
+      <div class="form-footer">
+        <button class="create-account-button" type="submit">Sign in</button>
+      </div>
+  </form>
+</div>

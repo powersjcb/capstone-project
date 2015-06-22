@@ -10,7 +10,7 @@
         Have an account?
       </p>
 
-      <button class="sign-in">
+      <button id="sign-in" class="sign-in">
         Sign In
       </button>
     </div>
@@ -19,7 +19,18 @@
 
   <div class="landing-content">
     <div class="pitch">
-      SALES PITCH IMAGE AND TEXT GOES HERE
+      A distraction app for teams
+    </div>
+    <div class="pitch-context">
+      All your communication in one place, with easily integrated distractions.
+    </div>
+
+    <div class="big-logo">
+
+    </div>
+
+    <div class="pitch-sub">
+      Slick is a powerful tool for business communication.  With Slick, going off-topic is less disruptive and more fun.
     </div>
   </div>
 
@@ -71,9 +82,24 @@
     </form>
   </div>
 
+  <%= render 'sessions/form' %>
+
+
+
   <div class="contact">
+    <div class="name">
+      Jacob Powers
+    </div>
+    <div class="local">
+      San Francisco, CA
+    </div>
     <div class="email">
       powersjcb@gmail.com
     </div>
   </div>
 </div>
+
+
+<% content_for(:head) do %>
+  <%= javascript_include_tag 'login_modal' %>
+<% end %>
