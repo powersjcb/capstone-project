@@ -6,12 +6,10 @@
 
 .background-image {
   position: fixed;
-  // left: 0;
-  // right: 0;
   z-index: -10000;
   width: 100%;
   height: 100%;
-  background-image: url('http://res.cloudinary.com/slickapp-io/image/upload/v1434501473/startup-594091_1280_yqkzvd.jpg');
+  background-image: url('http://res.cloudinary.com/slickapp-io/image/upload/c_scale,w_300/v1434756670/sjgwab8nfueznh3mjshi.jpg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -53,7 +51,7 @@
   max-width: 500px;
   text-align: center;
   margin: 0 auto;
-  text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px;
+  text-shadow: rgba(0, 0, 0, 0.9) 3px 3px 10px;
 }
 
 .pitch-sub {
@@ -61,7 +59,7 @@
   text-align: center;
   margin: 0 auto;
   padding-bottom: 10px;
-  text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px;
+  text-shadow: rgba(0, 0, 0, 0.9) 3px 3px 10px;
 }
 
 .big-logo {
