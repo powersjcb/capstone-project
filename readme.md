@@ -8,7 +8,7 @@
 ## Highlights
 - [Backbone swapping router with matching utility for Pusher web-socket API](app/assets/javascripts/routers/router.js)
 
-```
+```javascript
 // router.js
 // pusher channel swapping utilities
 _pusherSubscribeConv: function (conv_id) {
@@ -25,7 +25,7 @@ _pusherSubscribeConv: function (conv_id) {
 ```
 
 - [Smart page scrolling that allows for pagination, messages dynamically added from Pusher, new self posts, and initial page load. (continues to be the biggest challenge)](app/assets/javascripts/views/messages/messages_index.js)
-```
+```javascript
 // messages_index.js
 // debounced function for event listening that removes itself after initial page load
 debouncedGTB: function a () {
