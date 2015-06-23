@@ -21,17 +21,6 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
         this.prependMessageView(model);
       }.bind(this));
     }
-
-
-    // setTimeout(debounceImageAdd, 0);
-
-    // detect add events, debounce
-    // at end:
-    // F. function called by listener
-    // 0. listen to add events
-    // 1. this.goToBottom()
-    // 2. remove add event listener
-    //
   },
 
 

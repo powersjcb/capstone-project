@@ -116,6 +116,8 @@ Slick.Routers.Router = Backbone.Router.extend({
     }.bind(this));
   },
 
+
+  // swapping router
   _swapView: function(view) {
     if (this._currentView) {
       this._currentView.remove();
@@ -126,6 +128,7 @@ Slick.Routers.Router = Backbone.Router.extend({
     view.render();
   },
 
+  // pusher channel swapping utilities
   _pusherSubscribeConv: function (conv_id) {
     if (this._convChannelName) {
       window.pusher.unsubscribe(this._convChannelName);
