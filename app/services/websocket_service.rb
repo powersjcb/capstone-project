@@ -8,7 +8,11 @@ class WebsocketService
   end
 
   def send
-    Pusher.trigger(@channel_name, @event_name, @data)
+    begin
+      Pusher.trigger(@channel_name, @event_name, @data)
+    rescue Pusher::Error => e
+# rescue stuff
+    end
   end
 
 end
