@@ -13,7 +13,7 @@ class ChatbotService
     "What is the air-speed velocity of a coconut laden swallow?",
     "My $5 android toast was dissapointing",
     "Don't you hate getting stuck on the muni durring a giants game?",
-    "Help I'm trapped in this amorphous etherial production server!  I miss the rectangle with the apple on it...",
+    "Help I'm trapped in this AWS server!  I miss the rectangle with the apple on it...",
     "Did you know that I'm not a human?",
     "I was created by Jacob Powers in California."
   ]

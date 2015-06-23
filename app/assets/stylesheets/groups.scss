@@ -27,10 +27,10 @@ div.group-header {
 .group-index {
   position: relative;
 
-  display: -webkit-flex;
-  -webkit-flex-direction: row;
   display: flex;
+  display: -webkit-flex;
   flex-direction: row;
+  -webkit-flex-direction: row;
 
   height: 100%;
   width: 100%;
@@ -181,6 +181,7 @@ div.left-nav-item.active-conv {
 
 #modal-holder {
   flex: none;
+  -webkit-flex: none;
 }
 
 .members-count {

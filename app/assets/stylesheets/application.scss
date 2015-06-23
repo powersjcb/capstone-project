@@ -40,7 +40,8 @@
   position: relative;
   display: inline-block;
   margin: 0 auto;
-  flex-grow: 1;
+  flex: 1;
+  -webkit-flex: 1;
 }
 ;
 #context-nav {
@@ -61,10 +62,10 @@
 #nav-left {
   position: relative;
 
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
   display: flex;
+  display: -webkit-flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
 
   height: 100%;
   width: 220px;
