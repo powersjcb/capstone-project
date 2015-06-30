@@ -27,7 +27,7 @@ Slick.Models.Conversation = Backbone.Model.extend({
 
     // must parse subscribers first
     if (payload.subscribers) {
-      this.subscribers().set(payload.subscribers);
+      this.subscribers().set(payload.subscribers, { parse: true });
       delete payload.subscribers;
     }
 

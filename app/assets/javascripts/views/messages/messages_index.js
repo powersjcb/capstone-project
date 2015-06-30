@@ -8,11 +8,15 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this._pageNumber = 1;
     this.conversation = options.conversation;
 
+    // add new messages from pusher/client creation
     this.listenTo(this.collection, 'push',   this.addMessageView);
 
+    // infinite scroll messages
     this.listenTo(this.collection, 'add',    this.prependMessageView);
+
     this.listenTo(this.collection, 'remove', this.removeMessageView);
 
+    // add messages on page load
     this.listenTo(this.collection, 'add',    this.debouncedGTB);
 
     // add messages to page if going to groups index
@@ -23,7 +27,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     }
   },
 
-
+  // add messages from pusher/client creation
   addMessageView: function(model) {
     var subView = new Slick.Views.Message({
       model: model,
@@ -33,17 +37,17 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
     this.addSubview('#messages-container', subView);
 
     if (stickSroll) {
-      this.$el.imagesLoaded( function () {
-        this.goToBottom();
-      }.bind(this));
+      this.goToBottom();
+      this.offsetImage(model, { up: true });
     }
   },
 
-debouncedGTB: function a () {
+debouncedGTB: function a (model) {
   // each add event move to bottom of page
-  this.$el.imagesLoaded( function () {
+  setTimeout(function () {
     this.goToBottom();
-  }.bind(this));
+    this.offsetImage(model, { up: true });
+  }.bind(this), 0);
 
   var timeout;
   var context = this;
@@ -74,6 +78,9 @@ debouncedGTB: function a () {
       user: this.conversation.subscribers().get(model.get('sender_id'))
     });
     this.addSubview('#messages-container', subView, {prepend: true});
+    var messageSelector = "#message-" + model.get('id');
+    this.offsetPage(messageSelector);
+    this.offsetImage(model);
   },
 
   removeMessageView: function(model) {
@@ -89,7 +96,6 @@ debouncedGTB: function a () {
   },
 
   onRender: function () {
-
     setTimeout(function () {
       this.enableScrollListener();
     }.bind(this),1000);
@@ -142,41 +148,42 @@ debouncedGTB: function a () {
     // throttle getting new messages
   loadOlderMessages: _.throttle( function() {
     this.disableScrollListener();
+
     $.ajax({
       url: '/api/conversations/'+ this.conversation.id +
         '/page/' + (this._pageNumber + 1),
-
       type: 'GET',
       success: function (data) {
         this._pageNumber = this._pageNumber + 1;
         data.forEach(function (message_json) {
           var newMessage = new Slick.Models.Message(message_json);
-
           this.collection.add(newMessage);
-
-          // ** has some trouble due to image loads, needs to wait for imagesLoaded
-          //      to execute
-          this.$el.imagesLoaded(function () {
-            // causes a little bit of glitchy scrolling due to delayed execution
-            // may be good to think about explicitly getting img ht from db
-            // and setting custom div heights for each item to match.
-            this.offsetPage(newMessage);
-          }.bind(this));
         }.bind(this));
-        this.enableScrollListener();
+
+      this.enableScrollListener();
       }.bind(this)
     });
   }, 500, this),
 
 
+  offsetImage: function (message, options) {
+    var selector = "#message-" + message.get('id') + ' .message-img';
+    var $imageDiv = $(selector);
+    if ($imageDiv.find('img').attr('src') !== "") {
+      $imageDiv.imagesLoaded()
+        .done( function (instance) {
+          this.offsetPage(selector, options);
+        }.bind(this));
+    }
+  },
 
-
-  offsetPage: function (message, options) {
-    var height = this.$("#message-" + message.get('id')).height();
+  offsetPage: function (selector, options) {
+    var height = this.$(selector).height();
     var currentScroll = this.$el.scrollTop();
     if (options && (options.up === true)) {
       height = -height;
     }
     this.$el.scrollTop(currentScroll + height);
   },
+
 });

@@ -110,7 +110,6 @@ Slick.Routers.Router = Backbone.Router.extend({
     $.when(
       this.group.fetch(),
       this.conversation.fetch()
-      // $(window).triggerHandler('transitionend')
     ).done( function () {
       this._swapView(groupView);
     }.bind(this));
