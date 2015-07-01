@@ -13,6 +13,7 @@
 #
 
 class Message < ActiveRecord::Base
+
   validates :content, :sender_id, :conversation_id, presence: true
   validates :content, allow_blank: false, length: {maximum: 32_767}
   validate :user_in_conversation
@@ -30,9 +31,7 @@ class Message < ActiveRecord::Base
   # this will show missed messages
   # after_commit :alert_group
 
-
   private
-
   def alert_conversation
     WebsocketService.new({
       channel_name: "presence-conversation-#{conversation_id}",
@@ -40,8 +39,6 @@ class Message < ActiveRecord::Base
       data: self.as_json
     }).send
   end
-
-
   def user_in_conversation
     unless sender.conversations.include?(self.conversation)
       @sender.errors[:base] << "This user is not subscribed to this conversation"

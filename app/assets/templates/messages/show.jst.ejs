@@ -3,8 +3,9 @@
 </div>
 
 <div class="message-body">
-  <div class="message-username">
-    <%= user.escape('username') %>
+  <div class="">
+    <span class="message-username"><%= user.escape('username') %></span>
+    <span class="timestamp"><%= message.get('created_at') %></span>
   </div>
   <p class="content"><%= message.escape('content') %></p>
   <div class="message-img">
