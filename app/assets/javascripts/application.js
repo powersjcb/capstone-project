@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.nicescroll.min
 //= require imagesloaded.pkgd.min
 //= require jquery.serializejson
+//= require moment
 //= require cloudinary
 //= require underscore
 //= require backbone
