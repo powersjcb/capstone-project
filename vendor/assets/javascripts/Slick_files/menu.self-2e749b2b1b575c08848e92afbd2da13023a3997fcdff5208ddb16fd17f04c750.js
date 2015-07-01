@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["users/menu"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="menu">\n  <header>\n    <span class="menu-header">You</span>\n  </header>\n\n  <div class="menu-options">\n    <div id="change-profile-img" class="menu-item">\n      Change profile image\n    </div>\n    <div id="logout" class="menu-item">\n      Log out\n    </div>\n  </div>\n</div>\n');}return __p.join('');};
+}).call(this);

@@ -42,10 +42,15 @@
   -webkit-border-radius: 100px;
 }
 
+a {
+  text-decoration: none;
+}
+
  html, body {
   position: relative;
   margin: 0 auto;
  }
+
 
 .fixed {
   position: fixed;
@@ -53,7 +58,6 @@
   height: 100%;
   width: 100%;
 }
-
 
 #channel {
   position: relative;

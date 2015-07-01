@@ -66,6 +66,8 @@ Slick.Views.GroupsFullIndex = Backbone.CompositeView.extend({
   onRender: function () {
     setTimeout( function() {
       $('.groups-nav').removeClass('collapsed');
-    }, 0);
+    }, 50);
   }
+
+
 });

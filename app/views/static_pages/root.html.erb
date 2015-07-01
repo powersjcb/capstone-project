@@ -85,21 +85,33 @@
   <%= render 'sessions/form' %>
 
 
+  <footer class="contact">
+    <div class="subtext">
+      Powered by Backbone.js and Ruby-on-Rails
+    </div>
 
-  <div class="contact">
-    <div class="name">
-      Jacob Powers
+    <div class="source">
+      <a href="https://github.com/powersjcb/slick">
+        <div id="source"><i class="fa fa-github"></i> Source</div>
+      </a>
     </div>
-    <div class="local">
-      San Francisco, CA
-    </div>
-    <div class="email">
-      powersjcb@gmail.com
-    </div>
-  </div>
+
+    <span class="author">
+        <span class="author-detail">Jacob Powers</span>
+        <a class="author-detail" href="mailto:powersjcb@gmail.com">
+          <span class="email">powersjcb@gmail.com</span>
+        </a>
+        <a class="author-detail" href="https://github.com/powersjcb">
+          <span class="github author-detail"><i class="fa fa-github"></i> github.com/powersjcb</span>
+        </a>
+        <a class="author-detail" href="https://www.linkedin.com/in/powersjcb">
+          <span class="linkedin"><i class="fa fa-linkedin"></i> LinkedIn</span>
+        </a>
+    </span>
+  </footer>
 </div>
 
 
 <% content_for(:head) do %>
-  <%= javascript_include_tag 'login_modal' %>
+  <%= javascript_include_tag 'root' %>
 <% end %>

@@ -118,6 +118,7 @@
 }
 
 .logo {
+  color: white;
   position: absolute;
   display: inline-block;
   bottom: 0px;
@@ -146,10 +147,14 @@
   position: relative;
   bottom: 2px;
   height: 55px;
-  padding: .5rem 2rem .75rem 1rem;
+  padding: .5rem 2rem .5rem 2rem;
   background: #439fe0;
   color: #fff;
   font-size: 1.3rem;
+}
+
+.contact a {
+  color: white;
 }
 
 .contact {
@@ -159,17 +164,39 @@
   width: 100%;
   background-color: #3aa497;
   margin: 0 auto;
-  height: 100px;
   font-weight: 300;
   padding-bottom: 10px;
 }
 
-.contact .email {
-  padding-top: 10px;
+.subtext {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  font-size: 1rem;
 }
 
-.name {
+#source {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
 }
 
-.local {
+#source:hover {
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+.author {
+  max-width: 940px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: horizontal;
+  font-size: 1rem;
+}
+
+.author-detail {
+  flex: 1;
 }

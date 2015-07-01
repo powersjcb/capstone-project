@@ -94,8 +94,9 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     var appHistory = window.appHistory;
     var lastRoute = appHistory[appHistory.length - 1];
+    $(window).off('transitionend', createDeferred)
+    ;
 
-    $(window).off('transitionend', createDeferred);
     if (lastRoute && lastRoute.name === 'groupsIndex') {
       $(window).on('transitionend', createDeferred);
     }
