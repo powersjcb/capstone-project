@@ -45,8 +45,9 @@ debouncedGTB: function a (model) {
   // each add event move to bottom of page
   setTimeout(function () {
     this.goToBottom();
-    this.offsetImage(model, { up: true });
   }.bind(this), 0);
+
+  this.offsetImage(model);
 
   var timeout;
   var context = this;
@@ -167,15 +168,16 @@ debouncedGTB: function a (model) {
 
   offsetImage: function (message, options) {
     var selector = "#message-" + message.get('id') + ' .message-img';
-    setTimeout(function () {
+
+      var url = message.get('url') !== "";
       var $imageDiv = this.$(selector);
-      if ($imageDiv.find('img').attr('src') !== "") {
+      var imageCached = $imageDiv.find('img').height() > 0;
+      if (url && !imageCached) {
         $imageDiv.imagesLoaded()
           .done( function (instance) {
             this.offsetPage(selector, options);
           }.bind(this));
       }
-    }.bind(this), 0);
   },
 
   offsetPage: function (selector, options) {
