@@ -172,9 +172,7 @@ debouncedGTB: function a (model) {
       if ($imageDiv.find('img').attr('src') !== "") {
         $imageDiv.imagesLoaded()
           .done( function (instance) {
-            console.log(this.$el.scrollTop())
-            console.log(this.offsetPage(selector, options));
-            console.log(this.$el.scrollTop())
+            this.offsetPage(selector, options);
           }.bind(this));
       }
     }.bind(this), 0);
