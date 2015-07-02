@@ -13,7 +13,6 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
 
     // infinite scroll messages
     this.listenTo(this.collection, 'add',    this.prependMessageView);
-
     this.listenTo(this.collection, 'remove', this.removeMessageView);
 
     // add messages on page load
@@ -51,7 +50,7 @@ debouncedGTB: function a (model) {
 
   var timeout;
   var context = this;
-  var wait = 50; // debounce timer
+  var wait = 30; // debounce timer
 
   var later = function() {
     timeout = null;
@@ -98,11 +97,11 @@ debouncedGTB: function a (model) {
   onRender: function () {
     setTimeout(function () {
       this.enableScrollListener();
-    }.bind(this),1000);
+    }.bind(this), 1000);
   },
 
   goToBottom: function () {
-    $('.messages-index').scrollTop(100000000);
+    this.$el.scrollTop(100000000);
   },
 
   stickScrollBottom: function() {
@@ -168,13 +167,17 @@ debouncedGTB: function a (model) {
 
   offsetImage: function (message, options) {
     var selector = "#message-" + message.get('id') + ' .message-img';
-    var $imageDiv = $(selector);
-    if ($imageDiv.find('img').attr('src') !== "") {
-      $imageDiv.imagesLoaded()
-        .done( function (instance) {
-          this.offsetPage(selector, options);
-        }.bind(this));
-    }
+    setTimeout(function () {
+      var $imageDiv = this.$(selector);
+      if ($imageDiv.find('img').attr('src') !== "") {
+        $imageDiv.imagesLoaded()
+          .done( function (instance) {
+            console.log(this.$el.scrollTop())
+            console.log(this.offsetPage(selector, options));
+            console.log(this.$el.scrollTop())
+          }.bind(this));
+      }
+    }.bind(this), 0);
   },
 
   offsetPage: function (selector, options) {
@@ -184,6 +187,7 @@ debouncedGTB: function a (model) {
       height = -height;
     }
     this.$el.scrollTop(currentScroll + height);
+    return height;
   },
 
 });
