@@ -40,7 +40,12 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
     var content = this.template({ conversation: this.model });
     this.$el.html(content);
     this.attachSubviews();
+    this.onRender();
     return this;
   },
+
+  onRender: function () {
+    Backbone.CompositeView.prototype.onRender.call(this);
+  }
 
 });

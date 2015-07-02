@@ -45,7 +45,7 @@ debouncedGTB: function a (model) {
   // each add event move to bottom of page
   setTimeout(function () {
     this.goToBottom();
-  }.bind(this), 50);
+  }.bind(this), 500);
 
   this.offsetImage(model);
 
@@ -96,10 +96,10 @@ debouncedGTB: function a (model) {
   },
 
   onRender: function () {
-    this.goToBottom();
     setTimeout(function () {
       this.enableScrollListener();
     }.bind(this), 1000);
+    Backbone.CompositeView.prototype.onRender.call(this);
   },
 
   goToBottom: function () {
