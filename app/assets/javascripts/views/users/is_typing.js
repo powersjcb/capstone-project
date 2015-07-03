@@ -1,4 +1,4 @@
-Slick.Views.IsTyping = Backbone.View.extend({
+Slick.Views.IsTyping = Backbone.CompositeView.extend({
 
   template: JST['users/is_typing'],
 
@@ -8,7 +8,8 @@ Slick.Views.IsTyping = Backbone.View.extend({
     this.typingUsers = new Slick.Collections.Users();
 
     this.conversationFeed.bind('client-is_typing', this.isTyping.bind(this));
-    this.conversationFeed.bind('client-finish_typing', this.finishTyping.bind(this));
+    this.conversationFeed.bind('client-finish_typing',
+      this.finishTyping.bind(this));
     this.listenTo(this.typingUsers, 'add remove', this.render);
   },
 
@@ -53,6 +54,5 @@ Slick.Views.IsTyping = Backbone.View.extend({
   notTypingAnymore: _.debounce( function(user) {
       this.typingUsers.remove(user);
   }, 25000),
-
 
 });

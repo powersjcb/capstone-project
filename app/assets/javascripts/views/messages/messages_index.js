@@ -169,7 +169,6 @@ debouncedGTB: function a (model) {
 
   offsetImage: function (message, options) {
     var selector = "#message-" + message.get('id') + ' .message-img';
-
       var url = message.get('url') !== "";
       var $imageDiv = this.$(selector);
       var imageCached = $imageDiv.find('img').height() > 0;

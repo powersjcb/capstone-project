@@ -31,7 +31,8 @@ Slick.Views.ConversationShow = Backbone.CompositeView.extend({
 
   addHeaderView: function () {
     var subView = new Slick.Views.ConversationsHeader({
-      model: this.model
+      model: this.model,
+      conversationFeed: this.conversationFeed
     });
     this.addSubview('#conversation-header', subView);
   },

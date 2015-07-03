@@ -6,7 +6,7 @@ window.Slick = {
 
   initialize: function() {
     window.appHistory = [];
-    var router = new Slick.Routers.Router({
+    window.router = new Slick.Routers.Router({
       $rootEl: $('#content')
     });
     Backbone.history.start();
