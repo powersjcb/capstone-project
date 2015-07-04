@@ -15,7 +15,7 @@ class Api::MessagesController < Api::ApiController
   end
 
   def search
-    ## should only show visible messages - ask eric about lambdas for associations
+    # TODO should only show visible messages, needs work
     search_terms = params[:search]
     @messages = Message.where('content LIKE ?', "%#{search_terms}%")
     render json: @messages
