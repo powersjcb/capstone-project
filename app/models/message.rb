@@ -26,7 +26,7 @@ class Message < ActiveRecord::Base
     inverse_of: :sent_messages)
   belongs_to :conversation
 
-  after_commit :alert_conversation
+  after_commit :alert_conversation, on: :create
   # send a single ping to group with only msg_id and channel_id
   # this will show missed messages
   # after_commit :alert_group

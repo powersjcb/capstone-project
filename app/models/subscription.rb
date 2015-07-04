@@ -17,8 +17,19 @@ class Subscription < ActiveRecord::Base
     message: "needs to be unique"
     }
   )
+  after_commit :alert_conversation, on: :create
+
 
   belongs_to :user
   belongs_to :conversation, inverse_of: :subscriptions
+
+
+  def alert_conversation
+    WebsocketService.new({
+      channel_name: "presence-conversation-#{conversation_id}",
+      event_name: "new_subscriber",
+      data: self.user.as_json
+    }).send
+  end
 
 end

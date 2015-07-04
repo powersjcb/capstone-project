@@ -74,6 +74,8 @@ Slick.Routers.Router = Backbone.Router.extend({
 
     this.conversationFeed.bind('new_subscriber', function(data) {
       var newSubscriber = new Slick.Models.User(data);
+      console.log('new subscriber');
+      console.log(data);
       this.conversation.subscribers().add(newSubscriber);
     }.bind(this));
 
