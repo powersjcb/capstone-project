@@ -177,7 +177,6 @@ debouncedGTB: function a (model) {
       if (url && !imageCached) {
         $imageDiv.imagesLoaded()
           .done( function (instance) {
-            debugger;
             this.offsetPage(selector, options);
           }.bind(this));
       }
