@@ -39,7 +39,7 @@ Slick.Views.MessagesIndex = Backbone.CompositeView.extend({
 
     if (stickSroll) {
       this.goToBottom();
-      this.offsetImage(model, { up: true });
+      this.offsetImage(model);
     }
   },
 
@@ -177,6 +177,7 @@ debouncedGTB: function a (model) {
       if (url && !imageCached) {
         $imageDiv.imagesLoaded()
           .done( function (instance) {
+            debugger;
             this.offsetPage(selector, options);
           }.bind(this));
       }
