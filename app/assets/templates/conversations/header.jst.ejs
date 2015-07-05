@@ -1,7 +1,7 @@
 <span class="prefix"><%= (conversation.get('privacy_state') == 0 ) ? "@" : "#" %></span>
 <span class="conv-name"><%= conversation.escape('title') %></span>
 
-<span class="user-count">
+<div class="user-count">
   <i class="fa fa-users"></i>
   <span class="online"><%= conversationFeed.members.count %> online</span>
-</span>
+</div>

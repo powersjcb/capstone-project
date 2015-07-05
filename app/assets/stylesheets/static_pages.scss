@@ -102,10 +102,11 @@
 }
 
 .sign-in {
-  font-size: 1.0rem;
-  float: right;
+  font-size: 1.3rem;
   display: inline-block;
-  padding: 10px 15px;
+  line-height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   color: #fff;
   border-radius: 3px;
   background-color: #40A397;
@@ -148,9 +149,10 @@
 }
 
 .create-account-button {
+  box-sizing: border-box;
   position: relative;
-  bottom: 2px;
-  height: 55px;
+  top: 1px;
+  height: 56px;
   padding: .5rem 2rem .5rem 2rem;
   background: #439fe0;
   color: #fff;
@@ -169,22 +171,22 @@
   width: 100%;
   background-color: #3aa497;
   margin: 0 auto;
-  font-weight: 300;
+  font-weight: 400;
   padding-bottom: 10px;
 }
 
 .subtext {
   padding-top: 15px;
   padding-bottom: 10px;
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 #source {
   display: inline-block;
-  padding: 5px;
+  padding: 3px;
+  margin-left: 25px;
   border-radius: 3px;
   border: 1px;
-  margin-bottom: 15px;
   border: 1px solid transparent;
 }
 
@@ -210,13 +212,8 @@
   border: 1px solid transparent;
 }
 
-.legal {
-  max-width: 500px;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  flex-direction: horizontal;
-  font-size: .8rem;
+.namedate {
+  font-size: 1rem;
 }
 
 a.author-detail:hover {

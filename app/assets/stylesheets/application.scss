@@ -43,30 +43,27 @@
   -webkit-border-radius: 100px;
 }
 
-// inputs
-::-webkit-input-placeholder {
-padding-left: 15px;
+input[type="text"], input[type="password"] {
+  padding-left: 15px;
 }
 
-:-moz-placeholder { /* Firefox 18- */
-padding-left: 15px;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-padding-left: 15px;
-}
-
-:-ms-input-placeholder {
-padding-left: 15px;
-}
 
 a {
   text-decoration: none;
+  i {
+    margin-right: .5em;
+  }
 }
 
  html, body {
   position: relative;
   margin: 0 auto;
+  height: 100%;
+  width: 100%;
+ }
+
+ h2 {
+   line-height: .1rem;
  }
 
 
@@ -147,7 +144,7 @@ a {
   text-align: center;
 }
 
-input{
+input {
 -webkit-border-radius: 7px;
 -moz-border-radius: 7px;
 border-radius: 7px;

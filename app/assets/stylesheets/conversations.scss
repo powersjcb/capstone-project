@@ -71,6 +71,7 @@
 }
 
 #conversation-header {
+  position: relative;
   height: 50px;
 }
 
@@ -139,8 +140,10 @@
 }
 
 .user-count {
+  position: relative;
+  display: inline-block;
+  float: right;
   color: #67686e;
   font-size: 1rem;
-  float: right;
   margin-right: 10px;
 }

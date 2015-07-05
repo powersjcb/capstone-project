@@ -1,21 +1,24 @@
 <div class="modal-form">
   <header>
     <button class="close" type="button" name="close">&times</button>
-    <h3>Create a group</h3>
+    <h2>Create a group</h2>
   </header>
 
   <form method="post">
     <div class="input-section">
       <div "input-field">
-        <input id="group-name" type="text" name="group[name]" value="" placeholder="Organization">
+        <input class="main-input" id="group-name" type="text"
+          name="group[name]" value="" placeholder="Organization">
       </div>
       <div class="input-field">
-        <textarea id="group-description" type="input" name="group[description]" value="" placeholder="description"></textarea>
+        <textarea class="main-input" id="group-description" type="input" name="group[description]"
+          value="" placeholder="description"></textarea>
       </div>
     </div>
 
     <div class="form-footer">
-      <button type="submit" class="submit create-account-button" name="create channel">Create Group</button>
+      <button type="submit" class="submit create-account-button"
+        name="create channel">Create Group</button>
     </div>
   </form>
 </div>
