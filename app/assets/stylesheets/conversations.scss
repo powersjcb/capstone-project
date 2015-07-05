@@ -46,22 +46,26 @@
 
 
 .chat-box {
+  position: relative;
   flex: 1;
   -webkit-flex: 1;
   display: inline-block;
   box-sizing: content-box;
-  border: 2px solid #E0E0E0;
+
 }
 
 .chat-input {
+  color: #3d3c40;
+  display: block;
+  height: 40px;
   width: 100%;
-  flex-grow: 1;
-  line-height: 16px;
-  font-size: 1em;
+  line-height: 1.1rem;
+  font-size: .95rem;
   margin: 0px;
-  padding: 0px;
-  border: none;
   outline: none;
+  padding: 9px 40px 9px 8px;
+  box-sizing: border-box;
+  border: 2px solid #E0E0E0;
 
   -webkit-box-shadow: none;
   -moz-box-shadow: none;

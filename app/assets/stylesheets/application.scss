@@ -17,11 +17,14 @@
 @import "font-awesome";
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic);
 
- *{
+* {
   -webkit-font-smoothing: antialiased;
   font-family: 'Lato', 'sans-serif';
-  font-color:  #555459;;
  }
+
+html {
+  color: rgb(61, 60, 64);
+}
 
 // scrollbars
 ::-webkit-scrollbar {
@@ -148,4 +151,11 @@ input {
 -webkit-border-radius: 7px;
 -moz-border-radius: 7px;
 border-radius: 7px;
+}
+
+textarea {
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 5px;
 }

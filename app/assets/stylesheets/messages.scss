@@ -1,6 +1,7 @@
 .content {
   width: 100%;
   font-size: 15px;
+  padding-top: 0px;
   line-height: 22px;
   word-wrap: break-word;
   margin-bottom: 15px;
@@ -22,7 +23,7 @@
 }
 
 .message-body {
-  margin-left: 75px;
+  margin-left: 55px;
 }
 
 .messages-index {
@@ -34,10 +35,15 @@
 
 .message-item {
   width: 100%;
+  padding-bottom: 10px;
 }
 
 .message-username {
   font-weight: 700;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .pending {
@@ -61,5 +67,10 @@
 
 .timestamp {
   font-size: .75rem;
-  color: #C0C0C0;
+  font-weight: 400;
+  color:  #babbbf;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
