@@ -17,6 +17,15 @@ class Api::MembershipsController < Api::ApiController
     end
   end
 
+  def show
+    @membership = Membership.find(params[:id])
+    if @membership
+      render json: @memberhip
+    else
+      render json: {}, status: 404
+    end
+  end
+
   ## memberships for current_user
   # def index
   #
