@@ -1,7 +1,6 @@
 <div class="modal-form">
   <header>
-    <button class="close" type="button" name="close">&times</button>
-    <h3>Create a channel</h3>
+    <h2>Create a channel</h2>
   </header>
 
   <p>This will create a public channel that anyone in the group can join.</p>
@@ -9,12 +8,14 @@
   <form method="post">
     <div class="input-section">
       <div "input-field">
-        <input id="conversation-title" type="text" name="conversation[title]" value="" placeholder="Channel name">
+        <input class="model-input" id="conversation-title" type="text"
+          name="conversation[title]" value="" placeholder="Channel name">
       </div>
     </div>
 
     <div class="form-footer">
-      <button type="submit" class="submit create-account-button" name="create channel">Create Channel</button>
+      <button type="submit" class="submit create-account-button"
+        name="create channel">Create Channel</button>
     </div>
   </form>
 </div>

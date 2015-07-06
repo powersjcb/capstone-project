@@ -112,6 +112,7 @@
 }
 
 .modal-form {
+  font-size: 1rem;
   position: absolute;
   top: 35%;
   left: 35%;
@@ -119,10 +120,9 @@
   padding: 20px;
   border-radius: 5px;
 
-  font-size: 1.2rem;
-
   input, textarea {
     font-size: 1.2rem;
+    width: 300px;
   }
 }
 
