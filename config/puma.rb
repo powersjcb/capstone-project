@@ -5,7 +5,7 @@ workers Integer(ENV['WEB_CONCURRENCY'] || 2)
   preload_app!
 
   rackup      DefaultRackup
-  port        ENV['PORT']     || 3000
+  port        ENV['PORT']     || 3333
   environment ENV['RACK_ENV'] || 'development'
 
   on_worker_boot do

@@ -19,9 +19,17 @@ gem 'pusher'
 gem 'newrelic_rpm'
 gem 'kaminari'
 gem 'font-awesome-sass'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+gem 'resque'
+gem 'resque-web', require: 'resque_web'
+gem 'therubyracer'
 
 
 group :development, :test do
+  gem 'foreman'
   gem 'byebug'
   gem 'spring'
 end

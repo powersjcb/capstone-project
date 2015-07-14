@@ -1,3 +1,10 @@
+require 'resque_web'
+
+resque_web_constraint = lambda do |request|
+  current_user = request.env['warden'].user
+
+end
+
 Rails.application.routes.draw do
   get 'messages/index'
 
@@ -17,4 +24,7 @@ Rails.application.routes.draw do
     get '/conversations/:id/page/:page', to: 'conversations#messages'
   end
 
+  constraints resque_web_constraint do
+    mount ResqueWeb::Engine => '/resque_web'
+  end
 end
