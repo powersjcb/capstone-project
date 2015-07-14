@@ -25,6 +25,7 @@ gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'resque'
 gem 'resque-web', require: 'resque_web'
+gem 'resque-scheduler'
 gem 'therubyracer'
 
 

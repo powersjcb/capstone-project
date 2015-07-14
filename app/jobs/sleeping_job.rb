@@ -5,7 +5,6 @@ class SleepingJob
   end
 
   def self.perform
-    puts 'I like to sleep'
-    sleep 2
+    puts 'I just slept asynchronously'
   end
 end
