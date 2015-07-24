@@ -30,6 +30,7 @@ gem 'therubyracer'
 
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'foreman'
   gem 'byebug'
   gem 'spring'
