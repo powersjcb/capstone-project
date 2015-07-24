@@ -22,6 +22,7 @@ gem 'font-awesome-sass'
 
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'byebug'
   gem 'spring'
 end
