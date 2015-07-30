@@ -39,9 +39,12 @@ class Message < ActiveRecord::Base
       data: self.as_json
     }).send
   end
+
   def user_in_conversation
-    unless sender.conversations.include?(self.conversation)
-      @sender.errors[:base] << "This user is not subscribed to this conversation"
+    if self.errors.empty?
+      unless sender.conversations.include?(self.conversation)
+        @sender.errors[:base] << "This user is not subscribed to this conversation"
+      end
     end
   end
 end

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   validates :username, :session_token, presence: true, uniqueness: true
-  validates :password_digest, presence: {message: "Password can't be blank"}
+  validates :password_digest, presence: { message: "Password can't be blank" }
   after_initialize :ensure_session_token
 
 
