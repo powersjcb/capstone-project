@@ -24,7 +24,7 @@ class Message < ActiveRecord::Base
     class_name: "User",
     foreign_key: :sender_id,
     inverse_of: :sent_messages)
-  belongs_to :conversation
+  belongs_to :conversation, inverse_of: :messages
 
   after_commit :alert_conversation, on: :create
   # send a single ping to group with only msg_id and channel_id
@@ -41,9 +41,10 @@ class Message < ActiveRecord::Base
   end
 
   def user_in_conversation
-    if self.errors.empty?
+    if self.errors.empty?  # needs to conditionally run with valid inputs only
       unless sender.conversations.include?(self.conversation)
-        @sender.errors[:base] << "This user is not subscribed to this conversation"
+        @sender.errors[:base] <<
+          "This user is not subscribed to this conversation"
       end
     end
   end

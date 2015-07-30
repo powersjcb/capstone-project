@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     foreign_key: :sender_id,
     inverse_of: :sender
   )
-  has_many :created_chats, class_name: "Conversation", inverse_of: "creator"
+  has_many :created_chats, class_name: "Conversation", inverse_of: :creator
   has_many :created_groups, class_name: "Group"
 
   has_many :subscriptions, dependent: :destroy
@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   def join(model)
     if model.class.name == "Group"
       self.memberships.create(group: model)
-    elsif model.class.name = "Conversation"
+    elsif model.class.name == "Conversation"
       self.subscriptions.create(conversation: model)
     else
       puts 'could not join anything'

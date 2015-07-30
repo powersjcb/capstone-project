@@ -17,9 +17,11 @@ class Conversation < ActiveRecord::Base
   validates :title, :user_id, presence: true
   validates :title, uniqueness: {scope: :group_id}
 
-  belongs_to :creator, class_name: "User", inverse_of: "created_chats"
+  belongs_to :creator, class_name: "User",
+    inverse_of: :created_chats, foreign_key: :user_id
+
   belongs_to :group
-  has_many :messages, dependent: :destroy
+  has_many :messages, inverse_of: :conversation, dependent: :destroy
   has_many :subscriptions, dependent: :destroy, inverse_of: :conversation
   has_many :subscribers, through: :subscriptions, source: :user
 
